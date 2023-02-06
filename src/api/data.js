@@ -60,7 +60,7 @@ export const getCities = async()=>{
         setTimeout(() => {
             res(cities)
         }, 1000);
-    })
+    });
 }
 export const createUser = async( { userType, user} )=>{
     if(userType ==='doctor'){

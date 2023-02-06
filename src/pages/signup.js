@@ -33,7 +33,7 @@ function SignUp() {
     <>
         {error && <p >{error}</p>}
         <form onSubmit={handleSubmit(onSubmit)} >
-            <label htmlFor="userType">تسجيل ك</label><br/>
+            <label htmlFor="userType">نوع المستخدم</label><br/>
             <select { ...register("userType")} id="userType">
                 <option value="patient" >مريض</option>
                 <option value="doctor" >دكتور</option>
@@ -98,7 +98,7 @@ function SignUp() {
                     />
                         { errors.specialization && <p>من فضلك ادخل التخصص </p>}
                     <br/>
-                    <input
+                    <input 
                         placeholder="العنوان"
                         {...register('location', { required: true })}
                     />

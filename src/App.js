@@ -30,7 +30,6 @@ function App() {
         <React.Suspense fallback={<h3>Loading</h3>}>
 
         <Routes>
-          
           <Route path= {DASHBOARD} element = {<Dashboard/>}></Route>
           <Route path = {SIGNUP} element={ <SignUp /> }/>
           <Route path = {LOGIN} element={ <Login /> }/>
