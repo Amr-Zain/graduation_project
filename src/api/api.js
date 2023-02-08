@@ -8,16 +8,16 @@ const doctors = [
         description: 'يمسب بيتسمنق سيب',
         phone: '01012121212',
         specialization: 2,
-        appointmentPrice: 299,
+        fees: 299,
         city: 'المنصوره',
         governorate: 'الدقهليه',
         location: 'ش جهان',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        imageURL : '/images/avatars/default.png',
         rating: 4.3,
     },
     {
         id: 'kdfjfddfslk',
-        name: 'Mohamed Ahmed',
+        name: 'زين علي',
         email: 'mohamed@gmail.com',
         description: 'يمسب بيتسمنق سيب',
         phone: '01012121212',
@@ -25,10 +25,38 @@ const doctors = [
         governorate: 'الدقهليه',
         location: 'ش جهان',
         specialization: 3,
-        appointmentPrice: 599,
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
         rating: 4.3,
-    }
+    },
+    {
+        id: 'kdfjfddfdslslk',
+        name: 'احمد محمد',
+        email: 'ahmed@gmail.com',
+        description: 'يمسب بيتسمنق سيب',
+        phone: '01012121212',
+        city: 'المنصوره',
+        governorate: 'الدقهليه',
+        location: 'ش جهان',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjfddfdsjkljslk',
+        name: 'حسين',
+        email: 'moh@gmail.com',
+        description: 'يمسب بيتسمنق سيب',
+        phone: '01012121212',
+        city: 'المنصوره',
+        governorate: 'الدقهليه',
+        location: 'ش جهان',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
 ]
 
 const specialization = {
@@ -50,8 +78,8 @@ const nurses = [
         city: 'المنصوره',
         governorate: 'الدقهليه',
         specialization: 2,
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
-        initialPrice: 99,
+        imageURL : '/images/avatars/default.png',
+        fees: 99,
         rating: 4.3,
     },
     {
@@ -62,8 +90,8 @@ const nurses = [
         phone: '01012121212',
         city: 'المنصوره',
         governorate: 'الدقهليه',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
-        initialPrice: 99,
+        imageURL : '/images/avatars/default.png',
+        fees: 99,
         rating: 4.3,
     }
 ]
@@ -72,13 +100,11 @@ const receptionists = [
         doctorId: 'sdklsdf',
         id: "fdsdsf",
         email: 'dfsklfjs',
-        phone: 'sdlkfj'
     },
     {
         doctorId: 'sdklsdf',
         id: "fdsdsf",
         email: 'dfsklfjs',
-        phone: 'sdlkfj'
     },
 ]
 const patients = [
@@ -89,7 +115,7 @@ const patients = [
         city: 'المنصوره',
         governorate: 'الدقهليه',
         phone: '01012121212',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        imageURL : '/images/avatars/default.png',
         age: 30
     },
     {
@@ -97,7 +123,7 @@ const patients = [
         name: 'Ahmed mohamed',
         email: 'mohamed@gmail.com',
         phone: '01012121212',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        imageURL : '/images/avatars/default.png',
         age: 30
     },
     {
@@ -105,7 +131,7 @@ const patients = [
         name: 'Ahmed mohamed',
         email: 'mohamed@gmail.com',
         phone: '01012121212',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        imageURL : '/images/avatars/default.png',
         age: 30
     },
 ]
@@ -234,7 +260,7 @@ const donationRequests = [
 const cities = [
     {id:1,value:'المنصوره'},
     {id:2,value:'القاهره'},
-    {id:3,value:'الاكسندريه'},
+    {id:3,value:'الاسكندريه'},
     {id:4,value:'دمياط'},
     {id:5,value:'بورسعيد'},
     {id:6,value:'الاسمعيليه'},
@@ -279,25 +305,33 @@ const shechedule = { //days 0->6
 const bookedAppointments = [
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
-        id: 'dskkjoerpeww',
-        doctorId: 'dfksl',
-        bookingDate: '',
+        id: 'dskkjodjkljerpeww',
+        doctorId: 'dskkjoerpeww',
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
-        patientId: 'sdjfds',
+        patientId: 'dskfhkldsjklf',
     },
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
-        id: 'dskkjoerpeww',
-        doctorId: 'dfksl',
-        bookingDate: '',
+        id: 'dskkjoesadrpeww',
+        doctorId: 'kdfjfddfdslslk',
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
-        patientId: 'sdjfds',
+        patientId: 'dskfhkldsjklf',
+    },
+    {
+        //key it to get the doctor today's cases is (doctorId,bookingDate:today)
+        id: 'kdfjfdfsddfslk',
+        doctorId: 'dskkjoerpeww',
+        bookingDate: new Date(1675780227259).toDateString(),
+        bookedAte: Date.now(),
+        patientId: 'dskfhkldsjklf',
     },
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'kdfjfddfslk',
-        doctorId: 'dfksl',
-        bookingDate: '',
+        doctorId: 'kdfjfddfdsjkljslk',
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'sdjfds',
     },
@@ -317,7 +351,7 @@ const searchDoctorResult = {
             city: 'المنصوره',
             governorate: 'الدقهليه',
             location: 'ش جهان',
-            imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+            imageURL : '/images/avatars/default.png',
             rating: 4.3,
         },{
             id: 'dskkjoerpeww',
@@ -331,7 +365,7 @@ const searchDoctorResult = {
         city: 'المنصوره',
         governorate: 'الدقهليه',
         location: 'ش جهان',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+        imageURL : '/images/avatars/default.png',
         rating: 4.3,
         },{
             id: 'dskkjoerpeww',
@@ -345,7 +379,7 @@ const searchDoctorResult = {
             city: 'المنصوره',
             governorate: 'الدقهليه',
             location: 'ش جهان',
-            imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+            imageURL : '/images/avatars/default.png',
             rating: 4.3,
         }
     ]
@@ -395,7 +429,7 @@ const searchNurseResult = {
             city: 'المنصوره',
             governorate: 'الدقهليه',
             specialization: 2,
-            imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+            imageURL : '/images/avatars/default.png',
             initialPrice: 99,
             rating: 4.3,
         },{
@@ -407,7 +441,7 @@ const searchNurseResult = {
             city: 'المنصوره',
             governorate: 'الدقهليه',
             specialization: 2,
-            imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+            imageURL : '/images/avatars/default.png',
             initialPrice: 99,
             rating: 4.3,
         },{
@@ -419,14 +453,43 @@ const searchNurseResult = {
             city: 'المنصوره',
             governorate: 'الدقهليه',
             specialization: 2,
-            imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
+            imageURL : '/images/avatars/default.png',
             initialPrice: 99,
             rating: 4.3,
         }
     ]
 }
 
-
+export const popular_doctors =[
+    {
+        id: 'dskkjoerpeww',
+        name: 'عمرو زين ',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjfddfslk',
+        name: 'زين علي',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjfddfdslslk',
+        name: 'احمد محمد',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjfddfdsjkljslk',
+        name: 'حسين',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    }
+]
 export { doctors, specialization, nurses, patients, patientsData, 
     donationRequests, bookedAppointments, receptionists, shechedule,
     searchDoctorResult, searchRequestResult, searchNurseResult, cities }
