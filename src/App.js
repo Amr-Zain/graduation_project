@@ -38,15 +38,18 @@ function App() {
             <Route path = {PATIENT} element = { <PatientDashboard /> }>
               <Route path = {PATIENT+DIAGNOSIS} element = { <PatientDiagnosis /> }/>
               <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
+              <Route path = {PATIENT+PROFILE+'/:id'} element={ <Profile /> }/>
             </Route>
 
             <Route path = {DOCTOR}>
               <Route path = {DOCTOR+DASHBOARD} element={ <DoctorDashboard /> }/>
               <Route path = {DOCTOR+PATIENTS_SCHEDULE} element={ <PatientQueue /> }/>{/* list of the patient in a day */}
+              <Route path = {DOCTOR+PROFILE+'/:id'} element={ <Profile /> }/>
             </Route>
 
             <Route path = {NURSE}>
               <Route path = { NURSE+DASHBOARD } element = { <NurseDashboard /> }/> {/* list of reservation of a day */}
+              <Route path = {NURSE+PROFILE+'/:id'} element={ <Profile /> }/>
             </Route>
             <Route path = {RECEPTIONIST}>
               <Route path = {RECEPTIONIST+DASHBOARD} element = { <ReceptionistDashboard /> }/> {/* list of reservation of a day */}

@@ -21,7 +21,7 @@ export const RECEPTIONIST = '/receptionist';
 export const DASHBOARD = '/'; 
 export const LOGIN = '/login'; 
 export const SIGNUP = '/signup'; 
-export const PROFILE = '/profile/:id'; 
+export const PROFILE = '/profile'; 
 export const NOT_FOUND = '/not_found'; 
 
 export const BLOOD_BANK = '/blood_bank';

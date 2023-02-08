@@ -1,5 +1,5 @@
 import { doctors, specialization, nurses, patients, patientsData, 
-    donationRequests, bookedAppointments, receptionists, shechedule, cities } from './api'
+    donationRequests, bookedAppointments, receptionists, shechedule, cities, popular_doctors } from './api'
 
 //sill
 import { formate, formateWithDate, formateDonationRequest} from './formater'
@@ -59,6 +59,46 @@ export const getCities = async()=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res(cities)
+        }, 1000);
+    });
+}
+export const popularDoctors= async ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(popular_doctors)
+        }, 1000);
+    });
+    
+}
+export const getPopulerNurses= async ()=>{
+    return new Promise((res)=>{
+
+        const pupulerNserses = nurses.map(nurse=>({ id:nurse.id, imageURL:nurse.imageURL,
+            name:nurse.name, rating: nurse.rating, specialization: null}))
+        setTimeout(() => {
+            res(nurses)
+        }, 1000);
+    });
+    
+}
+export const appointments = async ({ id })=>{
+    //const patient = patients.find(p=>p.id ===id)
+    const apppointmets = bookedAppointments.filter(app=>app.patientId === id)
+    const result = apppointmets.map(app=>{
+        const doctor = doctors.find(doctor=>app.doctorId == doctor.id);
+        if(doctor)return {  ...app, 
+                        doctorName: doctor.name, 
+                        doctorSpecialization:specialization[doctor.specialization], 
+                        fees:doctor.fees, 
+                        doctorLocation: doctor.location,
+                        doctorImg: doctor.imageURL,
+                        docotorRating: doctor.rating,
+                        from:'8AM',
+                        to:'3PM'}
+    })
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(result)
         }, 1000);
     });
 }
