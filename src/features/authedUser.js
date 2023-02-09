@@ -2,17 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createUser, createUserSession } from "../api/data";
 
 const initialState = {
-    user:  {
-        id: 'dskfhkldsjklf',
-        name: 'Ahmed mohamed',
-        email: 'mohamed@gmail.com',
-        city: 'المنصوره',
-        governorate: 'الدقهليه',
-        phone: '01012121212',
-        imageURL : 'E:\\repos\\graduation project front end\\graduation-project\\public\\avatars',
-        age: 30
-    },
-    userType: 'patient',
+    user: null,
+    userType: '',
     token:'',
     refrexhToken: '',
     error:''

@@ -1,14 +1,13 @@
 import "../style/signup.css";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthedUserThunk } from "../features/authedUser";
 import { getCities } from "../api/data";
 import { useForm } from "react-hook-form";
+import { LOGIN } from "../constants/routes";
 
-import logo from '../../src/Images/num1.png'; 
-import logo1 from '../../src/Images/newlogo.png'; 
 function SignUp() {
   const {
     register,
@@ -39,38 +38,38 @@ function SignUp() {
   }, []);
   return (
     <>
-      {error && <p>{error}</p>}
+      <div className='container' style={{marginTop: watch('userType') === 'doctor'?'14rem':'2rem'}}>
 
-      <div className="container">
-
-      
-        <div className="row">
+      <div className="row">
       
 
-       <div className="col-sm-6 col-md-5 col-lg-6">
-       <img className="image-logo" src={logo1} alt="Logo" />
-       <img className="image-left" src={logo} alt="Logo" />
+        <div className="col-sm-12 col-md-5 col-lg-6" style={{ display:'flex',alignItems:'start',flexDirection:'column'}}>
+      
+        <div className="logo-container">
+          <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
+        </div>
+          <div className='login-signup-image' style={{}} >
+            <img className="image-left" src={'./images/signup_login.png'} alt="Logo" />
+          </div>
     
-       </div>
+        </div>
 
-       <div className="col-sm-6 col-md-5 col-lg-6">
+       <div className="col-sm-12 col-md-7 col-lg-6">
       <div className="grid-container from-sign">
-          
-        <form className="back-color" onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="userType" className="title-top">
-            انضم الينا
-          </label>
-         
-    
-          <br />
-          <select className="select-patiant" {...register("userType")} id="userType">
-            <option value="patient">مريض</option>
-            <option value="doctor">دكتور</option>
-            <option value="nurse">ممرض</option>
-          </select>
-          <br />
+        <p className="title-top">
+          انضم الينا
+        </p>
+        <form className="" onSubmit={handleSubmit(onSubmit)}>
      
          <div className="flex-input">
+          <div className='select'>
+            <select className="select-patiant" {...register("userType")} id="userType">
+              <option value="patient">مريض</option>
+              <option value="doctor">دكتور</option>
+              <option value="nurse">ممرض</option>
+            </select>
+          </div>
+          <br />
           <input
             type="text"
             placeholder="الاسم كامل"
@@ -183,12 +182,16 @@ function SignUp() {
             </>
           )}
      
-            </div>
           <button className="login-bottom" onClick={handleSubmit(onSubmit)}>تسجيل الدخول</button>
+            </div>
           </form>
          </div>
+        <p className="to-login">لدي حساب؟<Link to={LOGIN}>تسجيل الدخول</Link> </p>
+       </div>
+       <div> 
        </div>
       </div>
+      
      </div>
     </>
   );

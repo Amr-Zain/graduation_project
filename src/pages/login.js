@@ -6,6 +6,9 @@ import { setAuthedUserThunk } from '../features/authedUser';
 import { useNavigate } from 'react-router-dom';
 import { createUserSession } from '../api/data';
 import { useForm } from 'react-hook-form';
+import { LOGIN, SIGNUP } from '../constants/routes';
+import { Link } from 'react-router-dom';
+import '../style/signup.css'
 
 function Longin() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -26,24 +29,41 @@ function Longin() {
     })
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                {error && <p>{error}</p>}
-                <label htmlFor="userType">تسجيل ك</label><br/>
-                <select {...register("userType")}>
-                    <option value="patient">مريض</option>
-                    <option value="doctor">دكتور</option>
-                    <option value="nurse">ممرض</option>
-                    <option value="receptionsist">استقبال</option>
-                </select>
-                <br/>
-                <input placeholder="البريد الالكتروني" {...register('email', { required: true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ })} />
-                {errors.email && <p>من فضلك ادخل الايميل</p>}
-
-                <input type='password' placeholder="كلمه المرور" {...register('password', { required: true })} />
-                {errors.password && <p>من فضلك ادخل كلمه المرور</p>}
                 
-                <button onClick={handleSubmit(onSubmit)}>تسجيل الدخول</button>
-            </form>
+            <div className='container'>
+                <div className="row">
+                <div className="col-sm-12 col-md-5 col-lg-6" style={{ display:'flex',alignItems:'start',flexDirection:'column'}}>
+                <div className="logo-container">
+                    <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
+                </div>
+                    <div className='login-signup-image' style={{}} >
+                    <img className="image-left" src={'./images/signup_login.png'} alt="Logo" />
+                    </div>
+                </div>
+                    <div className="col-sm-12 col-md-7 col-lg-6" style={{display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',}}>
+                        <div className="grid-container from-sign"></div>
+                        <form className="flex-input" onSubmit={handleSubmit(onSubmit)}>
+                            {error && <p>{error}</p>}
+                            <div className='select'>
+                                <select className="select-patiant" {...register("userType")} id="userType">
+                                <option value="patient">مريض</option>
+                                <option value="doctor">دكتور</option>
+                                <option value="nurse">ممرض</option>
+                                </select>
+                            </div>
+                            <br/>
+                            <input placeholder="البريد الالكتروني" {...register('email', { required: true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ })} />
+
+                            <input type='password' placeholder="كلمه المرور" {...register('password', { required: true })} />
+                            
+                            <button className="login-bottom"  onClick={handleSubmit(onSubmit)}>تسجيل الدخول</button>
+                        </form>
+                        <p className="to-login">ليس لدي حساب ؟ <Link to={SIGNUP}>التسجيل </Link> </p>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
