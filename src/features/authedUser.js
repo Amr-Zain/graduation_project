@@ -2,7 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createUser, createUserSession } from "../api/data";
 
 const initialState = {
-    user: null,
+    user: {
+        id: 'dskfhkldsjklf',
+        name: 'Ahmed mohamed',
+        email: 'mohamed@gmail.com',
+        city: 'المنصوره',
+        governorate: 'الدقهليه',
+        phone: '01012121212',
+        imageURL : '/images/avatars/default.png',
+        age: 30},
     userType: '',
     token:'',
     refrexhToken: '',
@@ -21,7 +29,7 @@ export const setAuthedUserThunk = createAsyncThunk('authedUser/setAuthedUser',
         //console.log(newState)
         return { ...newState, userType }
     } catch (error) {
-        setError({error: error.message});
+        setError({error: error.message})
         return thunkAPI.rejectWithValue(error.message);
     }
 });
@@ -30,7 +38,6 @@ const authedUserSlice = createSlice({
     initialState,
     reducers: {
         setAuthedUser:(state,{ payload })=>{
-            console.log(payload)
             state = payload;
         },
         removeAuthedUser:(state,action)=>{

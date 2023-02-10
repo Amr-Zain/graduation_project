@@ -1,0 +1,106 @@
+:root{
+    --main:#159190;
+    --secondary: 14,64,103;
+    --text--primary: #262626;
+    --gray--text:#8C8C8C;
+  }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100%;
+  min-width: 100%;
+}
+.popular-doctors , .popular-nurses{
+    direction: rtl;
+}
+
+.popular-doctors .doctors::-webkit-scrollbar , .popular-nurses .nurses::-webkit-scrollbar {
+    display:none
+} 
+.popular-doctors .popular , .popular-nurses .popular{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--main);
+    margin: 1rem;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.cards-container {
+  display: flex;
+  border-radius: 6px;
+  padding: 1rem;
+  position: relative;
+}
+
+.card {
+  flex: 0 0 250px;
+  box-shadow: 0 1px 1rem -4px #000;
+  background: #fff;
+  margin: .75rem;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+}
+.card img {
+    width: 100%;
+    height: 200px;
+    
+}
+.card:hover {
+  box-shadow: 0 4px 1rem -4px #000;
+  transform: translateY(-3px);
+}
+
+.card-content {
+  padding: 1rem;
+}
+.card-content .specialization {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gray--text);
+}
+.card-content .name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-content .name-rating .name {
+    color: var(--text--primary);
+    font-size: 1.25rem;
+}
+.card-content .name-rating .rating {
+    display: flex;
+    gap: 6px;
+}
+.card-content .name-rating .rating .star {
+    color: #FFC107;
+}
+.card-content .name-rating .rating .rating-value {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 625px) {
+  .container {
+    width: 100%;
+  }
+
+  .cards-container {
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin: 0.5rem;
+  }
+}

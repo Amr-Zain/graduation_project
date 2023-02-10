@@ -14,9 +14,9 @@ const PopulerNurses = () => {
         }
         getNurses()
     },[]);
-    return (  <div  className="popular_doctors">
-        <div>الممرضين الاعلي تقيما</div>
-        <div style={{display:'flex'}}className="doctors">
+    return (  <div  className="popular-nurses">
+        <div className="popular">الممرضين الاعلي تقيما</div>
+        <div style={{display:'flex', overflowX:'scroll'}}className="nurses">
             {Nurses} 
         </div>
     </div>);

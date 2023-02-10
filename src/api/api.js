@@ -302,12 +302,19 @@ const shechedule = { //days 0->6
         to: ' 5PM'
     }],
 }
+const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+   };
+//var dateString = date.toLocaleDateString('ar-SA', options);
 const bookedAppointments = [
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjodjkljerpeww',
         doctorId: 'dskkjoerpeww',
-        bookingDate: new Date(1675780227259).toDateString(),
+        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -315,7 +322,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjoesadrpeww',
         doctorId: 'kdfjfddfdslslk',
-        bookingDate: new Date(1675780227259).toDateString(),
+        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -323,7 +330,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'kdfjfdfsddfslk',
         doctorId: 'dskkjoerpeww',
-        bookingDate: new Date(1675780227259).toDateString(),
+        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -331,7 +338,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'kdfjfddfslk',
         doctorId: 'kdfjfddfdsjkljslk',
-        bookingDate: new Date(1675780227259).toDateString(),
+        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
         bookedAte: Date.now(),
         patientId: 'sdjfds',
     },
@@ -465,25 +472,39 @@ export const popular_doctors =[
         id: 'dskkjoerpeww',
         name: 'عمرو زين ',
         specialization: 'جراحه',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/dali.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfddfslk',
         name: 'زين علي',
         specialization: 'جراحه',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/karl.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfddfdslslk',
         name: 'احمد محمد',
         specialization: 'جراحه',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/orwell.jpg',
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddjkljslk',
+        name: 'حسين',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/raphael.jpg',
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjfddfdsfkjkljslk',
+        name: 'حسين',
+        specialization: 'جراحه',
+        imageURL : '/images/avatars/steve.jpg',
+        rating: 4.3,
+    },
+    {
+        id: 'sdfdfs',
         name: 'حسين',
         specialization: 'جراحه',
         imageURL : '/images/avatars/default.png',

@@ -1,13 +1,14 @@
 import "../style/signup.css";
 
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthedUserThunk } from "../features/authedUser";
 import { getCities } from "../api/data";
 import { useForm } from "react-hook-form";
 import { LOGIN } from "../constants/routes";
-
+import DatalistInput from 'react-datalist-input';
+import 'react-datalist-input/dist/styles.css';
 function SignUp() {
   const {
     register,
@@ -15,16 +16,23 @@ function SignUp() {
     watch,
     formState: { errors },
   } = useForm();
-  const [cities, setCities] = useState([]);
+
+  const [citiesSelect, setcitiesSelect] = useState({cities:[],selected:''});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userType, error, user } = useSelector((store) => store.authedUser);
-  if (user) navigate(`/${userType}/`);
-  console.log(watch("userType"));
+  //if (user) navigate(`/${userType}/`);
+  //console.log(watch("userType"));
+  const selectRef = createRef()
   const onSubmit = async (data) => {
-    console.log(data);
+    if(!citiesSelect.selected){
+      console.log(selectRef.current.childNodes[0])
+      selectRef.current.childNodes[0].focus();
+      return;
+    }
+    console.log({...data, city:citiesSelect.selected});
     dispatch(
-      setAuthedUserThunk({ userType: data.userType, create: true, data })
+      setAuthedUserThunk({ userType: data.userType, create: true, data:{...data, city:citiesSelect.selected.value} })
     );
     if (user) navigate(`/${data.userType}/`);
   };
@@ -32,13 +40,13 @@ function SignUp() {
     document.title = "Signup";
     const getCitiesHandeler = async () => {
       const result = await getCities();
-      setCities(result);
+      setcitiesSelect(prv=>({...result, cities:result}));
     };
     getCitiesHandeler();
   }, []);
   return (
     <>
-      <div className='container' style={{marginTop: watch('userType') === 'doctor'?'14rem':'2rem'}}>
+      <div className='container' style={{marginTop: watch('userType') === 'doctor'? '20.5rem':watch('userType') === 'nurse'?'6.7rem':'2rem'}}>
 
       <div className="row">
       
@@ -75,14 +83,12 @@ function SignUp() {
             placeholder="الاسم كامل"
             {...register("name", { required: true })}
           />
-          {/* {errors.name && <p>من فضلك ادخل الاسم </p>} */}
           <br />
           <input
             type="text"
             placeholder="رقم الهاتف"
             {...register("phone", { required: true })}
           />
-          {/* {errors.phone && <p>من فضلك ادخل رقم الهاتف</p>} */}
           <br />
       
           <input
@@ -93,17 +99,23 @@ function SignUp() {
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             })}
           />
-          {/* {errors.email && <p>من فضلك ادخل البريد الالكتروني صحيح</p>} */}
           <br />
         
-
           <input
             type="password"
             placeholder="كلمه المرور"
             {...register("password", { required: true })}
           />
-          {/* {errors.password && <p>من فضلك ادخل كلمه المرور</p>} */}
-         
+          <DatalistInput
+            id="city"
+            name='city'
+            placeholder="المدينه"
+            ref={selectRef}
+            onSelect={(item) => {
+              setcitiesSelect(prv=>({ ...prv, selected: item}))
+            }}
+            items={citiesSelect.cities}
+          /> 
           {watch("userType") === "patient" && (      
             <>
               <input  className="marg-left"
@@ -118,21 +130,10 @@ function SignUp() {
               {/* {errors.city && <p>من فضلك ادخل تاريخ الملاد </p>} */}
             </>
           )}
-           <br />
-          <input
-            id="city"
-            placeholder="المدينه"
-            {...register("city", { required: true })}
-          />
-          <datalist id="cities">
-            {cities?.map((city) => (
-              <option
-                key={city.id}
-                value={city.value}
-                checked={watch("userType") === city.value}
-              />
-            ))}
-          </datalist>
+          <br />
+          
+
+          
           <br />
         
           {watch("userType") !== "patient" && (

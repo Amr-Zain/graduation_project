@@ -76,7 +76,7 @@ export const getPopulerNurses= async ()=>{
         const pupulerNserses = nurses.map(nurse=>({ id:nurse.id, imageURL:nurse.imageURL,
             name:nurse.name, rating: nurse.rating, specialization: null}))
         setTimeout(() => {
-            res(nurses)
+            res(pupulerNserses)
         }, 1000);
     });
     

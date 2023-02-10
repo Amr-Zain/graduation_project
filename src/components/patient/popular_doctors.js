@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { setPopularDoctorsThunk } from "../../features/populerDoctors";
 import { useDispatch, useSelector } from "react-redux";
 import DoctorAbstract from "./doctorOrNurseAbstract";
+import '../../style/popular_doctors.css';
 const PopulerDoctors = () => {
     const { popularDoctors, isLoading, error } = useSelector((store)=>store.popularDoctors);
     const dispatch = useDispatch()
@@ -10,12 +11,13 @@ const PopulerDoctors = () => {
     useEffect(()=>{
         dispatch(setPopularDoctorsThunk());
     },[]);
-    return (  <div  className="popular_doctors">
-        <div>الاطباء الاعلي تقيما</div>
-        <div style={{display:'flex'}}className="doctors">
-            {Doctors} 
-        </div>
-    </div>);
+    return (  <div  className="popular-doctors" >
+                <div className="popular">الاطباء الاعلي تقيما</div>
+                <div style={{display:'flex', overflowX:'scroll'}}className="doctors">
+                    {Doctors} 
+                </div>
+            </div>
+    );
 }
 
 export default PopulerDoctors;

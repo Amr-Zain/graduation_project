@@ -9,7 +9,6 @@ const initialState = {
 export const setAppointmentsThunk = createAsyncThunk('authedUser/setAppointments', 
     async (_, thunkAPI)=>{
     try {
-        console.log("انت معانا");
         const id = thunkAPI.getState('authedUser').authedUser.user.id;//later we will use the token
         console.log(id);
         

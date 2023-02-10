@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { LOGIN, SIGNUP } from '../constants/routes';
 import { Link } from 'react-router-dom';
 import '../style/signup.css'
+import { Container, Row } from 'react-bootstrap';
 
 function Longin() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -29,21 +30,18 @@ function Longin() {
     })
     return (
         <>
-                
+            
             <div className='container'>
                 <div className="row">
                 <div className="col-sm-12 col-md-5 col-lg-6" style={{ display:'flex',alignItems:'start',flexDirection:'column'}}>
                 <div className="logo-container">
                     <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
                 </div>
-                    <div className='login-signup-image' style={{}} >
+                    <div className='login-signup-image login-image' style={{}} >
                     <img className="image-left" src={'./images/signup_login.png'} alt="Logo" />
                     </div>
                 </div>
-                    <div className="col-sm-12 col-md-7 col-lg-6" style={{display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',}}>
-                        <div className="grid-container from-sign"></div>
+                    <div className="col-sm-12 col-md-7 col-lg-6 from-log" >
                         <form className="flex-input" onSubmit={handleSubmit(onSubmit)}>
                             {error && <p>{error}</p>}
                             <div className='select'>
