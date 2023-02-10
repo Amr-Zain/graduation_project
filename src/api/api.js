@@ -326,6 +326,7 @@ const bookedAppointments = [
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
+    
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'kdfjfdfsddfslk',
