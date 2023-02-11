@@ -13,7 +13,7 @@ const Appointments = ()=>{
     },[]);
     return (  <div  className="popular_doctors">
         <div className="top-text">المواعيد القادمه</div>
-        <div style={{display:'flex '  }}className="doctors">
+        <div style={{display:'flex'}}className="doctors">
             {AppointmentsList} 
         </div>
     </div>);

@@ -6,6 +6,7 @@ import { BiMoney } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdLocationPin } from "react-icons/md";
 import "../../style/appointment.css";
+import { Container, Row } from "react-bootstrap";
 const Appointment = (props) => {
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const Appointment = (props) => {
             </div>
           </div>
         </div>
-        
+        <Container className="collection">
         <div className="specialization" style={{ display: "flex" }}>
           <RiStethoscopeLine />
           <p>{props.doctorSpecialization}</p>
@@ -52,6 +53,7 @@ const Appointment = (props) => {
           <BiMoney />
           <p>{props.fees}</p>
         </div>
+        </Container>
       </div>
       <div className="available">
         <p>

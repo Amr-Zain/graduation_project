@@ -1,46 +1,48 @@
-:root{
-  --main:#159190;
-  --secondary: 14,64,103;
+:root {
+  --main: #159190;
+  --secondary: 14, 64, 103;
   --text--primary: #262626;
-  --gray--text:#8C8C8C;
-  --back-ground:#ffff;
+  --gray--text: #8C8C8C;
+  --back-ground: #ffff;
+  --text-dark-blue: #0e4067;
 }
 
 *,
 *::before,
 *::after {
-margin: 0;
-padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-min-height: 100%;
-min-width: 100%;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,300&display=swap');
-font-family: 'Poppins', sans-serif !important;
+  min-height: 100%;
+  min-width: 100%;
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,300&display=swap');
+  font-family: 'Poppins', sans-serif !important;
 }
- .popular {
+
+.popular {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--main);
   margin: 1rem;
 }
-.popular_doctors ,.appointment
-{
+
+.popular_doctors,
+.appointment {
   direction: rtl;
 }
 
-.top-text
-{
+.top-text {
   font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--main);
-    margin: 1rem;
-    width: fit-content;
-    border-bottom: 1px solid rgb(14 64 103);
+  font-weight: bold;
+  color: var(--main);
+  margin: 1rem;
+  width: fit-content;
+  border-bottom: 1px solid rgb(14 64 103);
 }
-.appointment
-{
+
+.appointment {
   flex: 0 0 300px;
   box-shadow: 0 1px 1rem -4px #000;
   background: var(--back-ground);
@@ -49,46 +51,79 @@ font-family: 'Poppins', sans-serif !important;
   overflow: hidden;
   border-radius: 7px;
   cursor: pointer;
+  
   transition: all 250ms ease-in-out;
 }
 
-.appointment .doctor .image-text 
-{
+.appointment .doctor .image-text {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.appointment .doctor .image-text .image img 
-{
+
+.appointment .doctor .image-text .image img {
 
   border-radius: 50%;
 }
-.text-name-doctor .text-name-doctor
-{
-  color: var(--gray--text);
+
+.text-name-doctor .text-name-doctor {
+  margin-bottom: 3px;
+  color: var(--text-dark-blue);
   font-size: 2rem;
   font-weight: 500;
 }
-.name-rating{
+
+.name-rating {
   display: flex;
   justify-content: space-between;
 
 }
+
 .rating {
   display: flex;
   gap: 6px;
 }
+
 .start {
   margin-top: 4px;
   color: #FFC107;
 }
 
-.rating_value
-{
+.rating_value {
   margin-left: 52px;
-    font-size: 1rem;
+  font-size: 1rem;
 }
- .star {
+
+.star {
   color: #FFC107;
 }
 
+/* start collection */
+.collection .specialization,.location,.fees {
+  display: flex;
+  justify-content: right;
+  align-items: baseline;
+  padding: 2px 2px 0px 0px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #d9d9d9;
+  height: 31px;
+  margin-bottom: 10px;
+}
+
+.available {
+  text-align: center;
+  letter-spacing: 1px;
+  background: var(--main);
+  padding: 10px 28px;
+  border-radius: 2rem;
+  justify-content: center;
+  display: flex;
+  color: var(--back-ground);
+  width: fit-content;
+  margin: 9px auto 9px;
+}
+
+.available p {
+  display: contents;
+
+}

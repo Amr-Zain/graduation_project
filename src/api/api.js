@@ -2,7 +2,22 @@
 const doctors = [
     {
         id: 'dskkjoerpeww',
-        name: 'عمرو ',
+        name: 'عمرو زين',
+        email: 'amr@gmail.com',
+        password: 1234,
+        description: 'يمسب بيتسمنق سيب',
+        phone: '01012121212',
+        specialization: 2,
+        fees: 299,
+        city: 'المنصوره',
+        governorate: 'الدقهليه',
+        location: 'ش جهان',
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },
+    {
+        id: 'qedlnfsnc',
+        name: 'اكرم ايمن ',
         email: 'amr@gmail.com',
         password: 1234,
         description: 'يمسب بيتسمنق سيب',
@@ -320,6 +335,14 @@ const bookedAppointments = [
     },
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
+        id: 'qedlnfsnc',
+        doctorId: 'qedlnfsnc',
+        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookedAte: Date.now(),
+        patientId: 'dskfhkldsjklf',
+    },
+    {
+        //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjoesadrpeww',
         doctorId: 'kdfjfddfdslslk',
         bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
@@ -471,7 +494,7 @@ const searchNurseResult = {
 export const popular_doctors =[
     {
         id: 'dskkjoerpeww',
-        name: 'عمرو زين ',
+        name: 'محمد ايمن',
         specialization: 'جراحه',
         imageURL : '/images/avatars/dali.jpg',
         rating: 4.3,
@@ -492,7 +515,7 @@ export const popular_doctors =[
     },
     {
         id: 'kdfjfddjkljslk',
-        name: 'حسين',
+        name: 'فتحي اسماعيل',
         specialization: 'جراحه',
         imageURL : '/images/avatars/raphael.jpg',
         rating: 4.3,
