@@ -14,12 +14,12 @@ const PopulerNurses = () => {
         }
         getNurses()
     },[]);
-    return (  <div  className="popular-nurses">
-        <div className="popular">الممرضين الاعلي تقيما</div>
-        <div style={{display:'flex', overflowX:'scroll'}}className="nurses">
-            {Nurses} 
-        </div>
-    </div>);
+    return (  <section  className="popular-nurses">
+                <div className="popular">الممرضين الاعلي تقيما</div>
+                <div style={{display:'flex', overflowX:'scroll'}}className="nurses">
+                    {Nurses} 
+                </div>
+            </section>);
 }
 
 export default PopulerNurses;

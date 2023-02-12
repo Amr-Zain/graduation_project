@@ -3,6 +3,8 @@ import { setAppointmentsThunk } from "../../features/appointments";
 import { useDispatch, useSelector } from "react-redux";
 import Appointment from "./appointment";
 import "../../style/appointment.css";
+import { Link, useNavigate } from "react-router-dom";
+import { APPOINTMENTS, PATIENT } from "../../constants/routes";
 const Appointments = ()=>{
     const { appointments } = useSelector((store)=>store.userAppointments);
     const dispatch = useDispatch()
@@ -11,9 +13,9 @@ const Appointments = ()=>{
     useEffect(()=>{
         dispatch(setAppointmentsThunk());
     },[]);
-    return (  <div  className="popular_doctors">
-        <div className="top-text">المواعيد القادمه</div>
-        <div style={{display:'flex'}}className="doctors">
+    return (  <div  className="appointmets">
+        <div className="top-text" ><Link to={PATIENT+APPOINTMENTS}>المواعيد القادمه</Link></div>
+        <div className="appointmets-container">
             {AppointmentsList} 
         </div>
     </div>);

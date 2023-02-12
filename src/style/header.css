@@ -1,0 +1,15 @@
+:root {
+    --main: #159190;
+    --secondary: 14, 64, 103;
+    --text--primary: #262626;
+    --gray--text: #8C8C8C;
+    --back-ground: #ffff;
+    --text-dark-blue: #0e4067;
+}
+
+.header {
+    background-color: var(--main) !important;
+}
+a {
+    color: var(--text-primary);
+}

@@ -16,6 +16,7 @@ export const DIAGNOSIS = '/diagnosis';
 
 export const RECEPTIONIST = '/receptionist';
 
+export const TYPE = '/:type'
 
 //FOR ALL
 export const DASHBOARD = '/'; 
@@ -25,6 +26,9 @@ export const PROFILE = '/profile';
 export const NOT_FOUND = '/not_found'; 
 
 export const BLOOD_BANK = '/blood_bank';
+export const DONATOR = '/donator';
+export const DONATION_REQUEST = '/donation_request';
+
 export const BLOOD_REQUEST = '/:id';
 
 /*

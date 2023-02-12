@@ -28,9 +28,15 @@ body {
   margin: 1rem;
 }
 
-.popular_doctors,
-.appointment {
+.appointmets {
   direction: rtl;
+}
+.appointmets .appointmets-container{
+  overflow-y: scroll;
+  display: flex;
+}
+.appointmets .appointmets-container::-webkit-scrollbar {
+  display: none;
 }
 
 .top-text {
@@ -41,7 +47,13 @@ body {
   width: fit-content;
   border-bottom: 1px solid rgb(14 64 103);
 }
-
+.top-text a{
+  color: var(--main);
+  text-decoration: none;
+}
+.top-text:hover{
+  cursor: pointer;
+}
 .appointment {
   flex: 0 0 300px;
   box-shadow: 0 1px 1rem -4px #000;
@@ -53,6 +65,10 @@ body {
   cursor: pointer;
   
   transition: all 250ms ease-in-out;
+}
+.appointment:hover {
+  box-shadow: 0 4px 1rem -4px #000;
+  transform: translateY(-3px);
 }
 
 .appointment .doctor .image-text {
@@ -92,6 +108,7 @@ body {
 .rating_value {
   margin-left: 52px;
   font-size: 1rem;
+  font-weight: bold;
 }
 
 .star {
@@ -99,10 +116,12 @@ body {
 }
 
 /* start collection */
-.collection .specialization,.location,.fees {
+.collection .specialization, .location, .fees {
+  direction: rtl;
   display: flex;
-  justify-content: right;
-  align-items: baseline;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
   padding: 2px 2px 0px 0px;
   font-size: 1.1rem;
   border-bottom: 1px solid #d9d9d9;
@@ -110,6 +129,15 @@ body {
   margin-bottom: 10px;
 }
 
+.collection .specialization p, .location p, .fees p{
+  margin: 0;
+}
+.location .location-icon{
+  color: #D73F35;
+}
+.fees .fees-icon{
+  color: #2aac51;
+}
 .available {
   text-align: center;
   letter-spacing: 1px;

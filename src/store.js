@@ -1,11 +1,13 @@
 import { configureStore }  from '@reduxjs/toolkit'
-import authedUserReducer from './features/authedUser'
-import popularDoctorsReducer from './features/populerDoctors'
-import appointmentsReducer from './features/appointments'
+import authedUser from './features/authedUser'
+import popularDoctors from './features/populerDoctors'
+import appointments from './features/appointments'
+import search from './features/search'
 export const store = configureStore({
     reducer: {
-        authedUser: authedUserReducer,
-        popularDoctors: popularDoctorsReducer,
-        userAppointments: appointmentsReducer
+        authedUser,
+        popularDoctors,
+        userAppointments: appointments,
+        search,
     }
 });

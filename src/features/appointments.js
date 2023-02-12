@@ -10,10 +10,10 @@ export const setAppointmentsThunk = createAsyncThunk('authedUser/setAppointments
     async (_, thunkAPI)=>{
     try {
         const id = thunkAPI.getState('authedUser').authedUser.user.id;//later we will use the token
-        console.log(id);
+        //console.log(id);
         
         const result = await appointments({ id });
-        console.log(result)
+        //console.log(result)
         return { appointments: result };
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -30,7 +30,7 @@ const appointmentsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(setAppointmentsThunk.fulfilled, (state, action) => {
-                console.log(action);
+                //console.log(action);
                 return action.payload;
             })
             .addCase(setAppointmentsThunk.rejected, (state, { payload}) => {

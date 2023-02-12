@@ -11,12 +11,12 @@ const PopulerDoctors = () => {
     useEffect(()=>{
         dispatch(setPopularDoctorsThunk());
     },[]);
-    return (  <div  className="popular-doctors" >
+    return (  <section  className="popular-doctors" >
                 <div className="popular">الاطباء الاعلي تقيما</div>
                 <div style={{display:'flex', overflowX:'scroll'}}className="doctors">
                     {Doctors} 
                 </div>
-            </div>
+            </section>
     );
 }
 

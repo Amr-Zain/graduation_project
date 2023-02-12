@@ -1,4 +1,4 @@
-import { doctors, specialization, nurses, patients, patientsData, 
+import { doctors, specializations, nurses, patients, patientsData, 
     donationRequests, bookedAppointments, receptionists, shechedule, cities, popular_doctors } from './api'
 
 //sill
@@ -62,6 +62,13 @@ export const getCities = async()=>{
         }, 1000);
     });
 }
+export const getSpecializations = async()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(specializations)
+        }, 1000);
+    });
+}
 export const popularDoctors= async ()=>{
     return new Promise((res)=>{
         setTimeout(() => {
@@ -81,6 +88,38 @@ export const getPopulerNurses= async ()=>{
     });
     
 }
+export const searchDoctors = (filters)=>{
+    const doctorsList = doctors.slice(filters.pageNumber*10, filters.pageNumber*10+10 )
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({doctors:doctorsList, pageNumber: filters.pageNumber})
+        }, 1000);
+    });
+}
+export const searchNurses = (filters)=>{
+    const nursesList = nurses.slice(filters.pageNumber*10, filters.pageNumber*10+10 )
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({nurses: nursesList, pageNumber: filters.pageNumber})
+        }, 1000);
+    });
+}
+export const searchDonators = (filters)=>{
+    const requestList = donationRequests.slice(filters.pageNumber*filters.limit, filters.pageNumber*filters.limit + filters.limit )
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({donators:requestList, pageNumber: filters.pageNumber})
+        }, 1000);
+    });
+}
+export const searchDonatonRequests = (filters)=>{
+    const doctorsList = doctors.slice(filters.pageNumber*filters.limit, filters.pageNumber*filters.limit + filters.limit )
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({donationRequests: doctorsList,limit: filters.limit, pageNumber: filters.pageNumber})
+        }, 1000);
+    });
+}
 export const appointments = async ({ id })=>{
     //const patient = patients.find(p=>p.id ===id)
     const apppointmets = bookedAppointments.filter(app=>app.patientId === id)
@@ -88,7 +127,7 @@ export const appointments = async ({ id })=>{
         const doctor = doctors.find(doctor=>app.doctorId == doctor.id);
         if(doctor)return {  ...app, 
                         doctorName: doctor.name, 
-                        doctorSpecialization:specialization[doctor.specialization], 
+                        doctorSpecialization:specializations.find(sp=>sp.id ===doctor.specialization).value, 
                         fees:doctor.fees, 
                         doctorLocation: doctor.location,
                         doctorImg: doctor.imageURL,

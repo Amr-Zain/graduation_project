@@ -57,17 +57,20 @@ function App() {
             <Route path = {BLOOD_BANK} >
               <Route path = {BLOOD_BANK+BLOOD_REQUEST} element={ <BloodRequest /> }/>
             </Route>
-            <Route path = {SEARCH} >
-              <Route path = {SEARCH + DOCTOR} >
-                <Route path = {SEARCH + DOCTOR + SPECIALIZATION} >
-                  <Route path = {SEARCH + DOCTOR + SPECIALIZATION+CITY} element={<Search />} />
-                </Route>
+            
+            <Route path = {SEARCH} element = {<Search />} >
+              <Route path = {SEARCH + DOCTOR}  >
+                <Route path = {SEARCH + DOCTOR +CITY+ SPECIALIZATION} element = {<Search />} >
+              </Route>
               </Route>
               <Route path = {SEARCH + NURSE} >
                   <Route patho = {SEARCH + NURSE + CITY} element={<Search />} />
               </Route>
-              <Route path= {SEARCH + BLOOD_BANK} >
-                  <Route path = {SEARCH + BLOOD_BANK + CITY} element={<Search />} />
+              <Route path= {SEARCH + '/blood_request'} >
+                  <Route path = {SEARCH + '/blood_request' + CITY+'/:blood_type'} element={<Search />} />
+              </Route>
+              <Route path= {SEARCH + '/blood_donator'} >
+                  <Route path = {SEARCH + '/blood_donator' + CITY+'/:blood_type'} element={<Search />} />
               </Route>
               </Route>
               <Route path="*" element ={<NotFound/>}/>

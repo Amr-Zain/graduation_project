@@ -11,10 +11,10 @@ const initialState = {
         phone: '01012121212',
         imageURL : '/images/avatars/default.png',
         age: 30},
-    userType: '',
-    token:'',
-    refrexhToken: '',
-    error:''
+        userType: 'patient',
+        token:'',
+        refrexhToken: '',
+        error:''
 }
 export const setAuthedUserThunk = createAsyncThunk('authedUser/setAuthedUser', 
     async ({ create, userType, data}, thunkAPI)=>{
@@ -41,7 +41,7 @@ const authedUserSlice = createSlice({
             state = payload;
         },
         removeAuthedUser:(state,action)=>{
-            console.log(action)
+            //console.log(action)
             return initialState;
         },
         updateTokens: (state,{ payload })=>{
@@ -51,7 +51,7 @@ const authedUserSlice = createSlice({
             }else if(token) state = { ...state, token}
         },
         setError: (state, { payload}) =>{
-            console.log('clear error')
+            //console.log('clear error')
             const { error } = payload;
             return { ...state, error}
         }
@@ -59,7 +59,7 @@ const authedUserSlice = createSlice({
     extraReducers:  (builder) => {
         builder
             .addCase(setAuthedUserThunk.fulfilled, (state, action) => {
-                console.log(action);
+                //console.log(action);
                 return action.payload;
             })
             .addCase(setAuthedUserThunk.rejected, (state, { payload}) => {
