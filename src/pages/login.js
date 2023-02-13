@@ -33,15 +33,16 @@ function Longin() {
             
             <div className='container'>
                 <div className="row">
-                <div className="col-sm-12 col-md-5 col-lg-6" style={{ display:'flex',alignItems:'start',flexDirection:'column'}}>
-                <div className="logo-container">
-                    <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
-                </div>
+                <div className="col-sm-12 col-md-5 col-lg-6" style={{ display:'flex', alignItems: "center",jstifyContent:'center'}}>
+                
                     <div className='login-signup-image login-image' style={{}} >
                     <img className="image-left" src={'./images/signup_login.png'} alt="Logo" />
                     </div>
                 </div>
                     <div className="col-sm-12 col-md-7 col-lg-6 from-log" >
+                        <div className="logo-container">
+                            <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
+                        </div>
                         <form className="flex-input" onSubmit={handleSubmit(onSubmit)}>
                             {error && <p>{error}</p>}
                             <div className='select'>
