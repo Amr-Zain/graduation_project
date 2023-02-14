@@ -1,0 +1,7 @@
+.react-datalist-input__listbox{
+    max-height: 200px !important;
+    overflow: scroll;
+}
+.react-datalist-input__listbox::-webkit-scrollbar {
+    display: none;
+}

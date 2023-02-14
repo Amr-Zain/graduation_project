@@ -1,0 +1,171 @@
+:root
+{
+  --main:#159190;
+  --text--primary: #252424;
+  --text--gray:#bcbbbb;
+  --text--white:#ffffff;
+}
+body
+{
+  margin: 0;
+  padding: 0;
+  color: rgb(var(--text--primary));
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.logo-container 
+{
+  margin: 0px auto 1rem;
+  width: 12rem;
+  height: 5rem;
+}
+.image-logo
+{
+  width: 100%;
+}
+.image-left
+{
+  width: 100%;
+  margin-top: 2rem;
+}
+.login-image 
+{
+  width: 400px;
+  height: 400px;
+}
+.from-sign
+{
+  background: #f9fafc;
+  text-align: center;
+}
+.flex-input
+{
+  padding: 1rem 0rem 0.2rem 0rem;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+input ,select 
+{
+  margin-bottom: 10px !important;
+  direction: rtl;
+  outline: none;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 1rem !important;
+  padding: .6rem !important;
+  text-align: center;
+  color: var(--text--primary);
+}
+input 
+{
+  border: 1.9px solid rgb(13 61 99 / 41%) !important;
+}
+input:focus{
+  border-color: var(--main);
+}
+.flex-input .seleczt {
+  width: 95%;
+}
+.react-datalist-input__listbox{
+  max-height: 200px !important;
+  overflow: scroll;
+}
+.react-datalist-input__listbox::-webkit-scrollbar 
+{
+  display: none;
+}
+.title-top
+{
+  margin: auto;
+    font-size: 2.5rem;
+    padding: 3px;
+    color: #0e4067;
+    font-family: 'Poppins', sans-serif;
+    width: fit-content;
+    border-bottom: 1px solid rgb(14 64 103);
+}
+.select 
+{
+  width: 95%;
+}
+.select-patiant
+{
+  background: #159190;
+  border: none;
+  border-radius: 0.5rem;
+  width: 105%;
+  color: var(--text--white);
+  font-weight: 600;
+}
+.select-patiant option{
+  border: 1px var(--secondary);
+}
+.select-patiant option:hover 
+{
+  background-color: var(--main);
+}
+.login-bottom
+{
+  border-radius: .5rem;
+  background: bottom;
+  color: var(--text--white);
+  background: var(--main);
+  border: 1px solid gray;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+} 
+.login-signup-image
+{
+  height:'50%'
+}
+
+.to-login 
+{
+  font-size: 1.1rem;
+  margin: 0.4rem 0.3rem;
+}
+.to-login a 
+{
+  font-weight: 500;
+  padding: .5rem;
+  text-decoration: none;
+  color:var(--main);
+
+}
+.to-login a:hover 
+{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.from-log
+ {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+@media screen and (max-width: 767px) 
+{
+  .login-signup-image {
+    display: none;
+  }
+  .from-log {
+    
+    margin-top: 3rem;
+  }
+}
+
+
+@media screen and (max-width: 990px) {
+  .login-image {
+    width: 300px;
+    height: 300px;
+  } 
+}

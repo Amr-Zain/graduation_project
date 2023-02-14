@@ -1,0 +1,12 @@
+:root{
+    --main:#159190;
+    --secondary: 14,64,103;
+    --text--primary: #262626;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
