@@ -5,3 +5,10 @@
 .react-datalist-input__listbox::-webkit-scrollbar {
     display: none;
 }
+
+
+@media screen and (max-width: 570px) {
+    .search-section .city, .search-section .specialization, .search-section .blood-type {
+        display: none;
+    } 
+}

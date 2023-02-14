@@ -88,37 +88,38 @@ export const getPopulerNurses= async ()=>{
     });
     
 }
-export const searchDoctors = (filters)=>{
-    const doctorsList = doctors.slice(filters.pageNumber*10, filters.pageNumber*10+10 )
-    return new Promise((res)=>{
-        setTimeout(() => {
-            res({doctors:doctorsList, pageNumber: filters.pageNumber})
-        }, 1000);
-    });
-}
-export const searchNurses = (filters)=>{
-    const nursesList = nurses.slice(filters.pageNumber*10, filters.pageNumber*10+10 )
-    return new Promise((res)=>{
-        setTimeout(() => {
-            res({nurses: nursesList, pageNumber: filters.pageNumber})
-        }, 1000);
-    });
-}
-export const searchDonators = (filters)=>{
-    const requestList = donationRequests.slice(filters.pageNumber*filters.limit, filters.pageNumber*filters.limit + filters.limit )
-    return new Promise((res)=>{
-        setTimeout(() => {
-            res({donators:requestList, pageNumber: filters.pageNumber})
-        }, 1000);
-    });
-}
-export const searchDonatonRequests = (filters)=>{
-    const doctorsList = doctors.slice(filters.pageNumber*filters.limit, filters.pageNumber*filters.limit + filters.limit )
-    return new Promise((res)=>{
-        setTimeout(() => {
-            res({donationRequests: doctorsList,limit: filters.limit, pageNumber: filters.pageNumber})
-        }, 1000);
-    });
+export const search = async ({ searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber })=>{
+    if(searchFor === 'doctor'){
+        const doctorsList = doctors.slice(pageNumber*10, pageNumber*10+10 )
+        return new Promise((res)=>{
+            setTimeout(() => {
+                res({doctors:doctorsList, pageNumber: pageNumber})
+            }, 1000);
+        });
+    }else if( searchFor === 'nurse' ){
+        const nursesList = nurses.slice(pageNumber*10, pageNumber*10+10 )
+        return new Promise((res)=>{
+            setTimeout(() => {
+                res({nurses: nursesList, pageNumber: pageNumber})
+            }, 1000);
+        });
+    }
+    else if(searchFor === 'blood donator'){
+        const requestList = donationRequests.slice(pageNumber*limit, pageNumber*limit + limit )
+        return new Promise((res)=>{
+            setTimeout(() => {
+                res({donators:requestList, pageNumber: pageNumber})
+            }, 1000);
+        });
+    }else { //donation request
+        const doctorsList = doctors.slice(pageNumber*limit, pageNumber*limit + limit )
+        return new Promise((res)=>{
+            setTimeout(() => {
+                res({donationRequests: doctorsList,limit: limit, pageNumber: pageNumber})
+            }, 1000);
+        });
+    }
+
 }
 export const appointments = async ({ id })=>{
     //const patient = patients.find(p=>p.id ===id)

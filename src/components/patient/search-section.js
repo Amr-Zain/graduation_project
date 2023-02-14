@@ -26,12 +26,12 @@ const Search = ()=>{
         navigate(route);
     }
     useEffect(() => {
-       if(cities.length === 0) {
+        if(cities.length === 0) {
             dispatch(getCitiesAndSpecialization());
         }
-      }, []);
+    }, []);
     return(
-        <section className="search">
+        <section className="search-section">
             <div style={{display:'flex'}}>
                 <div>
                     <select className='search-for' name="searchFor" onChange={(e)=>dispatch(setFilter({searchFor:e.target.value}))}>

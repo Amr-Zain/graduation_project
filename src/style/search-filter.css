@@ -1,0 +1,19 @@
+.search-filter {
+    flex: 1 2 25%;
+}
+.search-filter-overlay {
+    z-index: 200;
+    position: fixed;
+    width: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-55%);
+    background-color: #fafafa;
+    padding: 3rem;
+
+}
+@media screen and (max-width: 570px) {
+    .search-filter {
+        display: none;
+    } 
+}

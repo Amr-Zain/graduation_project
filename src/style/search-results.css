@@ -1,0 +1,27 @@
+.search-results{
+    flex: 1 1 60%;
+}
+.filter-icon{
+    display: none;
+}
+.search-sort-select {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.filter-icon p{
+    margin: 0 !important;
+}
+@media screen and (max-width: 570px) {
+    .filter-icon {
+        display: flex;
+        align-items: center;
+    } 
+    .search-sort{
+        display: flex;
+        justify-content: space-between;
+    }
+    .search-results{
+        width: 100%;
+    }
+}

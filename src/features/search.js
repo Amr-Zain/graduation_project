@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getCities, getSpecializations, searchDoctors, searchNurses,
-        searchDonators, searchDonatonRequests } from "../api/data";
+import { getCities, getSpecializations, search } from "../api/data";
                 
 
 const initialState ={
@@ -11,33 +10,24 @@ const initialState ={
     specializations:[],
     bloodType: 0,
     name: '',
+    sort:'0',
     price: false, /* false low or 1 high */
     today: false, // new Date().getDay() avialble today or not or may 
     isLoading: false,
     result:{
             data:[], 
             pageNumber:0,
-            limit:10
+            limit:10,
+            count: 23
         },
 }
 
 export const getSearchResult = createAsyncThunk('search/getSearchResult', async(_, thunkAPI)=>{
-    const { searchFor, citiy, specialization, bloodType, name, price, today, limit } = thunkAPI.getState('search');
+    const {search:{ searchFor, city, specialization, bloodType, name, price, today, limit,result:{pageNumber} }} = thunkAPI.getState('search');
+    console.log( { searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber })
     try {
-        if(searchFor === 'doctor'){
-            const result = await searchDoctors({ citiy, specialization, limit, price, today, name});
-            thunkAPI.dispatch(setFilter({ result: result.doctors, pageNumber: result.pageNumber }))
-        }else if( searchFor === 'nurse' ){
-            const result = await searchNurses({ citiy, price, today, name, limit });
-            thunkAPI.dispatch(setFilter({ result: result.nurses, pageNumber: result.pageNumber }))
-        }
-        else if(searchFor === 'blood donator'){
-            const result = await searchDonators({ citiy, bloodType, price, limit });//price here is free or not
-            thunkAPI.dispatch(setFilter({ result: result.donators, pageNumber: result.pageNumber  }));
-        }else { //donation request
-            const result = await searchDonatonRequests({ citiy, bloodType, limit });
-            thunkAPI.dispatch(setFilter({ result: result.donationRequests, pageNumber: result.pageNumber }));
-        }
+        const results = await search({ searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber });
+        return ;
 
     }catch(error){
         return thunkAPI.rejectWithValue(error.message);
