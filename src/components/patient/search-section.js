@@ -78,7 +78,7 @@ const Search = ()=>{
                     </div>
                 }
 
-                {(searchFor == 'doctor'|| searchFor == 'nurse') &&
+                {(searchFor === 'doctor'|| searchFor === 'nurse') &&
                 <div> 
                     <input 
                     type='text' 

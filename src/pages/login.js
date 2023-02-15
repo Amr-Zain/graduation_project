@@ -47,9 +47,10 @@ function Longin() {
                             {error && <p>{error}</p>}
                             <div className='select'>
                                 <select className="select-patiant" {...register("userType")} id="userType">
-                                <option value="patient">Patient</option>
-                                <option value="doctor">Doctor</option>
-                                <option value="nurse">Nurse</option>
+                                    <option value="patient">Patient</option>
+                                    <option value="doctor">Doctor</option>
+                                    <option value="nurse">Nurse</option>
+                                    <option value="receptionist">Receptionist</option>
                                 </select>
                             </div>
                             <br/>

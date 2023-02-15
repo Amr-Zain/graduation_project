@@ -164,7 +164,6 @@
                       {...register("birthDay", { required: true })}
                     />
 
-                    {/* {errors.city && <p>من فضلك ادخل تاريخ الملاد </p>} */}
                   </>
                 )}
                 {watch("userType") !== "patient" && (
