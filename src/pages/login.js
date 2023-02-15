@@ -47,19 +47,22 @@ function Longin() {
                             {error && <p>{error}</p>}
                             <div className='select'>
                                 <select className="select-patiant" {...register("userType")} id="userType">
-                                <option value="patient">مريض</option>
-                                <option value="doctor">دكتور</option>
-                                <option value="nurse">ممرض</option>
+                                    <option value="patient">Patient</option>
+                                    <option value="doctor">Doctor</option>
+                                    <option value="nurse">Nurse</option>
+                                    <option value="receptionist">Receptionist</option>
                                 </select>
                             </div>
                             <br/>
-                            <input placeholder="البريد الالكتروني" {...register('email', { required: true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ })} />
+                            <input placeholder="E-mail" {...register('email', { required: true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ })} />
 
-                            <input type='password' placeholder="كلمه المرور" {...register('password', { required: true })} />
+                            <input type='password' placeholder="Password" {...register('password', { required: true })} />
                             
-                            <button className="login-bottom"  onClick={handleSubmit(onSubmit)}>تسجيل الدخول</button>
+                            <button className="login-bottom"  onClick={handleSubmit(onSubmit)}>Log in</button>
                         </form>
-                        <p className="to-login">ليس لدي حساب ؟ <Link to={SIGNUP}>التسجيل </Link> </p>
+                        <p className="to-login">
+                        Don't have an account?       
+                       <Link to={SIGNUP}>Sign up</Link> </p>
                     </div>
                 </div>
             </div>
