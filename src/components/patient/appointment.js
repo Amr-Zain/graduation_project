@@ -20,7 +20,7 @@ const Appointment = (props) => {
                 <div className="doctor" >
                     <div className="image-text" >
                     <div className="image" onClick={handleDcotorClick}>
-                        <img width={"100px"} src={props.doctorImg} alt={`موعد مع  ${props.doctorName}`}/>
+                        <img width={"100px"} src={props.doctorImg} alt={`Appointment with  ${props.doctorName}`}/>
                     </div>
                     <div className="text-name-doctor">
                         <h3 className="text-name-doctor" onClick={handleDcotorClick}>{props.doctorName}</h3>
@@ -56,7 +56,7 @@ const Appointment = (props) => {
                 <div className="available">
                     <p>
                     {" "}
-                    متاح من {props.from} الي {props.to}
+                    Available From {props.from} To {props.to}
                     </p>
                 </div>
         </section>

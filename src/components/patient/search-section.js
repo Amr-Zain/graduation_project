@@ -45,18 +45,19 @@ const Search = ()=>{
                     <DatalistInput
                         id="city"
                         name='city'
-                        placeholder="المدينه"
+                        placeholder="City"
                         onSelect={(value) =>dispatch(setFilter( { city: value })) }
                         items={cities}
                     /> 
                 </div>
                 { 
                 searchFor == 'doctor'&& 
-                <div className='specialization'>
+                <div className='specialization '>
                     <DatalistInput
+                    
                         id="specialization"
                         name='specialization'
-                        placeholder="التخصص"
+                        placeholder="Specialization"
                         onSelect={(value) =>dispatch(setFilter( { specialization: value })) }
                         items={specializations}
                     /> 
@@ -79,17 +80,18 @@ const Search = ()=>{
                 }
 
                 {(searchFor == 'doctor'|| searchFor == 'nurse') &&
-                <div> 
+                <div className='blood-type '> 
                     <input 
+                    className='text-name'
                     type='text' 
                     onChange={(e)=>dispatch(setFilter({name:e.target.value}))}
                     name='name'
-                    placeholder='الاسم'
+                    placeholder='Name'
                     />
                 </div>}
                 <div>
-                    <button onClick={handleSearch}>
-                        <BiSearch />
+                    <button onClick={handleSearch} className='icon-search'>
+                        <BiSearch /> search
                     </button>
                 </div>
             </div>

@@ -12,7 +12,7 @@ const PopulerDoctors = () => {
         dispatch(setPopularDoctorsThunk());
     },[]);
     return (  <section  className="popular-doctors" >
-                <div className="popular">الاطباء الاعلي تقيما</div>
+                <div className="popular"> Top Rated Doctors </div>
                 <div style={{display:'flex', overflowX:'scroll'}}className="doctors">
                     {Doctors} 
                 </div>

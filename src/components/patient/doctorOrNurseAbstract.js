@@ -17,7 +17,7 @@ const Card = ({ id, imageURL, name, rating, specialization}) => {
         <img src={ imageURL } 
             alt={ `${name}` } />
         <div className="card-content">
-            {specialization && <p className="specialization" >التخصص: {specialization}</p>}
+            {specialization && <p className="specialization" >Specialization: {specialization}</p>}
             <div className="name-rating">
                 <h3 className="name">{ name }</h3>
                     <div className="rating">

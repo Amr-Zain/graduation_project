@@ -14,7 +14,7 @@ const Appointments = ()=>{
         dispatch(setAppointmentsThunk());
     },[]);
     return (  <div  className="appointmets">
-        <div className="top-text" ><Link to={PATIENT+APPOINTMENTS}>المواعيد القادمه</Link></div>
+        <div className="top-text" ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
         <div className="appointmets-container">
             {AppointmentsList} 
         </div>

@@ -1,8 +1,13 @@
 :root{
-    --main:#159190;
-    --secondary: 14,64,103;
-    --text--primary: #262626;
-    --gray--text:#8C8C8C;
+  --main: #159190;
+  --main-blue-vesion2:#0e4067;
+  --secondary: 14, 64, 103;
+  --text--primary: #262626;
+  --gray--text: #8C8C8C;
+  --back-ground-white: #f5f5f5;
+  --text-color-white: #ffff;
+  --text-dark-blue: #0e4067;
+  --back-buttun-blue: #0e4067;
   }
 
 *,
@@ -16,9 +21,7 @@ body {
   min-height: 100%;
   min-width: 100%;
 }
-.popular-doctors , .popular-nurses{
-    direction: rtl;
-}
+
 
 .popular-doctors .doctors::-webkit-scrollbar , .popular-nurses .nurses::-webkit-scrollbar {
     display:none
@@ -26,7 +29,7 @@ body {
 .popular-doctors .popular , .popular-nurses .popular{
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--main);
+    color: var(--main-blue-vesion2);
     margin: 1rem;
     width: fit-content;
     border-bottom: 1px solid rgb(14 64 103);
@@ -47,7 +50,7 @@ body {
 .card {
   flex: 0 0 250px;
   box-shadow: 0 1px 1rem -4px #000;
-  background: #fff;
+  background: var( --text-color-white);
   margin: .75rem;
   padding: 7px;
   overflow: hidden;

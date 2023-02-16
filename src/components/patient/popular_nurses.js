@@ -15,7 +15,7 @@ const PopulerNurses = () => {
         getNurses()
     },[]);
     return (  <section  className="popular-nurses">
-                <div className="popular">الممرضين الاعلي تقيما</div>
+                <div className="popular"> Top Rated Nurses </div>
                 <div style={{display:'flex', overflowX:'scroll'}}className="nurses">
                     {Nurses} 
                 </div>
