@@ -1,6 +1,6 @@
 import React,{ lazy } from "react";
 import {BrowserRouter as Router , Routes,Route} from "react-router-dom";
-import { DASHBOARD, PATIENT, DOCTOR, NURSE, RECEPTIONIST, SIGNUP, LOGIN, PROFILE, DIAGNOSIS,
+import { DASHBOARD, PATIENT, DOCTOR, NURSE, RECEPTIONIST, SIGNUP, LOGIN, PROFILE, DIAGNOSIS, DONATOR,
         RESERVATIONS, SEARCH, PATIENTS_SCHEDULE, APPOINTMENTS, BLOOD_REQUEST, BLOOD_BANK, SPECIALIZATION, CITY  } from "./constants/routes";
 
 const SignUp = lazy(() => import('./pages/signup'));
@@ -54,9 +54,9 @@ function App() {
             <Route path = {RECEPTIONIST}>
               <Route path = {RECEPTIONIST+DASHBOARD} element = { <ReceptionistDashboard /> }/> {/* list of reservation of a day */}
             </Route>
-            <Route path = {BLOOD_BANK} >
+            {/* <Route path = {BLOOD_BANK} >
               <Route path = {BLOOD_BANK+BLOOD_REQUEST} element={ <BloodRequest /> }/>
-            </Route>
+            </Route> */}
             
             <Route path = {SEARCH} element = {<Search />} >
               <Route path = {SEARCH + DOCTOR}  >
@@ -66,11 +66,11 @@ function App() {
               <Route path = {SEARCH + NURSE} >
                   <Route patho = {SEARCH + NURSE + CITY} element={<Search />} />
               </Route>
-              <Route path= {SEARCH + '/blood_request'} >
-                  <Route path = {SEARCH + '/blood_request' + CITY+'/:blood_type'} element={<Search />} />
+              <Route path= {SEARCH + BLOOD_REQUEST} >
+                  <Route path = {SEARCH + BLOOD_REQUEST + CITY+'/:blood_type'} element={<Search />} />
               </Route>
-              <Route path= {SEARCH + '/blood_donator'} >
-                  <Route path = {SEARCH + '/blood_donator' + CITY+'/:blood_type'} element={<Search />} />
+              <Route path= {SEARCH + DONATOR} >
+                  <Route path = {SEARCH + DONATOR + CITY+'/:blood_type'} element={<Search />} />
               </Route>
               </Route>
               <Route path="*" element ={<NotFound/>}/>

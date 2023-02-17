@@ -29,7 +29,7 @@ export const BLOOD_BANK = '/blood_bank';
 export const DONATOR = '/donator';
 export const DONATION_REQUEST = '/donation_request';
 
-export const BLOOD_REQUEST = '/:id';
+export const BLOOD_REQUEST = '/blood_request';
 
 /*
 

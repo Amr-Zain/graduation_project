@@ -1,6 +1,10 @@
 .search-results{
     flex: 1 1 60%;
 }
+.search-results .results{
+    display:'flex';
+    flex-wrap:'wrap';
+}
 .filter-icon{
     display: none;
 }

@@ -8,11 +8,12 @@ import '../../../style/search-results.css'
 import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
 function SearchResults() {
-    const { searchFor ,result:{data, count} } = useSelector(store=>store.search);
+    const { filter:{ searchFor } ,result:{data, count} } = useSelector(store=>store.search);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ overlay, setOverlay ] = useState(false);
     console.log(data)
+    const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
     const ResultsItems = data.map(item=><ResultCard key={item.id} type={searchFor} {...item} />)
     useEffect(()=>{
         //dispatch(getSearchResult())
@@ -30,7 +31,7 @@ function SearchResults() {
                         </div>
                         <div>
                             <label> sort by: </label>
-                            <select name="searchFor" onChange={(e)=>dispatch(setFilter({sort:e.target.value}))}>
+                            <select name="sort" onChange={handleChange}>
                                 <option id='0' value = '0'>Best Matched</option>
                                 <option id='1' value='1'>Top Rating</option>
                                 <option id='2' value='2'>Price Low to High</option>
@@ -39,7 +40,7 @@ function SearchResults() {
                         </div>
                     </div>
                 </div>
-                <div className='results'>
+                <div className='results' >
                     {ResultsItems}
                 </div>
             </aside>
