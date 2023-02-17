@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import Header from '../components/header/Header';
+import Header from '../components/header';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthedUserThunk } from '../features/authedUser';
 import { useNavigate } from 'react-router-dom';

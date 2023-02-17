@@ -8,7 +8,7 @@ import { createPortal } from 'react-dom'
 import '../../../style/search-filter.css'
 
 function SearchFilterOverlay({setOverlay}) {
-    const { searchFor,cities, specializations } = useSelector(store=>store.search);
+    const { searchFor,cities, specializations } = useSelector(store=>store.search.filter);
     const dispatch = useDispatch();
     useEffect(()=>{
         if(!cities.length) dispatch(getCitiesAndSpecialization());
@@ -32,7 +32,7 @@ function SearchFilterOverlay({setOverlay}) {
                                 id="specialization"
                                 name='specialization'
                                 placeholder="التخصص"
-                                onSelect={(value) =>dispatch(setFilter( { specialization: value })) }
+                                onSelect={({ value }) =>dispatch(setFilter( { specialization: value })) }
                                 items={specializations}
                             /> 
                         </div>

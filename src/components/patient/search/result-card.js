@@ -5,7 +5,7 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import { AiFillStar } from 'react-icons/ai';
 
 const ResultCard = ({ type, name, imageURL, specialization, fees, location, bloodType, rating, email, phone, description })=>{
-    return( <div className="card" /* onClick={handleClick} */>
+    return( <div className="card" /* onClick={handleClick} */ style={{display:'flex', width:"10rem"}}>
     { imageURL && <img src={ imageURL } alt={`${name}`} />}
     <div className="card-content">
         <div className="name-rating">

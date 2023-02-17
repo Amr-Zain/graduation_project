@@ -3,16 +3,20 @@ import { getCities, getSpecializations, search } from "../api/data";
 
 
 const initialState ={
-    searchFor: 'doctor',
-    city:'',
-    specialization:'',
-    cities:[],
-    specializations:[],
-    bloodType: 0,
-    name: '',
-    sort:'0',
-    today: false, // new Date().getDay() avialble today or not or may 
-    isLoading: false,
+    filter:{
+        searchFor: 'doctor',
+        city:'',
+        specialization:'',
+        cities:[],
+        specializations:[],
+        bloodType: 'A+',
+        name: '',
+        sort:'0',
+        gender:'0',// 0 any ,1 man and 2 women
+        availability: 0, //  0 any ,1 today and 2 tommo
+    },
+    url:'',
+    isLoading: true,
     result:{
             data:[], 
             pageNumber:0,
@@ -37,7 +41,6 @@ export const getCitiesAndSpecialization = createAsyncThunk('search/getCitiesAndS
     try {
         const cities =  await getCities();
         const specializations = await getSpecializations();
-        //thunkAPI.dispatch(setFilter({  cities, specializations }))
         return {  cities, specializations };
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -50,18 +53,20 @@ const searchSlice = createSlice({
     initialState,
     reducers:{
         setFilter:(state,{ payload })=>{
+            state.filter = { ...state.filter, ...payload }
+        },
+        setUrl:(state,{ payload })=>{
             //console.log(payload)
-            return { ...state, ...payload};
+            state.url = payload.url
         },
     },
     extraReducers:
         (builder) => {
             builder
                 .addCase(getSearchResult.fulfilled, (state, { payload}) => {
-                    console.log(payload);
-                    //state.isLoading = false;
-                    return { ...state, isLoading: false, result: { ...payload, limit:10}};
-                    
+                    //console.log(payload);
+                    state.isLoading = false;
+                    state.result = { ...payload, limit:10}
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
                 })
@@ -71,15 +76,12 @@ const searchSlice = createSlice({
                 })
                 .addCase(getCitiesAndSpecialization.fulfilled, (state, { payload}) => {
                     const { cities, specializations } = payload;
-                    //console.log(cities) 
-                    console.log(state) 
-                    //state.isLoading = false;
-                    //return { ...state, cities, specializations};
-                    state.cities = cities;
-                    state.specializations = specializations;
+                    state.isLoading = false;
+                    state.filter.cities = cities;
+                    state.filter.specializations = specializations;
                 });
         }
 });
-export const { setFilter } = searchSlice.actions;
+export const { setFilter, setUrl } = searchSlice.actions;
 
 export default searchSlice.reducer;

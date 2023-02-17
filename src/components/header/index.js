@@ -23,11 +23,11 @@ function Header() {
         dispatch(removeAuthedUser());
     }
     return (
-        <div className='background-header px-5'>
+        <div className='background-header'>
         <Navbar className='background-header' expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">
-            <img src='./images/logo-white.png' width={110} ></img>
+            <img src='/images/logo-white.png' width={110} ></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
