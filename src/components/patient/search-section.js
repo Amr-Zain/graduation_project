@@ -89,7 +89,7 @@ const Search = ()=>{
                     placeholder='Name'
                     />
                 </div>}
-                <div>
+                <div className='search-button'>
                     <button onClick={handleSearch} className='icon-search'>
                         <BiSearch /> search
                     </button>

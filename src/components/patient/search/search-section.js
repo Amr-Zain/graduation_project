@@ -31,8 +31,7 @@ const Search = ()=>{
         }
       }, []);
     return(
-        <section className="search">
-            <div style={{display:'flex'}}>
+        <section className="search-section">
                 <div>
                     <select className='search-for' name="searchFor" onChange={(e)=>dispatch(setFilter({searchFor:e.target.value}))}>
                         <option id='1' value='doctor'>Doctor</option>
@@ -79,7 +78,7 @@ const Search = ()=>{
                 }
 
                 {(searchFor == 'doctor'|| searchFor == 'nurse') &&
-                <div> 
+                <div className=''> 
                     <input 
                     type='text' 
                     onChange={(e)=>dispatch(setFilter({name:e.target.value}))}
@@ -92,7 +91,6 @@ const Search = ()=>{
                         <BiSearch />
                     </button>
                 </div>
-            </div>
         </section>
     );
 }

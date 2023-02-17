@@ -1,17 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCities, getSpecializations, search } from "../api/data";
-                
+
 
 const initialState ={
     searchFor: 'doctor',
-    city: {id:0, value:''},
-    specialization:{id:0, value:''},
+    city:'',
+    specialization:'',
     cities:[],
     specializations:[],
     bloodType: 0,
     name: '',
     sort:'0',
-    price: false, /* false low or 1 high */
     today: false, // new Date().getDay() avialble today or not or may 
     isLoading: false,
     result:{
@@ -23,22 +22,23 @@ const initialState ={
 }
 
 export const getSearchResult = createAsyncThunk('search/getSearchResult', async(_, thunkAPI)=>{
-    const {search:{ searchFor, city, specialization, bloodType, name, price, today, limit,result:{pageNumber} }} = thunkAPI.getState('search');
-    console.log( { searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber })
+    const {search:{ searchFor, city, specialization, bloodType, name, price, today,result:{pageNumber} }} = thunkAPI.getState('search');
+    //console.log( { searchFor, city, specialization, bloodType, name, price, today, pageNumber })
     try {
-        const results = await search({ searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber });
-        return ;
+        const result = await search({ searchFor, city, specialization, bloodType, name, price, today, limit:10, pageNumber });
+        //console.log(result)
+        return {...result, limit:10};
 
     }catch(error){
         return thunkAPI.rejectWithValue(error.message);
     }
 });
-export const getCitiesAndSpecialization = createAsyncThunk('search/getSearchResult',async(_, thunkAPI)=>{
+export const getCitiesAndSpecialization = createAsyncThunk('search/getCitiesAndSpecialization',async(_, thunkAPI)=>{
     try {
         const cities =  await getCities();
         const specializations = await getSpecializations();
-        //console.log({ ...thunkAPI.getState('search'), cities, specializations })
-        thunkAPI.dispatch(setFilter({ ...thunkAPI.getState('search'), cities, specializations }));
+        //thunkAPI.dispatch(setFilter({  cities, specializations }))
+        return {  cities, specializations };
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
     }
@@ -59,14 +59,24 @@ const searchSlice = createSlice({
             builder
                 .addCase(getSearchResult.fulfilled, (state, { payload}) => {
                     console.log(payload);
-                    state.isLoading = false
-                    return {...state, ...payload};
+                    //state.isLoading = false;
+                    return { ...state, isLoading: false, result: { ...payload, limit:10}};
+                    
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
                 })
                 .addCase(getSearchResult.rejected, (state, { payload }) => {
                     console.log(payload)
                     state.error = payload;
+                })
+                .addCase(getCitiesAndSpecialization.fulfilled, (state, { payload}) => {
+                    const { cities, specializations } = payload;
+                    //console.log(cities) 
+                    console.log(state) 
+                    //state.isLoading = false;
+                    //return { ...state, cities, specializations};
+                    state.cities = cities;
+                    state.specializations = specializations;
                 });
         }
 });

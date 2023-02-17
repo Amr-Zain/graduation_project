@@ -72,7 +72,7 @@
 
 
  @media screen and (max-width: 992px) {
-    .link-header {
+    .link-header:not(:nth-of-type(4)) {
     border-bottom: 1px solid;
     width: auto;
     } 

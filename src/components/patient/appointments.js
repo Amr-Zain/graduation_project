@@ -8,7 +8,7 @@ import { APPOINTMENTS, PATIENT } from "../../constants/routes";
 const Appointments = ()=>{
     const { appointments } = useSelector((store)=>store.userAppointments);
     const dispatch = useDispatch()
-    console.log(appointments);
+    //console.log(appointments);
     const AppointmentsList = appointments.map(app =><Appointment key={app.id} {...app}/> )
     useEffect(()=>{
         dispatch(setAppointmentsThunk());
