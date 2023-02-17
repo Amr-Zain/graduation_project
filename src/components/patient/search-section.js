@@ -66,7 +66,7 @@ const Search = ()=>{
                 { 
                 (searchFor == 'blood donator'|| searchFor == 'blood request') && 
                     <div className='blood-type'>
-                        <select name='bloodType' onChange={(e)=>dispatch(setFilter({bloodType:e.target.value}))} >
+                        <select className='blood-text' name='bloodType' onChange={(e)=>dispatch(setFilter({bloodType:e.target.value}))} >
                             <option >A+</option>
                             <option >A-</option>
                             <option >B+</option>

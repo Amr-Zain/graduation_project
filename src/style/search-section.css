@@ -95,6 +95,18 @@ body {
     border-radius: 0.3rem;
 }
 
+.blood-text
+{
+    background: #0e4067;
+    color: white;
+    font-size: 1rem;
+    margin: 0px 2px 0px 7px;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 4px;
+}
+
+
 @media only screen and (max-width: 400px) {
     .search-section .city {
         display: none;
