@@ -93,29 +93,29 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         const doctorsList = doctors.slice(pageNumber*10, pageNumber*10+10 )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({doctors:doctorsList, pageNumber: pageNumber})
+                res({  data:doctorsList, pageNumber: pageNumber})
             }, 1000);
         });
     }else if( searchFor === 'nurse' ){
         const nursesList = nurses.slice(pageNumber*10, pageNumber*10+10 )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({nurses: nursesList, pageNumber: pageNumber})
-            }, 1000);
+                res({data: nursesList, pageNumber: pageNumber})
+            }, 1000); 
         });
     }
     else if(searchFor === 'blood donator'){
         const requestList = donationRequests.slice(pageNumber*limit, pageNumber*limit + limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({donators:requestList, pageNumber: pageNumber})
+                res({data:requestList, pageNumber: pageNumber})
             }, 1000);
         });
     }else { //donation request
         const doctorsList = doctors.slice(pageNumber*limit, pageNumber*limit + limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({donationRequests: doctorsList,limit: limit, pageNumber: pageNumber})
+                res({data: doctorsList,limit: limit, pageNumber: pageNumber})
             }, 1000);
         });
     }

@@ -9,7 +9,6 @@ import '../../../style/search-filter.css'
 function SearchFilter({ overlay }) {
     const { searchFor,cities, specializations } = useSelector(store=>store.search);
     const dispatch = useDispatch();
-    console.log(searchFor)
     return( <aside className={overlay?"filter-overlay":"search-filter"}>
                     
                     { (searchFor ==='doctor'|| searchFor === 'nurse') && 
@@ -21,7 +20,7 @@ function SearchFilter({ overlay }) {
                                         name='male' 
                                         value='male'
                                 />
-                                <lable HtmlFor='male'> Male</lable>
+                                <label htmlFor='male'> Male</label>
                             </div>
                             <div className="female">
                                 <input type = 'checkbox' 
@@ -29,7 +28,7 @@ function SearchFilter({ overlay }) {
                                         name = 'female' 
                                         value='female' 
                                 />
-                                <lable HtmlFor='female'>Felmale</lable>
+                                <label htmlFor='female'>Felmale</label>
                             </div>
                         </div>
                     }
@@ -40,21 +39,21 @@ function SearchFilter({ overlay }) {
                                     id='any' 
                                     name='any' 
                                     value='any' />
-                            <lable HtmlFor='any'>Any</lable>
+                            <label htmlFor='any'>Any</label>
                         </div>
                         <div  className="today">
                             <input type = 'checkbox' 
                                     id='today' 
                                     name='today' 
                                     value='today' />
-                            <lable HtmlFor='today'>Today</lable>
+                            <label htmlFor='today'>Today</label>
                         </div>
                         <div className="tomorrow">
                             <input type = 'checkbox' 
                                     id = 'tomorrow' 
                                     name = 'tomorrow' 
                                     value='tomorrow' />
-                            <lable HtmlFor='tomorrow'>Tomorrow</lable>
+                            <label htmlFor='tomorrow'>Tomorrow</label>
                         </div>
                     </div>
                 </aside>);

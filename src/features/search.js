@@ -26,7 +26,7 @@ export const getSearchResult = createAsyncThunk('search/getSearchResult', async(
     //console.log( { searchFor, city, specialization, bloodType, name, price, today, pageNumber })
     try {
         const result = await search({ searchFor, city, specialization, bloodType, name, price, today, limit:10, pageNumber });
-        //console.log(result)
+        console.log(result)
         return {...result, limit:10};
 
     }catch(error){
@@ -37,7 +37,6 @@ export const getCitiesAndSpecialization = createAsyncThunk('search/getCitiesAndS
     try {
         const cities =  await getCities();
         const specializations = await getSpecializations();
-        //thunkAPI.dispatch(setFilter({  cities, specializations }))
         return {  cities, specializations };
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -59,8 +58,9 @@ const searchSlice = createSlice({
             builder
                 .addCase(getSearchResult.fulfilled, (state, { payload}) => {
                     console.log(payload);
-                    //state.isLoading = false;
-                    return { ...state, isLoading: false, result: { ...payload, limit:10}};
+                    state.isLoading = false;
+                    state.result = { ...payload, limit:10}
+                    //return { ...state, isLoading: false, result: { ...payload, limit:10}};
                     
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
@@ -72,8 +72,8 @@ const searchSlice = createSlice({
                 .addCase(getCitiesAndSpecialization.fulfilled, (state, { payload}) => {
                     const { cities, specializations } = payload;
                     //console.log(cities) 
-                    console.log(state) 
-                    //state.isLoading = false;
+                    //console.log(state) 
+                    state.isLoading = false;
                     //return { ...state, cities, specializations};
                     state.cities = cities;
                     state.specializations = specializations;

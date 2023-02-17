@@ -31,7 +31,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfslk',
+        id: 'kdfjfddfsdfslk',
         name: 'Fathy Mohamed',
         email: 'mohamed@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -59,7 +59,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'ddgdfhtjhjf',
         name: 'Ayman Amr',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -73,7 +73,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddfdsjkldsgfjslk',
         name: 'Osama Shawky',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -87,7 +87,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddfdsjklgdfjjjslk',
         name: 'Elmorsy Ayman',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -101,7 +101,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjsgrsffddfdsjkljslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -115,7 +115,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddfdsjklsfgjslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -129,7 +129,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddfdsdsgffjkljslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -143,7 +143,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfdsgfjfddfdsjkljslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -157,7 +157,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfjfddfdsjkcgdfljslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -171,7 +171,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'dsdfsarewew',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -185,7 +185,7 @@ const doctors = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfdsjkljslk',
+        id: 'kdfsgdfjfddfdsjkljslk',
         name: 'Maha Osama',
         email: 'moh@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -210,7 +210,7 @@ const specializations = [
 ]
 const nurses = [
     {
-        id: 'kdfjfddfslk',
+        id: 'sdggfgg',
         name: 'Mohamed Ahmed',
         email: 'mohamed@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -223,7 +223,7 @@ const nurses = [
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfslk',
+        id: 'kdfjsgsfdgfddfslk',
         name: 'Mohamed Ahmed',
         email: 'mohamed@gmail.com',
         description: 'He holds a PhD in Mansoura ',
@@ -267,7 +267,7 @@ const patients = [
         age: 30
     },
     {
-        id: 'kdfjfddfslk',
+        id: 'kdfjfgdfdddfslk',
         name: 'Ahmed mohamed',
         email: 'mohamed@gmail.com',
         phone: '01012121212',
@@ -304,7 +304,7 @@ const patientsData = {
         {
             id: 'dskfl', 
             PatientId: 'dskfhkldsjklf',
-            doctorId: 'kdfjfddfslk',
+            doctorId: 'kdfjfddfhkjkslk',
             date: Date.now(),
             discription : 'يسب سيتنيتسبتتي ',
             medicine:[
@@ -352,7 +352,7 @@ const patientsData = {
         {
             id: 'dskfl', 
             PatientId: 'dfnvcmxcsdfs',
-            doctorId: 'kdfjfddfslk',
+            doctorId: 'kdfjfddfslghghkk',
             date: Date.now(),
             discription : 'يسب سيتنيتسبتتي ',
             medicine:[
@@ -383,12 +383,12 @@ const donationRequests = [
         governorate: 'Dakahlia',
         bloodType: 'O-',
         requiredDonaters: 5,
-        donators: ["dfnvcmxcsdfs",'kdfjfddfslk'],/* or just number */
+        donators: ["dfnvcmxcsdfs",'kdfjfddfhjdfslk'],/* or just number */
         date :Date.now()
     },
     {
         id : 'sfdklfdasfl',
-        patientId: 'kdfjfddfslk',
+        patientId: 'kdfjfddfsljhgkk',
         city: 'Mansoura',
         governorate: 'Dakahlia',
         bloodType: 'O-',
@@ -400,25 +400,11 @@ const donationRequests = [
 const cities = [
     {id:1,value:'Mansoura'},
     {id:2,value:'Cairo'},
-    {id:3,value:'Alexandria'
-},
+    {id:3,value:'Alexandria'},
     {id:4,value:'Damietta'},
     {id:5,value:'Port Said'},
     {id:6,value:'Ismailia'},
-    {id:1,value:'Mansoura'},
-    {id:2,value:'Cairo'},
-    {id:3,value:'Alexandria'
-},
-    {id:4,value:'Damietta'},
-    {id:5,value:'Port Said'},
-    {id:6,value:'Ismailia'},
-    {id:1,value:'Mansoura'},
-    {id:2,value:'Cairo'},
-    {id:3,value:'Alexandria'
-},
-    {id:4,value:'Damietta'},
-    {id:5,value:'Port Said'},
-    {id:6,value:'Ismailia'},
+    
 ]
 //schedule of the doctor 
 /* 
@@ -469,7 +455,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjodjkljerpeww',
         doctorId: 'dskkjoerpeww',
-        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -477,7 +463,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'qedlnfsnc',
         doctorId: 'qedlnfsnc',
-        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -485,7 +471,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjoesadrpeww',
         doctorId: 'kdfjfddfdslslk',
-        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookingDate: new Date(1675780227259).toDateString().getDate,
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -494,15 +480,15 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'kdfjfdfsddfslk',
         doctorId: 'dskkjoerpeww',
-        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
     {
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
-        id: 'kdfjfddfslk',
+        id: 'kdfjffdhfghfgddfslk',
         doctorId: 'kdfjfddfdsjkljslk',
-        bookingDate: new Intl.DateTimeFormat('ar', options).format(new Date(1675780227259)),
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'sdjfds',
     },
@@ -592,7 +578,7 @@ const searchNurseResult = {
     pageCount : 3,
     data: [
         {
-            id: 'kdfjfddfslk',
+            id: 'kdfjfdfghfsfdfslk',
             name: 'Mohamed Ahmed',
             email: 'mohamed@gmail.com',
             description: 'He holds a PhD in Mansoura ',
@@ -604,7 +590,7 @@ const searchNurseResult = {
             initialPrice: 99,
             rating: 4.3,
         },{
-            id: 'kdfjfddfslk',
+            id: 'kdfjfgjhjgfddfslk',
             name: 'Mohamed Ahmed',
             email: 'mohamed@gmail.com',
             description: 'He holds a PhD in Mansoura ',
@@ -616,7 +602,7 @@ const searchNurseResult = {
             initialPrice: 99,
             rating: 4.3,
         },{
-            id: 'kdfjfddfslk',
+            id: 'kdfjfddffgjghjgslk',
             name: 'Mohamed Ahmed',
             email: 'mohamed@gmail.com',
             description: 'He holds a PhD in Mansoura ',
@@ -640,7 +626,7 @@ export const popular_doctors =[
         rating: 4.3,
     },
     {
-        id: 'kdfjfddfslk',
+        id: 'kdfjfdsdfsgfddfslk',
         name: 'Tamer Abdo',
         specialization: 'Bones',
         imageURL : '/images/avatars/karl.jpg',

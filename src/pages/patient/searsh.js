@@ -5,9 +5,9 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 function Search() {
     const s = useParams();
-    console.log(s)
+    //console.log(s)
     const [searchParams, setSearchParams ] = useSearchParams();
-    console.log(searchParams.get('name'))
+    //console.log(searchParams.get('name'))
     return (<main>
         <Container>
             <SearchSection />

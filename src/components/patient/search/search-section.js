@@ -12,7 +12,7 @@ const Search = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSearch = ()=>{
-        //dispatch(getSearchResult())
+        dispatch(getSearchResult())
         var route='';
         if(searchFor === 'doctor')
             route = `${SEARCH}${DOCTOR}/${city.value ? city.value:'all'}/${specialization.value ? specialization.value : 'all'}?name=${name}`;
@@ -21,8 +21,8 @@ const Search = ()=>{
         else if(searchFor === 'blood donator') 
         route = `${SEARCH}${DONATOR}/${city.value ? city.value:'all'}/${bloodType}`;
         else route = `${SEARCH}${DONATION_REQUEST}/${city.value ? city.value:'all'}/${bloodType}`;
-        console.log('route')
-        console.log(route);
+        //console.log('route')
+        //console.log(route);
         navigate(route);
     }
     useEffect(() => {

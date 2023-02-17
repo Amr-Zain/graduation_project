@@ -12,7 +12,7 @@ const Search = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSearch = ()=>{
-        //dispatch(getSearchResult())
+        dispatch(getSearchResult())
         var route='';
         if(searchFor === 'doctor')
             route = `${SEARCH}${DOCTOR}/${city.value ? city.value:'all'}/${specialization.value ? specialization.value : 'all'}?name=${name}`;

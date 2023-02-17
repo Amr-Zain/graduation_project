@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from '../../../features/search';
 import { useNavigate } from 'react-router-dom';
 import SearchFilterOverlay from "./search-filter-overlay";
+import ResultCard from "./result-card";
 import '../../../style/search-results.css'
 import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
@@ -11,6 +12,8 @@ function SearchResults() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ overlay, setOverlay ] = useState(false);
+    console.log(data)
+    const ResultsItems = data.map(item=><ResultCard key={item.id} type={searchFor} {...item} />)
     useEffect(()=>{
         //dispatch(getSearchResult())
     })
@@ -36,7 +39,9 @@ function SearchResults() {
                         </div>
                     </div>
                 </div>
-                results
+                <div className='results'>
+                    {ResultsItems}
+                </div>
             </aside>
             {overlay && <SearchFilterOverlay setOverlay={setOverlay} />}
             </>);
