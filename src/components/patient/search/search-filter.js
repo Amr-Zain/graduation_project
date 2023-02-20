@@ -1,13 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import DatalistInput from 'react-datalist-input';
-import 'react-datalist-input/dist/styles.css';
-import { useEffect, useState } from "react";
-import { getCitiesAndSpecialization, setFilter } from "../../../features/search";
-import { createPortal } from 'react-dom'
-import '../../../style/search-filter.css'
+import { setFilter } from "../../../features/search";
 
 function SearchFilter({ overlay }) {
-    const { searchFor,cities, specializations } = useSelector(store=>store.search.filter);
+    const { searchFor, gender, availability  } = useSelector(store=>store.search.filter);
     const dispatch = useDispatch();
     const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
 
@@ -21,6 +16,7 @@ function SearchFilter({ overlay }) {
                                         id='any-gender' 
                                         name='gender' 
                                         value='0'
+                                        checked = {gender === '0'}
                                         onChange={ handleChange }
                                 />
                                 <label htmlFor='any-gender'> Any</label>
@@ -29,6 +25,7 @@ function SearchFilter({ overlay }) {
                                 <input type = 'radio' 
                                         id='male' 
                                         name='gender' 
+                                        checked = {gender === '1'}
                                         value='1'
                                         onChange={ handleChange }
                                 />
@@ -38,6 +35,7 @@ function SearchFilter({ overlay }) {
                                 <input type = 'radio' 
                                         id = 'female' 
                                         name = 'gender' 
+                                        checked = { gender === '2' }
                                         value='2' 
                                         onChange={ handleChange }
                                 />
@@ -52,6 +50,7 @@ function SearchFilter({ overlay }) {
                                     id='availability-any' 
                                     name='availability' 
                                     value='0'
+                                    checked = {availability === '0'}
                                     onChange={ handleChange } />
                             <label htmlFor='availability-any'>Any</label>
                         </div>
@@ -60,6 +59,7 @@ function SearchFilter({ overlay }) {
                                     id='today' 
                                     name='availability' 
                                     value='1' 
+                                    checked = {availability === '1'}
                                     onChange={ handleChange }/>
                             <label htmlFor='today'>Today</label>
                         </div>
@@ -68,6 +68,7 @@ function SearchFilter({ overlay }) {
                                     id = 'tomorrow' 
                                     name = 'availability' 
                                     value='2'
+                                    checked = {availability === '2'}
                                     onChange={ handleChange }/>
                             <label htmlFor='tomorrow'>Tomorrow</label>
                         </div>

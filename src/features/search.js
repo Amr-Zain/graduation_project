@@ -9,7 +9,7 @@ const initialState ={
         specialization:'',
         cities:[],
         specializations:[],
-        bloodType: 'A+',
+        bloodType: '',
         name: '',
         sort:'0',
         gender:'0',// 0 any ,1 man and 2 women

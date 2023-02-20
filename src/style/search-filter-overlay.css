@@ -1,0 +1,17 @@
+/* 
+search section نفس كلاسات ال  
+استخدم مسار من الكلاسات
+*/
+.search-filter-overlay {
+        z-index: 200;
+        position: fixed;
+        width: 85%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-55%);
+        background-color: #fafafa;
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+}

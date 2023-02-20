@@ -10,7 +10,7 @@ export const RESERVATIONS = '/reservations';
 export const PATIENT = '/patient';
 export const APPOINTMENTS = '/appointments';
 export const SEARCH = '/search';
-export const DIAGNOSIS = '/diagnosis';
+export const MEDICAL_HISTORY = '/medical_history';
 
 
 

@@ -8,16 +8,16 @@ import '../../../style/search-results.css'
 import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
 function SearchResults() {
-    const { filter:{ searchFor } ,result:{data, count} } = useSelector(store=>store.search);
+    const { filter:{ searchFor, sort }, url,result:{data, count} } = useSelector(store=>store.search);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ overlay, setOverlay ] = useState(false);
-    console.log(data)
     const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
     const ResultsItems = data.map(item=><ResultCard key={item.id} type={searchFor} {...item} />)
     useEffect(()=>{
-        //dispatch(getSearchResult())
-    })
+        console.log('get results')
+        dispatch(getSearchResult())
+    },[url])
     return ( 
         <>
             <aside className="search-results">
@@ -31,11 +31,11 @@ function SearchResults() {
                         </div>
                         <div>
                             <label> sort by: </label>
-                            <select name="sort" onChange={handleChange}>
+                            <select name="sort" value={sort} onChange={handleChange}>
                                 <option id='0' value = '0'>Best Matched</option>
-                                <option id='1' value='1'>Top Rating</option>
-                                <option id='2' value='2'>Price Low to High</option>
-                                <option id='3' value='3'>Price High To Low</option>
+                                {(searchFor === 'doctor' || searchFor==='nurse')&&<option id='1' value='1'>Top Rating</option>}
+                                <option id='2' value='2'>{(searchFor === 'doctor' || searchFor==='nurse')?"Price Low to High":"Free"}</option>
+                                <option id='3' value='3'>{(searchFor === 'doctor' || searchFor==='nurse')?"Price High to Low":"Paid"}</option>
                             </select>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 
-import { PATIENT, DIAGNOSIS, APPOINTMENTS, LOGIN, SEARCH, DOCTOR, NURSE, BLOOD_BANK } from '../../constants/routes';
+import { PATIENT, DIAGNOSIS, APPOINTMENTS, LOGIN, SEARCH, DOCTOR, NURSE, BLOOD_BANK, DASHBOARD, MEDICAL_HISTORY } from '../../constants/routes';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,10 +32,11 @@ function Header() {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" navbarScroll >
-              <Nav.Link className='link-header' href="#">Home</Nav.Link>
-              <Nav.Link className='link-header' href="#">Blood Donation</Nav.Link>
-              <Nav.Link className='link-header' href="#">Medical History</Nav.Link>
-              <Nav.Link className='link-header' href="#">Appointments</Nav.Link>
+              <Nav.Link className='link-header' href={'/'+userType + DASHBOARD }>Home</Nav.Link>
+              <Nav.Link className='link-header' href={'/donate' }>Donate Blood</Nav.Link> {/* doante blood */}
+              <Nav.Link className='link-header' href={'/blood_request' }>Blood Request</Nav.Link> {/* doante blood */}
+              <Nav.Link className='link-header' href={PATIENT + MEDICAL_HISTORY }>Medical History</Nav.Link>
+              <Nav.Link className='link-header' href={PATIENT + APPOINTMENTS }>Appointments</Nav.Link>
 
            
             </Nav>

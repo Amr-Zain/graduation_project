@@ -3,13 +3,28 @@ import SearchComponents from '../../components/patient/search/'
 import Header from '../../components/header'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { setFilter, getCitiesAndSpecialization } from '../../features/search';
+import { useSelector, useDispatch } from "react-redux";
 
 function Search({ type }) {
-    const s = useParams();
-    console.log(s)
-    const [searchParams, setSearchParams ] = useSearchParams();
-    console.log(searchParams.get('sort'))
-    
+    const params = useParams();
+    const [ searchParams ] = useSearchParams();
+    const { filter:{cities},url } = useSelector(store=>store.search)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        document.title = 'Search';
+        const filters = { ...params, 
+            bloodType: searchParams.get('bloodType'), 
+            specialization:searchParams.get('specialization'), 
+            name:searchParams.get('name'),sort:searchParams.get('sort'),
+            gender:searchParams.get('gender'),
+            availability:searchParams.get('availability')};
+        dispatch(setFilter(filters))
+        if(cities.length === 0) {
+            dispatch(getCitiesAndSpecialization());
+        }
+    }, [ url, params, searchParams ]);
     return (
         <>
             <Header />
@@ -17,7 +32,6 @@ function Search({ type }) {
                 <Container>
                     <SearchComponents />
                 </Container>
-                <button onClick={()=>{setSearchParams({S:1, name:"zain"})}}>click</button>
             </main>
         </>
         );

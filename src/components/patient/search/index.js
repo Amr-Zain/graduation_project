@@ -1,17 +1,20 @@
-import { Container } from 'react-bootstrap';
 import SearchSection from './search-section'
-import SearchBody from './search-body'
-import { useParams, useSearchParams } from 'react-router-dom';
+import SearchFilter from './search-filter';
+import SearchResults from './search-results';
+import '../../../style/search-section.css'
+import '../../../style/search-filter.css'
+import '../../../style/search-filter-overlay.css'
+
 
 function Search() {
-    const s = useParams();
-    //console.log(s)
-    const [searchParams, setSearchParams ] = useSearchParams();
-    //console.log(searchParams.get('name'))
     return (<>
-            <SearchSection />
-            <SearchBody />
+            <section className={"search-section"}>
+                <SearchSection isOverlay={false}/>
+            </section>
+            <div className="search-body" style={{display:'flex',justifyContent:'space-between'}}>
+                <SearchFilter />
+                <SearchResults />
+            </div> 
         </>);
 }
-
 export default Search;

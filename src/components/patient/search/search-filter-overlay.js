@@ -1,57 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
-import DatalistInput from 'react-datalist-input';
-import 'react-datalist-input/dist/styles.css';
-import { useEffect } from "react";
 import SearchFilter from "./search-filter";
-import { getCitiesAndSpecialization, setFilter } from "../../../features/search";
+import SearchSection from './search-section'
 import { createPortal } from 'react-dom'
-import '../../../style/search-filter.css'
-
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, createSearchParams } from 'react-router-dom';
+import { SEARCH } from '../../../constants/routes';
+import {  setUrl } from '../../../features/search'
 function SearchFilterOverlay({setOverlay}) {
-    const { searchFor,cities, specializations } = useSelector(store=>store.search.filter);
+    const { cities, specializations, searchFor, city, specialization, bloodType,name, gender, availability, sort } = useSelector(store=>store.search.filter);
     const dispatch = useDispatch();
-    useEffect(()=>{
-        if(!cities.length) dispatch(getCitiesAndSpecialization());
-    })
+    const navigate = useNavigate();
+    const handleSearch = ()=>{
+        const route = `${SEARCH}/${searchFor}/${city ? city:'all'}`;
+        let queries;
+        if(searchFor === 'doctor' ) queries = { name, specialization, gender,  availability, sort};
+        else if(searchFor === 'nurse') queries = { name, gender, availability, sort } ;
+        else if(searchFor === 'donator' || searchFor === 'donation_request') queries = { bloodType, availability, sort };
+        dispatch(setUrl({url:route+ `?${createSearchParams(queries)}`}));
+        navigate({
+            pathname: route,
+            search: `?${createSearchParams(queries)}`,
+        });
+    }
     return createPortal(
         <>
             <aside className="search-filter-overlay">
-                <div className='city'>
-                    <DatalistInput
-                        id="city"
-                        name='city'
-                        placeholder="المدينه"
-                        onSelect={(value) =>dispatch(setFilter( { city: value })) }
-                        items={cities}
-                    /> 
-                </div>
-                    {
-                        searchFor == 'doctor'&& 
-                        <div className='specialization'>
-                            <DatalistInput
-                                id="specialization"
-                                name='specialization'
-                                placeholder="التخصص"
-                                onSelect={({ value }) =>dispatch(setFilter( { specialization: value })) }
-                                items={specializations}
-                            /> 
-                        </div>
-                    }
-                    { 
-                        (searchFor == 'blood donator'|| searchFor == 'blood request') && 
-                        <div className='blood-type'>
-                            <select name='bloodType' onChange={(e)=>dispatch(setFilter({bloodType:e.target.value}))} >
-                                <option >A+</option>
-                                <option >A-</option>
-                                <option >B+</option>
-                                <option >B-</option>
-                                <option >O+</option>
-                                <option >O-</option>
-                                <option >AB+</option>
-                                <option >AB-</option>
-                            </select>
-                        </div>
-                    }
+                <SearchSection isDashboard={false} />
                 <SearchFilter overlay={true} />
                 <button onClick={()=>setOverlay(false)}>done</button>
             </aside>

@@ -26,18 +26,21 @@ body {
 
 .search-section
 {
-   
     padding: 1rem;
     display: flex;
+    justify-content: center;
     gap:.5rem;
     border-radius: 0.6rem;
     margin-right: 3px;
     background: #8f8f8f00;
     width: fit-content;
-    max-width: 95%;
+    max-width: 98%;
     margin: 11px auto;
     box-shadow: 1px 5px 16px -4.5px;
     height: 4rem;
+}
+.search-section div {
+    height: 36px;
 }
 
 .search-section div input, .search-section div select {
@@ -73,7 +76,9 @@ body {
     outline: none;
     border: none;
 }
-.search-button button{
+
+.search-section div input, .search-section div select {
+    height: 100%;
 }
 .search-button .icon-search
 {
@@ -112,21 +117,30 @@ body {
     
 }
 
+@media only screen and (max-width: 450px) {
+    .search-section .city {
+        display: none;
+    } 
+    
+}
+
 @media only screen and (max-width: 600px) {
-    .search-section .specialization, .search-section .blood-type {
+    .search-section .specialization, .search-section .blood-type , .search-section .name {
         display: none;
     } 
 }
 
 @media only screen and (min-width: 600px) {
-    .search-section .specialization, .search-section .blood-type {
+    .search-section .specialization, .search-section .blood-type, .search-section .name  {
         display: none;
     } 
-
+    .search-for {
+        padding: 0px 4px ;
+    }
 }
 
 @media only screen and (min-width: 768px) {
-    .search-section .city, .search-section .specialization, .search-section .blood-type {
+    .search-section .city, .search-section .specialization, .search-section .blood-type{
         display: flex;
     } 
     .search-for {
@@ -148,7 +162,7 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
-    .search-section .city, .search-section .specialization, .search-section .blood-type {
+    .search-section .city, .search-section .specialization, .search-section .blood-type , .search-section .name   {
         display: flex;
     } 
    
