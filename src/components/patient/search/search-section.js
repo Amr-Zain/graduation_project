@@ -5,7 +5,7 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import { SEARCH } from '../../../constants/routes';
 import DatalistInput from 'react-datalist-input';
 import 'react-datalist-input/dist/styles.css';
-const SearchSection = ({ isOverlay })=>{
+const SearchSection = ()=>{
     const { cities, specializations, searchFor, city, specialization, bloodType,name, gender, availability, sort } = useSelector(store=>store.search.filter);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -83,11 +83,11 @@ const SearchSection = ({ isOverlay })=>{
                         placeholder='Name'
                         />
                     </div>}
-                    { !isOverlay && <div className='search-button'>
+                    <div style={ {order:'10'}} className='search-button'>
                         <button onClick={handleSearch} className='icon-search'>
                             <BiSearch /> search
                         </button>
-                    </div>}
+                    </div>
             </>);}
 
 export default SearchSection;

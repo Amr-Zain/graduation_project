@@ -1,21 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { APPOINTMENTS, DOCTOR, PROFILE } from "../../constants/routes";
+import { /* APPOINTMENTS, */ DOCTOR, PROFILE } from "../../../constants/routes";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BiMoney } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdLocationPin } from "react-icons/md";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 const Appointment = (props) => {
   const navigate = useNavigate();
 
   const handleDcotorClick = (e) => {
-    navigate(DOCTOR + PROFILE + "/" + props.doctorId);
+    navigate( PROFILE + DOCTOR + "/" + props.doctorId);
   };
-  const handleAppointmentClick = (e) => {
+  /* const handleAppointmentClick = (e) => {
     navigate(DOCTOR + APPOINTMENTS + "/" + props.id);
-  };
+  }; */
   return (
-        <section className="appointment">
+        <section className="appointment" >
                 <div className="doctor" >
                     <div className="image-text" >
                     <div className="image" onClick={handleDcotorClick}>
@@ -62,14 +62,3 @@ const Appointment = (props) => {
     );
 };
 export default Appointment;
-
-/* bookedAte,
-bookingDate,
-doctorId,
-doctorImg,
-doctorName,
-location,
-patientId,
-specialization
-: 
-3 */

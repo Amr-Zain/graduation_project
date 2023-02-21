@@ -35,6 +35,12 @@ body {
   overflow-y: scroll;
   display: flex;
 }
+.appoint-page .appointmets-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 .appointmets .appointmets-container::-webkit-scrollbar {
   display: none;
 }
@@ -59,11 +65,12 @@ body {
   box-shadow: 0 1px 1rem -4px #000;
   background: var(--back-ground);
   margin: 0.75rem;
-  padding: 7px;
+  padding: .5rem;
+  padding-top: .75rem;
   overflow: hidden;
   border-radius: 7px;
   cursor: pointer;
-  
+  max-width: 95%;
   transition: all 250ms ease-in-out;
 }
 .appointment:hover {
@@ -154,4 +161,13 @@ body {
 .available p {
   display: contents;
 
+}
+@media (max-width:320px) {
+  .available {
+    padding: 10px;
+  }
+  .top-text {
+    font-size: 1.4rem;
+    text-align: center;
+  }
 }

@@ -33,37 +33,34 @@ function App() {
           <Route path= {DASHBOARD} element = {<Dashboard/>}></Route>
           <Route path = {SIGNUP} element={ <SignUp /> }/>
           <Route path = {LOGIN} element={ <Login /> }/>
-          <Route path = {'/:userType'+PROFILE+'/:id'} element={ <Profile /> }/>
+          <Route path = {PROFILE +'/:userType/:id'} element={ <Profile /> }/>
 
-            <Route path = {PATIENT} element = { <PatientDashboard /> }>
-              <Route path = {PATIENT+MEDICAL_HISTORY} element = { <PatientMedicalHistory /> }/>
-              <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
-            </Route>
+          <Route path = {PATIENT} >
+            <Route path= {PATIENT+DASHBOARD} element={<PatientDashboard />} />
+            <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
+            <Route path = {PATIENT+MEDICAL_HISTORY} element = { <PatientMedicalHistory /> }/>
+          </Route>
 
-            <Route path = {DOCTOR}>
-              <Route path = {DOCTOR+DASHBOARD} element={ <DoctorDashboard /> }/>
-              <Route path = {DOCTOR+PATIENTS_SCHEDULE} element={ <PatientQueue /> }/>{/* list of the patient in a day */}
-            </Route>
+          <Route path = {DOCTOR}>
+            <Route path = {DOCTOR+DASHBOARD} element={ <DoctorDashboard /> }/>
+            <Route path = {DOCTOR+PATIENTS_SCHEDULE} element={ <PatientQueue /> }/>{/* list of the patient in a day */}
+          </Route>
 
-            <Route path = {NURSE}>
-              <Route path = { NURSE+DASHBOARD } element = { <NurseDashboard /> }/> {/* list of reservation of a day */}
-            </Route>
-            <Route path = {RECEPTIONIST}>
-              <Route path = {RECEPTIONIST+DASHBOARD} element = { <ReceptionistDashboard /> }/> {/* list of reservation of a day */}
-            </Route>
-            {/* <Route path = {BLOOD_BANK} >
-              <Route path = {BLOOD_BANK+BLOOD_REQUEST} element={ <BloodRequest /> }/>
-            </Route> */}
-            
-            <Route path = {SEARCH} element = {<Search />} >
-              <Route path = {SEARCH + '/:searchFor'}  >
-                <Route path = {SEARCH + '/:searchFor' +CITY} element = {<Search />} >
-                </Route>
+          <Route path = {NURSE}>
+            <Route path = { NURSE+DASHBOARD } element = { <NurseDashboard /> }/> {/* list of reservation of a day */}
+          </Route>
+          <Route path = {RECEPTIONIST}>
+            <Route path = {RECEPTIONIST+DASHBOARD} element = { <ReceptionistDashboard /> }/> {/* list of reservation of a day */}
+          </Route>
+          <Route path = {SEARCH} element = {<Search />} >
+            <Route path = {SEARCH + '/:searchFor'}  >
+              <Route path = {SEARCH + '/:searchFor' +CITY} element = {<Search />} >
               </Route>
-            </Route> 
-            <Route path="*" element ={<NotFound/>}/>
-          </Routes>
-        </React.Suspense>
+            </Route>
+          </Route> 
+          <Route path="*" element ={<NotFound/>}/>
+        </Routes>
+      </React.Suspense>
       </Router>
 
   );

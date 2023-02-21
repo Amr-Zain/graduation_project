@@ -1,20 +1,23 @@
 import { useEffect } from "react";
-import { setAppointmentsThunk } from "../../features/appointments";
+import { setAppointmentsThunk } from "../../../features/appointments";
 import { useDispatch, useSelector } from "react-redux";
 import Appointment from "./appointment";
-import "../../style/appointment.css";
+import "../../../style/appointment.css";
 import { Link, useNavigate } from "react-router-dom";
-import { APPOINTMENTS, PATIENT } from "../../constants/routes";
-const Appointments = ()=>{
+import { APPOINTMENTS, PATIENT } from "../../../constants/routes";
+const Appointments = ({ isAppPage })=>{
     const { appointments } = useSelector((store)=>store.userAppointments);
     const dispatch = useDispatch()
-    //console.log(appointments);
+    const navigate = useNavigate()
+    const appClick = ()=>{
+        navigate( PATIENT+APPOINTMENTS);
+    }
     const AppointmentsList = appointments.map(app =><Appointment key={app.id} {...app}/> )
     useEffect(()=>{
         dispatch(setAppointmentsThunk());
     },[]);
-    return (  <div  className="appointmets">
-        <div className="top-text" ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
+    return (  <div  className={isAppPage?'appoint-page':"appointmets"}>
+        <div className="top-text" onClick={appClick} ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
         <div className="appointmets-container">
             {AppointmentsList} 
         </div>
