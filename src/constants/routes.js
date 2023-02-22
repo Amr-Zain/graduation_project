@@ -26,7 +26,7 @@ export const PROFILE = '/profile';
 export const NOT_FOUND = '/not_found'; 
 
 export const BLOOD_BANK = '/blood_bank';
-export const DONATOR = '/donator';
+export const BLOOD_DONATION = '/blood_donation';
 export const DONATION_REQUEST = '/donation_request';
 
 export const BLOOD_REQUEST = '/blood_request';

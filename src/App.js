@@ -1,14 +1,17 @@
 import React,{ lazy } from "react";
 import {BrowserRouter as Router , Routes,Route} from "react-router-dom";
 import { DASHBOARD, PATIENT, DOCTOR, NURSE, RECEPTIONIST, SIGNUP, LOGIN, PROFILE, MEDICAL_HISTORY, DONATOR,
-        RESERVATIONS, SEARCH, PATIENTS_SCHEDULE, APPOINTMENTS, BLOOD_REQUEST, BLOOD_BANK, SPECIALIZATION, CITY  } from "./constants/routes";
+        RESERVATIONS, SEARCH, PATIENTS_SCHEDULE, APPOINTMENTS, BLOOD_REQUEST, BLOOD_BANK, BLOOD_DONATION, SPECIALIZATION, CITY  } from "./constants/routes";
 
 const SignUp = lazy(() => import('./pages/signup'));
 const Login = lazy(() => import('./pages/login'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const Profile = lazy(() => import('./pages/profile'));
 const NotFound = lazy(() => import('./pages/not_found'));
-const BloodRequest = lazy(() => import('./pages/blood_request'));
+
+const BloodBank = lazy(() => import('./pages/blood-bank/blood-bank'));
+const BloodRequest = lazy(() => import('./pages/blood-bank/blood-request'));
+const BloodDonation = lazy(() => import('./pages/blood-bank/blood-donation'));
 
 const DoctorDashboard = lazy(() => import('./pages/doctor/dashboard'));
 const PatientQueue = lazy(() => import('./pages/doctor/patients'));
@@ -58,6 +61,12 @@ function App() {
               </Route>
             </Route>
           </Route> 
+          <Route path = {BLOOD_BANK} >
+            <Route path = {BLOOD_BANK + DASHBOARD} element = {<BloodBank />} />
+            <Route path = {BLOOD_BANK + BLOOD_REQUEST} element = {<BloodRequest />} />
+            <Route path = {BLOOD_BANK + BLOOD_DONATION} element = {<BloodDonation />}  />
+          </Route> 
+
           <Route path="*" element ={<NotFound/>}/>
         </Routes>
       </React.Suspense>

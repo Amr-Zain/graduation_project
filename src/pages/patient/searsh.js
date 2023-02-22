@@ -3,27 +3,28 @@ import SearchComponents from '../../components/patient/search/'
 import Header from '../../components/header'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { setFilter, getCitiesAndSpecialization } from '../../features/search';
+import { setFilter } from '../../features/search'; 
+import { getCitiesAndSpecializations } from '../../features/cities-specializations'; 
 import { useSelector, useDispatch } from "react-redux";
 
 function Search({ type }) {
     const params = useParams();
     const [ searchParams ] = useSearchParams();
-    const { filter:{cities},url } = useSelector(store=>store.search)
+    const { url } = useSelector(store=>store.search);
+    const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
+    console.log(specializations)
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = 'Search';
         const filters = { ...params, 
-            bloodType: searchParams.get('bloodType'), 
-            specialization:searchParams.get('specialization'), 
-            name:searchParams.get('name'),sort:searchParams.get('sort'),
-            gender:searchParams.get('gender'),
-            availability:searchParams.get('availability')};
+            bloodType: searchParams.get('bloodType')? searchParams.get('bloodType'):'A+', 
+            specialization: searchParams.get('specialization')? searchParams.get('specialization'):'', 
+            name: searchParams.get('name'),
+            sort: searchParams.get('sort')? searchParams.get('sort'):'0',
+            gender: searchParams.get('gender')? searchParams.get('gender'):'0',
+            availability: searchParams.get('availability')? searchParams.get('availability'):'0',};
         dispatch(setFilter(filters))
-        if(cities.length === 0) {
-            dispatch(getCitiesAndSpecialization());
-        }
     }, [ url, params, searchParams ]);
     return (
         <>

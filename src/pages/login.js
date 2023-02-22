@@ -15,15 +15,10 @@ function Longin() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { userType, error, user } = useSelector((store)=>store.authedUser);
-    if(user)
-            navigate(`/${userType}/`);
     const dispatch = useDispatch();
-   
     const onSubmit = async(data)=>{
         console.log(watch('email'))
         dispatch(setAuthedUserThunk({userType: data.userType, create:false, data:{ email: data.email, password: data.password}}));
-        if(user)
-            navigate(`/${data.userType}/`);
     }
     useEffect(()=>{
         document.title = 'Login';

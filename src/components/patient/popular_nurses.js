@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { setPopularDoctorsThunk } from "../../features/populerDoctors";
-import { useDispatch, useSelector } from "react-redux";
 import { getPopulerNurses } from '../../api/data'
 import NurseAbstract from "./doctorOrNurseAbstract";
 const PopulerNurses = () => {

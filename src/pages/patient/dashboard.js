@@ -16,8 +16,8 @@ function Dashboadrd() {
                 <section className={"search-section"}>
                     <SearchSection isOverlay={false}/>
                 </section>
-                <PopulerDoctors />
                 <Appointments isAppPage={false}/>
+                <PopulerDoctors />
                 <PopulerNurses />
             </Container>
         </main>

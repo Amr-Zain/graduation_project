@@ -7,8 +7,6 @@ const initialState ={
         searchFor: 'doctor',
         city:'',
         specialization:'',
-        cities:[],
-        specializations:[],
         bloodType: '',
         name: '',
         sort:'0',
@@ -37,17 +35,6 @@ export const getSearchResult = createAsyncThunk('search/getSearchResult', async(
         return thunkAPI.rejectWithValue(error.message);
     }
 });
-export const getCitiesAndSpecialization = createAsyncThunk('search/getCitiesAndSpecialization',async(_, thunkAPI)=>{
-    try {
-        const cities =  await getCities();
-        const specializations = await getSpecializations();
-        return {  cities, specializations };
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-    }
-});
-
-
 const searchSlice = createSlice({
     name:'search',
     initialState,
@@ -74,13 +61,7 @@ const searchSlice = createSlice({
                     console.log(payload)
                     state.error = payload;
                 })
-                .addCase(getCitiesAndSpecialization.fulfilled, (state, { payload}) => {
-                    const { cities, specializations } = payload;
-                    state.isLoading = false;
-                    state.filter.cities = cities;
-                    state.filter.specializations = specializations;
-                });
-        }
+            }
 });
 export const { setFilter, setUrl } = searchSlice.actions;
 

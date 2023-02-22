@@ -2,11 +2,21 @@ import { BiSearch } from 'react-icons/bi';
 import { setFilter, setUrl } from '../../../features/search'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, createSearchParams } from 'react-router-dom';
+import { getCitiesAndSpecializations } from '../../../features/cities-specializations'
 import { SEARCH } from '../../../constants/routes';
 import DatalistInput from 'react-datalist-input';
 import 'react-datalist-input/dist/styles.css';
+import { useEffect } from 'react';
 const SearchSection = ()=>{
-    const { cities, specializations, searchFor, city, specialization, bloodType,name, gender, availability, sort } = useSelector(store=>store.search.filter);
+    const {searchFor, 
+        city, 
+        specialization, 
+        bloodType,
+        name, 
+        gender, 
+        availability, 
+        sort } = useSelector(store=>store.search.filter);
+    const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}));
@@ -22,8 +32,11 @@ const SearchSection = ()=>{
             search: `?${createSearchParams(queries)}`,
         });
     }
-
-    
+    useEffect(()=>{
+        if(cities.length === 0 && specializations.length === 0 ) dispatch(getCitiesAndSpecializations());
+        else if(cities.length === 0 )dispatch(getCitiesAndSpecializations('cities'));
+        else if(specializations.length === 0 )dispatch(getCitiesAndSpecializations('specializations'));
+    })
     return(<>
                 <div className='search-for'>
                     <select className='search-for' value={searchFor} name="searchFor" onChange={ handleChange }>

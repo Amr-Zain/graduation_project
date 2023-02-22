@@ -93,7 +93,7 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         const doctorsList = doctors.slice(pageNumber*10, pageNumber*10+10 )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({  data:doctorsList, pageNumber: pageNumber})
+                res({  data:doctorsList, pageNumber: pageNumber, count:22 })
             }, 1000);
         });
     }else if( searchFor === 'nurse' ){

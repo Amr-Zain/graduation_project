@@ -125,7 +125,6 @@ input:focus{
 }
 
 .to-login {
-  direction: rtl;
   font-size: .9rem;
   margin: .2rem 1.5rem;
 }

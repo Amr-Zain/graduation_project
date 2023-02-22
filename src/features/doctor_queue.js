@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
+/* 
 initialState = [ ] //list of users
 
 const doctorQueue = createSlice({
@@ -21,4 +21,4 @@ export const { setAppointments, removeDoneAppointments } = doctorQueue.actions;
 
 export default doctorQueue.reducer;
 
-
+ */
