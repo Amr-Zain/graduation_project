@@ -1,6 +1,6 @@
 import React,{ lazy } from "react";
 import {BrowserRouter as Router , Routes,Route} from "react-router-dom";
-import { DASHBOARD, PATIENT, DOCTOR, NURSE, RECEPTIONIST, SIGNUP, LOGIN, PROFILE, MEDICAL_HISTORY, DONATOR,
+import { DASHBOARD, PATIENT, DOCTOR, NURSE, RECEPTIONIST, SIGNUP, LOGIN, PROFILE, MEDICAL_HISTORY, DONATOR,DIAGNOSIS,
         RESERVATIONS, SEARCH, PATIENTS_SCHEDULE, APPOINTMENTS, BLOOD_REQUEST, BLOOD_BANK, BLOOD_DONATION, SPECIALIZATION, CITY  } from "./constants/routes";
 
 const SignUp = lazy(() => import('./pages/signup'));
@@ -18,7 +18,8 @@ const PatientQueue = lazy(() => import('./pages/doctor/patients'));
 
 const PatientDashboard = lazy(() => import('./pages/patient/dashboard'));
 const Search = lazy(() => import('./pages/patient/searsh'));
-const PatientMedicalHistory = lazy(() => import('./pages/patient/patient-medical-history'));
+const MedicalHistory = lazy(() => import('./pages/patient/medical-history'));
+const DetailedDiagnosis = lazy(() => import('./pages/patient/detailed-diagnosis'));
 const Appointments = lazy(() => import('./pages/patient/Appointments'));
 
 const NurseDashboard = lazy(() => import('./pages/nurse/dashboard'));
@@ -41,7 +42,8 @@ function App() {
           <Route path = {PATIENT} >
             <Route path= {PATIENT+DASHBOARD} element={<PatientDashboard />} />
             <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
-            <Route path = {PATIENT+MEDICAL_HISTORY} element = { <PatientMedicalHistory /> }/>
+            <Route path = {PATIENT+MEDICAL_HISTORY} element = { <MedicalHistory /> }/>
+            <Route path = {PATIENT+MEDICAL_HISTORY+DIAGNOSIS+'/:id'} element = { <DetailedDiagnosis/> }/>
           </Route>
 
           <Route path = {DOCTOR}>

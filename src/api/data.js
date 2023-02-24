@@ -1,5 +1,5 @@
-import { doctors, specializations, nurses, patients, patientsData, 
-    donationRequests, bookedAppointments, receptionists, shechedule, cities, popular_doctors } from './api'
+import { doctors, specializations, nurses, patients, patientsData, medicines,
+    donationRequests, bookedAppointments, receptionists, shechedule, cities, popular_doctors, diagnosis } from './api'
 
 //sill
 import { formate, formateWithDate, formateDonationRequest} from './formater'
@@ -120,6 +120,29 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         });
     }
 
+}
+
+export const getDiagnosis = ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res( diagnosis )
+        }, 1000);
+    });
+}
+
+export const getMedicines = ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res( medicines )
+        }, 1000);
+    });
+}
+export const getPatientDiagnosisCategoy = ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res( specializations )
+        }, 1000);
+    });
 }
 export const appointments = async ({ id })=>{
     //const patient = patients.find(p=>p.id ===id)

@@ -8,7 +8,7 @@ const initialState ={
 }
 
 
-export const getCitiesAndSpecializations = createAsyncThunk('search/getCitiesAndSpecializations',async(message, thunkAPI)=>{
+export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializations/getCitiesAndSpecializations',async(message, thunkAPI)=>{
     try {
         if(message === 'cities'){
             const cities =  await getCities();

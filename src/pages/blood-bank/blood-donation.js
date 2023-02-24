@@ -1,48 +1,56 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import DatalistInput from 'react-datalist-input';
+import { useEffect, useState } from "react";
 import 'react-datalist-input/dist/styles.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { bloodType } from '../../constants/utilites'
+import Select from 'react-select';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { getCitiesAndSpecializations } from "../../features/cities-specializations";
+import '../../style/blood-bank.css'
+
 function BloodDonation() {
-    const { register, handleSubmit } = useForm();
-    const { cities } = useSelector(store=>store.citiesAndSpecializations)
+    const { cities } = useSelector(store=>store.citiesAndSpecializations);
+    const dispatch = useDispatch()
     const { city } = useSelector(store=>store.authedUser.user)
-    const submit = async(data)=>{
-        //await donateRequest( data );
+    const [ formState, setFormState ] = useState({ bloodType: '', city:'', date:''})
+    const submit = async(e)=>{
+        e.preventDefault();
+        //await donate( data );
     }
     useEffect(()=>{
         document.title = 'Blood Donation';
+        if(cities.length === 0)dispatch(getCitiesAndSpecializations('cities'))
     });
     return (<main className="blood-donation">
-                <form onSubmit={handleSubmit(submit)}>
-                    <input 
-                    { ...register('date', { required: true })}
-                    type={'date'}
-                    placeholder={'Preferred Date'} 
-                    />
+                <form >
+                    <div className='date'>
+                        <DatePicker 
+                            showIcon
+                            selected={formState.date}
+                            closeOnScroll={(e) => e.target === document}
+                            minDate={new Date()} 
+                            onChange={(date)=>setFormState( prv => ({ ...prv, date}) )}
+                            placeholderText="Date"
+                        />
+                    </div>
                     <div className='blood-type'>
-                        <select name='bloodType' { ...register('bloodType',  { required: true })} >
-                            <option value='Any' >Any</option>
-                            <option value='A+' >A+</option>
-                            <option value='A-' >A-</option>
-                            <option value='B+' >B+</option>
-                            <option value='B-' >B-</option>
-                            <option value='O+' >O+</option>
-                            <option value='O-' >O-</option>
-                            <option value='AB+'>AB+</option>
-                            <option value='AB-'>AB-</option>
-                        </select>
+                        <Select  
+                            options= { bloodType } 
+                            placeholder = {'Blood Type'}
+                            onChange ={(item)=>setFormState( prv => ({ ...prv, bloodType:item}) )} 
+                        />
                     </div>
                     <div className='city'>
-                        <DatalistInput
-                            id="city"
-                            name='city'
-                            placeholder="City"
-                            value={city}
-                            items={cities}
-                        /> 
+                        <Select  
+                            options= { cities } 
+                            placeholder = {'City'}
+                            onChange ={(item)=>setFormState( prv => ({ ...prv, city:item}) )} 
+                            defaultInputValue = {city}
+                        />
                     </div>
-                    <button onClick={handleSubmit(submit)}>Submit Donation</button>
+                    <div className="button">
+                        <button onClick={submit}>Submit Donation</button>
+                    </div>
                 </form>
             </main>);
 }

@@ -201,12 +201,11 @@ const doctors = [
 ]
 
 const specializations = [
-    {id:1,value:'liver'},
-    {id:2,value:'Bones'},
-    {id:3,value:'Ear, Nose and Throat'},
-    {id:4,value:'Eyes'},
-    {id:5,value:'Neurologists'},
-    {id:6,value:'مخ و الاعصاب'},
+    {id:1,value:'liver',label:'liver'},
+    {id:2,value:'Bones',label:'Bones'},
+    {id:3,value:'Ear, Nose and Throat',label:'Ear, Nose and Throat'},
+    {id:4,value:'Eyes',label:'Eyes'},
+    {id:5,value:'Neurologists',label:'Neurologists'},
 ]
 const nurses = [
     {
@@ -283,7 +282,7 @@ const patientsData = {
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             date: Date.now(),
-            discription : 'يسب سيتنيتسبتتي ',
+            description : 'يسب سيتنيتسبتتي ',
             medicine:[
                 {
                     name: 'بنادول',
@@ -306,7 +305,7 @@ const patientsData = {
             PatientId: 'dskfhkldsjklf',
             doctorId: 'kdfjfddfhkjkslk',
             date: Date.now(),
-            discription : 'يسب سيتنيتسبتتي ',
+            description : 'يسب سيتنيتسبتتي ',
             medicine:[
                 {
                     name: 'بنادول',
@@ -331,7 +330,7 @@ const patientsData = {
             PatientId: 'dfnvcmxcsdfs',
             doctorId: 'dskkjoerpeww',
             date: Date.now(),
-            discription : 'يسب سيتنيتسبتتي ',
+            description : 'يسب سيتنيتسبتتي ',
             medicine:[
                 {
                     name: 'بنادول',
@@ -354,7 +353,7 @@ const patientsData = {
             PatientId: 'dfnvcmxcsdfs',
             doctorId: 'kdfjfddfslghghkk',
             date: Date.now(),
-            discription : 'يسب سيتنيتسبتتي ',
+            description : 'يسب سيتنيتسبتتي ',
             medicine:[
                 {
                     name: 'بنادول',
@@ -398,12 +397,12 @@ const donationRequests = [
     }
 ]
 const cities = [
-    {id:1,value:'Mansoura'},
-    {id:2,value:'Cairo'},
-    {id:3,value:'Alexandria'},
-    {id:4,value:'Damietta'},
-    {id:5,value:'Port Said'},
-    {id:6,value:'Ismailia'},
+    {id:1,value:'Mansoura', label:'Mansoura'},
+    {id:2,value:'Cairo', label:'Cairo'},
+    {id:3,value:'Alexandria', label:'Alexandria'},
+    {id:4,value:'Damietta', label:'Damietta'},
+    {id:5,value:'Port Said', label:'Port Said'},
+    {id:6,value:'Ismailia', label:'Ismailia'},
     
 ]
 //schedule of the doctor 
@@ -660,6 +659,147 @@ export const popular_doctors =[
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
     }
+]
+
+export const diagnosis = [
+        {
+            id: 'dssdfdfsgkfl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Amr Zain',
+            doctorImageURL:'/images/avatars/raphael.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'dssdfdggfsgkfl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Amr Zain',
+            doctorImageURL:'/images/avatars/raphael.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'dssssdfdfsgkfl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Amr Zain',
+            doctorImageURL:'/images/avatars/raphael.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'dssdfdfsc,.jjssgkfdgl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Amr Zain',
+            doctorImageURL:'/images/avatars/default.png',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'dssdfdfx;zdossgkffggdl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Amr Zain',
+            doctorImageURL:'/images/avatars/raphael.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+]
+export const medicines =[
+    {
+        id:'dsfjfkljsd',
+        name: 'Panadol',
+        dose: 'thee times aday after eating', 
+        duration: '2 weeks'
+    },{
+        id:'dsfjfkljsdxcz',
+        name: 'omega-3',
+        dose: 'two times aday after eating', 
+        duration: '5 weeks'
+    },{
+        id:'dfskjkgsr',
+        name: 'Panadol',
+        dose: 'thee time aday after eating', 
+        duration: '2 weeks'
+    },
 ]
 export { doctors, specializations, nurses, patients, patientsData, 
     donationRequests, bookedAppointments, receptionists, shechedule,
