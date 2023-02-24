@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getCities, getSpecializations, search } from "../api/data";
+import { search } from "../api/data";
 
 
 const initialState ={
@@ -18,18 +18,16 @@ const initialState ={
     result:{
             data:[], 
             pageNumber:0,
-            limit:10,
+            limit:5,
             count: 23
         },
 }
 
 export const getSearchResult = createAsyncThunk('search/getSearchResult', async(_, thunkAPI)=>{
-    const {search:{ searchFor, city, specialization, bloodType, name, price, today,result:{pageNumber} }} = thunkAPI.getState('search');
-    //console.log( { searchFor, city, specialization, bloodType, name, price, today, pageNumber })
+    const {search:{ searchFor, city, specialization, bloodType, name, price, today,result:{pageNumber, limit} }} = thunkAPI.getState('search');
     try {
-        const result = await search({ searchFor, city, specialization, bloodType, name, price, today, limit:10, pageNumber });
-        //console.log(result)
-        return {...result, limit:10};
+        const result = await search({ searchFor, city, specialization, bloodType, name, price, today, limit, pageNumber });
+        return {  ...result, limit:5, count:23, };
 
     }catch(error){
         return thunkAPI.rejectWithValue(error.message);
@@ -40,12 +38,14 @@ const searchSlice = createSlice({
     initialState,
     reducers:{
         setFilter:(state,{ payload })=>{
-            state.filter = { ...state.filter, ...payload }
+            state.filter = { ...state.filter, ...payload };
         },
         setUrl:(state,{ payload })=>{
-            //console.log(payload)
-            state.url = payload.url
+            state.url = payload.url;
         },
+        setPageNumber: (state, { payload })=>{
+            state.result.pageNumber = payload.pageNumber;
+        }
     },
     extraReducers:
         (builder) => {
@@ -53,7 +53,7 @@ const searchSlice = createSlice({
                 .addCase(getSearchResult.fulfilled, (state, { payload}) => {
                     //console.log(payload);
                     state.isLoading = false;
-                    state.result = { ...payload, limit:10}
+                    state.result = { ...payload }
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
                 })
@@ -63,6 +63,6 @@ const searchSlice = createSlice({
                 })
             }
 });
-export const { setFilter, setUrl } = searchSlice.actions;
+export const { setFilter, setUrl, setPageNumber } = searchSlice.actions;
 
 export default searchSlice.reducer;

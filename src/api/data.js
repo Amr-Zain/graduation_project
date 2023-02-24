@@ -90,7 +90,7 @@ export const getPopulerNurses= async ()=>{
 }
 export const search = async ({ searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber })=>{
     if(searchFor === 'doctor'){
-        const doctorsList = doctors.slice(pageNumber*10, pageNumber*10+10 )
+        const doctorsList = doctors.slice(pageNumber*limit, pageNumber*limit+limit )
         return new Promise((res)=>{
             setTimeout(() => {
                 res({  data:doctorsList, pageNumber: pageNumber, count:22 })
@@ -100,7 +100,7 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         const nursesList = nurses.slice(pageNumber*10, pageNumber*10+10 )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({data: nursesList, pageNumber: pageNumber})
+                res({data: nursesList, pageNumber: pageNumber, count:22 })
             }, 1000); 
         });
     }
@@ -108,14 +108,14 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         const requestList = donationRequests.slice(pageNumber*limit, pageNumber*limit + limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({data:requestList, pageNumber: pageNumber})
+                res({data:requestList, pageNumber: pageNumber, count:22 })
             }, 1000);
         });
     }else { //donation request
         const doctorsList = doctors.slice(pageNumber*limit, pageNumber*limit + limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({data: doctorsList,limit: limit, pageNumber: pageNumber})
+                res({data: doctorsList,limit, pageNumber: pageNumber, count:22 })
             }, 1000);
         });
     }

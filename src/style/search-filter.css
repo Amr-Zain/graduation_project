@@ -2,7 +2,7 @@
     flex: 1 2 25%;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 1050px) {
     .search-filter {
         display: none;
     } 

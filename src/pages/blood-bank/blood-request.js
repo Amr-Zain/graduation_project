@@ -48,7 +48,7 @@ function BloodDonation() {
                         />
                     </div>
                     <div className="button">
-                        <button onClick={submit}>Submit Donation</button>
+                        <button onClick={submit}>Submit Request</button>
                     </div>
                 </form>
             </main>);
