@@ -11,7 +11,7 @@ const initialState = {
         phone: '01012121212',
         imageURL : '/images/avatars/default.png',
         age: 30},
-        userType: 'patient',
+        userType: 'doctor',
         token:'',
         refrexhToken: '',
         error:''

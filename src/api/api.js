@@ -197,6 +197,110 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+    },{
+        id: 'kdfsgddsafdfjfddfdsjkljslk',
+        name: 'Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfsgdfjfdjkljslk',
+        name: 'Maha',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfsgdfddfdsjkljslk',
+        name: 'sfds',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfsgdfdfjfddfdsjkljslk',
+        name: 'hamada',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfddsgdfjfddfdsjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'kdfsgdfjfdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+    },{
+        id: 'ckdfscgdfjfddfdsjkljslk',
+        name: 'Amr Zain',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/orwell.jpg',
+        rating: 4.3,
     },
 ]
 
@@ -667,6 +771,7 @@ export const diagnosis = [
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
+            specializations: specializations[0].label,
             doctorImageURL:'/images/avatars/raphael.jpg',
             date: Date.now(),
             description : 'headache',
@@ -691,6 +796,7 @@ export const diagnosis = [
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
+            specializations: specializations[0].label,
             doctorImageURL:'/images/avatars/raphael.jpg',
             date: Date.now(),
             description : 'headache',
@@ -715,6 +821,7 @@ export const diagnosis = [
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
+            specializations: specializations[0].label,
             doctorImageURL:'/images/avatars/raphael.jpg',
             date: Date.now(),
             description : 'headache',
@@ -739,6 +846,7 @@ export const diagnosis = [
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
+            specializations: specializations[0].label,
             doctorImageURL:'/images/avatars/default.png',
             date: Date.now(),
             description : 'headache',
@@ -763,7 +871,130 @@ export const diagnosis = [
             PatientId: 'dskfhkldsjklf',
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
+            specializations: specializations[0].label,
             doctorImageURL:'/images/avatars/raphael.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'fx;zfdossgkffggdl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Zain',
+            specializations: specializations[1].label,
+            doctorImageURL:'/images/avatars/orwell.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },
+        {
+            id: 'f;zfdossgkffggdvl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Zain Mohamed',
+            specializations: specializations[1].label,
+            doctorImageURL:'/images/avatars/orwell.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },  {
+            id: 'fx;zfdossdgkffggdl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Ahmed Fathi',
+            specializations: specializations[1].label,
+            doctorImageURL:'/images/avatars/steve.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },  {
+            id: 'fx;zfdossvvgkffggdl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Zain',
+            specializations: specializations[1].label,
+            doctorImageURL:'/images/avatars/dali.jpg',
+            date: Date.now(),
+            description : 'headache',
+            medicine:[
+                {
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },{
+                    name: 'Panadol',
+                    dose: 'thee time aday after eating', 
+                    duration: 'for 2 weeks'
+                },
+            ]
+        },  {
+            id: 'fx;zfdossgkfdffggdl',
+            PatientId: 'dskfhkldsjklf',
+            doctorId: 'dskkjoerpeww',
+            doctorName: 'Zain',
+            specializations: specializations[1].label,
+            doctorImageURL:'/images/avatars/orwell.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[

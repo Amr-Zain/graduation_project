@@ -12,12 +12,34 @@
 
 .medical-history {
 }
+.medical-history .patient-info {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+.medical-history .patient-info .image {
+    width: 8rem;
+}
+.medical-history .patient-info .image img {
+    width: 100%;
+    border-radius: 50%;
+}
+.medical-history .patient-info .info h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--text--primary);
+}
+.medical-history .patient-info .info p {
+    font-size: 1rem;
+    color: var(--gray--text);
+}
 .medical-history .choose {
     display: flex;
     gap: 3rem;
     justify-content: center;
     border: solid 1px  hsl(0, 0%, 80%); ;
-    margin: 5rem 0 2rem 0;
+    margin: 2rem 0;
     padding: 1rem;
 }
 .medical-history .choose>div{
@@ -27,6 +49,7 @@
     border-radius: .25rem;
     padding: .5rem 1rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .medical-history .choose .active {
@@ -64,12 +87,11 @@
     justify-content: center;
     gap: 1.5rem
 }
-.choosed-container .diagnosis-container .diagnosis .doctor{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.detailed-diagnosis{
+    margin: 2rem auto;
+    max-width: 600px;
 }
-.choosed-container .diagnosis-container .diagnosis {
+.diagnosis {
     flex: 0 1 400px;
     background-color: white;
     box-shadow: 0 1px 1rem -4px #000;
@@ -77,38 +99,47 @@
     border-radius: .25rem;
     transition: all 250ms ease-in-out;
 }
-.choosed-container .diagnosis-container .diagnosis:hover {
+.diagnosis:hover {
     box-shadow: 0 4px 1rem -4px #000;
     transform: translateY(-3px);
 }
-.choosed-container .diagnosis-container .diagnosis .doctor .img {
+.diagnosis .doctor{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.diagnosis .doctor .img {
     width: 5rem;
 }
-.choosed-container .diagnosis-container .diagnosis .doctor .img a {
+.diagnosis .doctor .img a {
     display: block;
     width: 100%;
 }
-.choosed-container .diagnosis-container .diagnosis .doctor .img a  img{
+.diagnosis .doctor .img a  img{
     width: 100%;
     border-radius: 50%;
 }
-.choosed-container .diagnosis-container .diagnosis .doctor .name a {
+.diagnosis .doctor .name a {
     font-size: 1.25rem;
     color: var(--text--primary); 
     font-weight: bold;   
 }
-.choosed-container .diagnosis-container .diagnosis .doctor .name a:hover {
+.diagnosis .doctor .name a:hover {
     cursor: pointer;
     text-decoration: underline;
 }
-.diagnosis-container .diagnosis .diagnosis-description{
+.diagnosis .diagnosis-info {
+    cursor: pointer;
+}
+.diagnosis .diagnosis-info .diagnosis-description{
     margin: .6rem 0;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4;
 }
-.diagnosis-container .diagnosis .date {
+/* .diagnosis-container  */.diagnosis .date p {
     color: var(--gray--text);
+    margin: 0;
 }
 .choosed-container .medicines {
     display: flex;
@@ -144,6 +175,10 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: .25rem;
 }
+.diagonsis-medicines-table {
+    width: 100%;
+    margin-bottom: .5rem;
+}
 .medicines-table thead tr {
     background-color: var(--main-blue-vesion2);
     color: #ffffff;
@@ -172,6 +207,20 @@
 @media (max-width:450px) {
     .medical-history .choose {
         gap: 1rem;
+    }
+    .medical-history .patient-info {
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    .medical-history .patient-info .image {
+        width: 6rem;
+    }
+    .medical-history .patient-info .image img {
+        width: 100%;
+        border-radius: 50%;
+    }
+    .medical-history .patient-info .info h3 {
+        font-size: 1.25rem;
     }
 }
 @media (max-width:780px) {

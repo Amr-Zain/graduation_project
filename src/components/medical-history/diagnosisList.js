@@ -1,32 +1,32 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDiagnosisAndMedicines, setDate_category } from '../../features/medicalHistory';
+import { setDiagnosis, setDate_category } from '../../features/medicalHistory';
 import Diagnosis from "./diagnosis";
-import DatalistInput from 'react-datalist-input';
-import 'react-datalist-input/dist/styles.css';
 import Select from 'react-select'
+
+const dates =[
+    {value:0,label:'Last 6 Month'},
+    {value:1,label:'Last year'},
+    {value:2,label:'Last 2 years'},
+    {value:3,label:'All'},
+]
 export default function DiagnosisList(){
     const dispatch = useDispatch();
-    const { diagnosis, patientDiagnosisCategoy, date } = useSelector(store=>store.medicalHistory);
-    console.log(diagnosis)
+    const { diagnosis:{data:diagnosis, patientDiagnosisCategories, isLoading }, date, selectedCategories } = useSelector(store=>store.medicalHistory);
+    console.log(selectedCategories)
     const diagList = diagnosis.map(diag=>(<Diagnosis key={diag.id} {...diag} />));
     const handleCategChange =(items)=>{
-        let value ='';
-        items.forEach(item=>value +=item.id+'_');
-        console.log(value)
-        dispatch(setDate_category({ selectedCategories: value}))
+        
+        dispatch(setDate_category({ selectedCategories: items.map(i=>i.label)}))
     }
     const HandelSearch = ()=>{
-        dispatch(setDiagnosisAndMedicines('diagnosis'));
+        dispatch(setDiagnosis({ type: 'diagnosis',selectedCategories, date}));
     }
-    const dates =[
-        {value:0,label:'Last 6 Month'},
-        {value:1,label:'Last year'},
-        {value:2,label:'Last 2 years'},
-        {value:3,label:'All'},
-    ]
     useEffect(()=>{
-        dispatch(setDiagnosisAndMedicines('both'));
+        
+        console.log(patientDiagnosisCategories)
+        if(patientDiagnosisCategories.length === 0 ) dispatch(setDiagnosis({type:'categories'}));
+        dispatch(setDiagnosis())
     },[]);
     return(<div className="diagnosis-list">
             <div className="filters">
@@ -34,8 +34,13 @@ export default function DiagnosisList(){
                     <Select 
                         isMulti={true} 
                         placeholder={'Specializations'}
-                        options= { patientDiagnosisCategoy } 
+                        options= { patientDiagnosisCategories } 
                         onChange ={handleCategChange} 
+                        /* defaultInputValue ={selectedCategories} */
+                        value = {
+                            patientDiagnosisCategories.filter(option => 
+                                selectedCategories.includes( option.label))
+                            }
                         />
                 </div>
                 <div className="date">
@@ -43,6 +48,8 @@ export default function DiagnosisList(){
                         options= { dates } 
                         placeholder={'date'}
                         onChange ={(item)=>dispatch(setDate_category({ date: item.value}))} 
+                        value = { dates.filter(option => date===option.value)[0]}
+                            
                         />
                 </div>
                 <div className="search-btn">

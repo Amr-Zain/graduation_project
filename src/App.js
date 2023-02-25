@@ -39,11 +39,14 @@ function App() {
           <Route path = {LOGIN} element={ <Login /> }/>
           <Route path = {PROFILE +'/:userType/:id'} element={ <Profile /> }/>
 
+          <Route path={MEDICAL_HISTORY}>
+            <Route path = {MEDICAL_HISTORY+PATIENT+'/:id'} element = { <MedicalHistory /> }/>
+            <Route path = {MEDICAL_HISTORY+PATIENT+DIAGNOSIS+'/:id'} element = { <DetailedDiagnosis/> }/>
+          </Route>
+
           <Route path = {PATIENT} >
             <Route path= {PATIENT+DASHBOARD} element={<PatientDashboard />} />
             <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
-            <Route path = {PATIENT+MEDICAL_HISTORY} element = { <MedicalHistory /> }/>
-            <Route path = {PATIENT+MEDICAL_HISTORY+DIAGNOSIS+'/:id'} element = { <DetailedDiagnosis/> }/>
           </Route>
 
           <Route path = {DOCTOR}>

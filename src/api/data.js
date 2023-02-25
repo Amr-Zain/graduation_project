@@ -88,19 +88,21 @@ export const getPopulerNurses= async ()=>{
     });
     
 }
-export const search = async ({ searchFor, city, specialization, bloodType, name, price, today, limit,pageNumber })=>{
+export const search = async ({searchFor, city, specialization, 
+            bloodType, name, sort,gender, pageNumber, limit, availability})=>{
+    console.log({limit, pageNumber})
     if(searchFor === 'doctor'){
         const doctorsList = doctors.slice(pageNumber*limit, pageNumber*limit+limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({  data:doctorsList, pageNumber: pageNumber, count:22 })
+                res({  data:doctorsList, count: doctors.length })
             }, 1000);
         });
     }else if( searchFor === 'nurse' ){
         const nursesList = nurses.slice(pageNumber*10, pageNumber*10+10 )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({data: nursesList, pageNumber: pageNumber, count:22 })
+                res({ data: nursesList , count:22 })
             }, 1000); 
         });
     }
@@ -108,7 +110,7 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
         const requestList = donationRequests.slice(pageNumber*limit, pageNumber*limit + limit )
         return new Promise((res)=>{
             setTimeout(() => {
-                res({data:requestList, pageNumber: pageNumber, count:22 })
+                res({data:requestList, count:22 })
             }, 1000);
         });
     }else { //donation request
@@ -122,10 +124,18 @@ export const search = async ({ searchFor, city, specialization, bloodType, name,
 
 }
 
-export const getDiagnosis = ()=>{
+export const getDiagnosisPref = ({ selectedCategories, date})=>{
+    console.log(date)
     return new Promise((res)=>{
         setTimeout(() => {
-            res( diagnosis )
+            res( diagnosis.filter(dia=>selectedCategories?.includes(dia.specializations)) )
+        }, 1000);
+    });
+}
+export const getDiagnosis = (id)=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res( diagnosis.filter(dia=>dia.id === id)[0] )
         }, 1000);
     });
 }
@@ -198,6 +208,19 @@ export const createUser = async( { userType, user} )=>{
         });  
     }
 
+}
+export const getPatientInfo = async( { id })=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({
+                id:'sdfasfsf',
+                image:'/images/avatars/karl.jpg',
+                name:'Mohamed Ahmed',
+                age:22
+            })
+        }, 1000);
+    });
+    
 }
 export const saveDiagnosis = ( { patientId, docotorId, description, medicines } )=>{
     const diagnosis = formateWithDate({ patientId, docotorId, description, medicines });

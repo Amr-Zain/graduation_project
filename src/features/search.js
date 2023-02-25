@@ -12,22 +12,24 @@ const initialState ={
         sort:'0',
         gender:'0',// 0 any ,1 man and 2 women
         availability: 0, //  0 any ,1 today and 2 tommo
+        pageNumber:0,
+        limit:5
     },
     url:'',
     isLoading: true,
     result:{
             data:[], 
-            pageNumber:0,
-            limit:5,
             count: 23
         },
 }
 
 export const getSearchResult = createAsyncThunk('search/getSearchResult', async(_, thunkAPI)=>{
-    const {search:{ searchFor, city, specialization, bloodType, name, price, today,result:{pageNumber, limit} }} = thunkAPI.getState('search');
+    const {search:{ filter:{searchFor, city, specialization, 
+            bloodType, name, sort,gender, pageNumber, limit, availability}}} = thunkAPI.getState('search');
     try {
-        const result = await search({ searchFor, city, specialization, bloodType, name, price, today, limit, pageNumber });
-        return {  ...result, limit:5, count:23, };
+        const result = await search({searchFor, city, specialization, 
+            bloodType, name, sort,gender, pageNumber, limit, availability});
+        return { ...result };
 
     }catch(error){
         return thunkAPI.rejectWithValue(error.message);

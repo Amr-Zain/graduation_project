@@ -1,5 +1,5 @@
 import { BiSearch } from 'react-icons/bi';
-import { setFilter, setUrl } from '../../../features/search'
+import { setFilter, setPageNumber, setUrl } from '../../../features/search'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import { getCitiesAndSpecializations } from '../../../features/cities-specializations'
@@ -8,14 +8,16 @@ import DatalistInput from 'react-datalist-input';
 import 'react-datalist-input/dist/styles.css';
 import { useEffect } from 'react';
 const SearchSection = ()=>{
-    const {searchFor, 
+    const {filter:{searchFor, 
         city, 
         specialization, 
         bloodType,
         name, 
         gender, 
         availability, 
-        sort } = useSelector(store=>store.search.filter);
+        sort,
+        pageNumber },
+        url} = useSelector(store=>store.search);
     const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,9 +25,9 @@ const SearchSection = ()=>{
     const handleSearch = ()=>{
         const route = `${SEARCH}/${searchFor}/${city ? city:'all'}`;
         let queries;
-        if(searchFor === 'doctor' ) queries = { name, specialization, gender,  availability, sort};
-        else if(searchFor === 'nurse') queries = { name, gender, availability, sort } ;
-        else if(searchFor === 'donator' || searchFor === 'donation_request') queries = { bloodType, availability, sort };
+        if(searchFor === 'doctor' ) queries = { name, specialization, gender,  availability, sort,page: pageNumber};
+        else if(searchFor === 'nurse') queries = { name, gender, availability, sort, page: pageNumber } ;
+        else if(searchFor === 'donator' || searchFor === 'donation_request') queries = { bloodType, availability, sort, page: pageNumber};
         dispatch(setUrl({url:route+ `?${createSearchParams(queries)}`}));
         navigate({
             pathname: route,
@@ -36,7 +38,8 @@ const SearchSection = ()=>{
         if(cities.length === 0 && specializations.length === 0 ) dispatch(getCitiesAndSpecializations());
         else if(cities.length === 0 )dispatch(getCitiesAndSpecializations('cities'));
         else if(specializations.length === 0 )dispatch(getCitiesAndSpecializations('specializations'));
-    })
+        handleSearch();
+    },[url])
     return(<>
                 <div className='search-for'>
                     <select className='search-for' value={searchFor} name="searchFor" onChange={ handleChange }>

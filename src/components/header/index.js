@@ -35,8 +35,8 @@ function Header() {
                             <Nav.Link className='link-header' href={'/'+userType + DASHBOARD }>Home</Nav.Link>
                             {/* <Nav.Link className='link-header' href={'/donate' }>Donate Blood</Nav.Link>
                             <Nav.Link className='link-header' href={'/blood_request' }>Blood Request</Nav.Link> */} 
-                            <Nav.Link className='link-header' href={'/blood_bank' }>Blood Bank</Nav.Link>
-                            <Nav.Link className='link-header' href={PATIENT + MEDICAL_HISTORY }>Medical History</Nav.Link>
+                            <Nav.Link className='link-header' href={BLOOD_BANK}>Blood Bank</Nav.Link>
+                            <Nav.Link className='link-header' href={MEDICAL_HISTORY+PATIENT +`/${user.id}` }>Medical History</Nav.Link>
                             <Nav.Link className='link-header' href={PATIENT + APPOINTMENTS }>Appointments</Nav.Link>
                         </Nav>
                 

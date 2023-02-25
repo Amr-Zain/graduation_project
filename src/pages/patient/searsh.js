@@ -4,15 +4,12 @@ import Header from '../../components/header'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setFilter } from '../../features/search'; 
-import { getCitiesAndSpecializations } from '../../features/cities-specializations'; 
 import { useSelector, useDispatch } from "react-redux";
 
 function Search({ type }) {
     const params = useParams();
     const [ searchParams ] = useSearchParams();
     const { url } = useSelector(store=>store.search);
-    const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
-    console.log(specializations)
     const dispatch = useDispatch();
 
     useEffect(() => {
