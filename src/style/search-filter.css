@@ -1,5 +1,5 @@
 .search-filter {
-    flex: 1 2 25%;
+    flex: 1 2 15%;
 }
 
 @media screen and (max-width: 1050px) {
