@@ -5,8 +5,11 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import { AiFillStar } from 'react-icons/ai';
 
 const ResultCard = ({ type, name, imageURL, specialization, fees, location, bloodType, rating, email, phone, description })=>{
-    return( <div className="card" /* onClick={handleClick} */ style={{display:'flex', width:"10rem"}}>
+    return( <div className="card" /* onClick={handleClick} */>
+    <div className="image-top">
     { imageURL && <img src={ imageURL } alt={`${name}`} />}
+    </div>
+  
     <div className="card-content">
         <div className="name-rating">
             <h3 className="name">{type==='doctor'?'D.':''}{name} </h3>
@@ -35,16 +38,11 @@ const ResultCard = ({ type, name, imageURL, specialization, fees, location, bloo
                 <p>{fees}</p>
             </div> 
         </>}
-        <div className="contacts" >
             <div className='email'>
                 <MdEmail />
                 <p>{email}</p>
             </div>
-            <div className='phone'>
-                <IoLogoWhatsapp />
-                <p>{phone}</p>
-            </div>
-        </div>
+        
         
         {bloodType && <div className="blood-type">
             <p>{bloodType}</p>

@@ -110,7 +110,7 @@
         width: 25px;
     }
     .next, .previous {
-        width: 60px;
+        width: 127px;
     }
 }
 @media screen and (max-width: 1050px) {

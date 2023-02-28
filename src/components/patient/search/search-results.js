@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchFilterOverlay from "./search-filter-overlay";
 import ResultCard from "./result-card";
 import '../../../style/search-results.css'
+import '../../../style/result-card.css';
 import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
 function SearchResults() {

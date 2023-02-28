@@ -1,0 +1,25 @@
+.results .card
+{
+     display: flex;
+     width: 100%;
+     gap: 2rem;
+     flex-direction: row;
+     padding: 1rem;
+}
+.results .card .image-top
+{
+     flex-basis: 22%;
+}
+.results .card .image-top img
+{
+     border-radius: 50%;
+     width: 100%;
+}
+.results .card .card-content>div{
+
+     display: flex;
+     align-items: center;
+     margin-bottom: 0.5rem;
+     gap: 0.5rem;
+
+ }
