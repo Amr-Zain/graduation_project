@@ -13,6 +13,7 @@ const initialState = {
     },
     selectedCategories: [],
     date: '',
+    byDoctor: false,
     medicines:{ isLoading: true, data: [] },
     diagnosis:{ isLoading: true, data: [], patientDiagnosisCategories:[] },
     error: ''
@@ -55,6 +56,9 @@ const medicalHistory = createSlice({
     initialState,
     reducers: {setDate_category:(state,{ payload })=>{
         return{ ...state, ...payload};
+    },
+    setByDoctor:(state,{payload})=>{
+        state.byDoctor = payload.byDoctor;
     }
         
     },
@@ -93,6 +97,6 @@ const medicalHistory = createSlice({
     },
 });
 
-export const { setDate_category } = medicalHistory.actions;
+export const { setDate_category, setByDoctor } = medicalHistory.actions;
 
 export default medicalHistory.reducer;

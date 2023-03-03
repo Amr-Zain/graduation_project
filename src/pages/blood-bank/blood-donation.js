@@ -10,9 +10,9 @@ import '../../style/blood-bank.css'
 
 function BloodDonation() {
     const { cities } = useSelector(store=>store.citiesAndSpecializations);
-    const dispatch = useDispatch()
-    const { city } = useSelector(store=>store.authedUser.user)
-    const [ formState, setFormState ] = useState({ bloodType: '', city:'', date:''})
+    const dispatch = useDispatch();
+    const { city } = useSelector(store=>store.authedUser.user);
+    const [ formState, setFormState ] = useState({ bloodType: '', city:'', date:''});
     const submit = async(e)=>{
         e.preventDefault();
         //await donate( data );

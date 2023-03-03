@@ -1,4 +1,4 @@
-import AppComponents from '../../components/patient/appointments/appointments'
+import AppComponents from '../../components/patient/appointments'
 import Header from '../../components/header';
 import { useEffect } from 'react';
 const Appointments = ()=>{
@@ -7,7 +7,7 @@ const Appointments = ()=>{
     },[])
     return(<>
         <Header />
-        <AppComponents isAppPage ={ true } />
+        <AppComponents isAppPage ={ true } type ={'patient'}/>
     </>
     );
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDiagnosis, setDate_category } from '../../features/medicalHistory';
+import { setDiagnosis, setDate_category, setByDoctor } from '../../features/medicalHistory';
 import Diagnosis from "./diagnosis";
 import Select from 'react-select'
 
@@ -51,6 +51,13 @@ export default function DiagnosisList(){
                         value = { dates.filter(option => date===option.value)[0]}
                             
                         />
+                </div>
+                <div className="by-doctor-check">
+                    <input 
+                        type={'checkbox'}
+                        name='loggedin doctor'
+                        onChange={(e)=>dispatch(setByDoctor({ byDoctor: e.target.checked}))}
+                    /><lable>By you</lable>
                 </div>
                 <div className="search-btn">
                     <button onClick={HandelSearch}>Search</button>

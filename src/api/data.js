@@ -1,5 +1,5 @@
 import { doctors, specializations, nurses, patients, patientsData, medicines,
-    donationRequests, bookedAppointments, receptionists, shechedule, cities, popular_doctors, diagnosis } from './api'
+    donationRequests, bookedAppointments, receptionists, shechedule, doctorApp, cities, popular_doctors, diagnosis } from './api'
 
 //sill
 import { formate, formateWithDate, formateDonationRequest} from './formater'
@@ -158,14 +158,16 @@ export const appointments = async ({ id })=>{
     //const patient = patients.find(p=>p.id ===id)
     const apppointmets = bookedAppointments.filter(app=>app.patientId === id)
     const result = apppointmets.map(app=>{
-        const doctor = doctors.find(doctor=>app.doctorId == doctor.id);
+        const doctor = doctors.find(doctor=>app.doctorId === doctor.id);
         if(doctor)return {  ...app, 
-                        doctorName: doctor.name, 
-                        doctorSpecialization:specializations.find(sp=>sp.id ===doctor.specialization).value, 
+                        DoctorNurseId: doctor.id,
+                        name: doctor.name, 
+                        specialization:specializations.find(sp=>sp.id ===doctor.specialization).value, 
                         fees:doctor.fees, 
-                        doctorLocation: doctor.location,
-                        doctorImg: doctor.imageURL,
-                        docotorRating: doctor.rating,
+                        type: 'doctor',
+                        location: doctor.location,
+                        img: doctor.imageURL,
+                        rating: doctor.rating,
                         from:'8AM',
                         to:'3PM'}
     })
@@ -220,20 +222,44 @@ export const getPatientInfo = async( { id })=>{
             })
         }, 1000);
     });
-    
+}
+export const doctorAppiontments = async({ doctorId, date}) =>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(doctorApp.filter(app=>app.appointmentDate == date && app.doctorId === doctorId))
+        }, 1000);
+    });
+}
+export const DeleteAppointment = async(appointmentId) =>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'appontintment deleted'})
+        }, 1000);
+    });
+}
+export const UpdateAppointment = async({id, date}) =>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'appontintment updated'})
+        }, 1000);
+    });
+}
+export const AddAppointment = async({id, date}) =>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'appontintment created'})
+        }, 1000);
+    });
 }
 export const saveDiagnosis = ( { patientId, docotorId, description, medicines } )=>{
     const diagnosis = formateWithDate({ patientId, docotorId, description, medicines });
     patientsData[patientId] = [...patientsData[patientId], diagnosis];
     return diagnosis;
 }
-
 export const getPatientData = ( { patientId } )=>{
     return  patientsData[patientId];
 }
-export const PatientSearsh = ( { userType, governorate, city, name , price, raing  } )=>{
-    
-}
+
 export const getUser = ( { userId, userType } )=>{
     if(userType ==='doctor'){
         return doctors.find((d)=>d.id ===userId);
@@ -252,7 +278,7 @@ export const setDonationRequest = ( { patientId, governorate, city, bloodType, r
     return request;
 }
 export const removeDonationRequest = ( { requestId } )=>{
-    donationRequests = donationRequests.filter(r=>r.id != requestId);
+    donationRequests = donationRequests.filter(r=>r.id !== requestId);
 }
 export const updateDonatorsOfRequest = ( { donaterId, requestId } )=>{
     //if exist remove and add if not

@@ -9,7 +9,7 @@ export const store = configureStore({
     reducer: {
         authedUser,
         popularDoctors,
-        userAppointments: appointments,
+        appointments,
         search,
         citiesAndSpecializations,
         medicalHistory

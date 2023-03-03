@@ -574,7 +574,7 @@ const bookedAppointments = [
         //key it to get the doctor today's cases is (doctorId,bookingDate:today)
         id: 'dskkjoesadrpeww',
         doctorId: 'kdfjfddfdslslk',
-        bookingDate: new Date(1675780227259).toDateString().getDate,
+        bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
     },
@@ -594,6 +594,107 @@ const bookedAppointments = [
         bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'sdjfds',
+    },
+]
+const doctorApp = [
+    {
+        id: 'qedldfffnfsnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'qedlcsdnfsnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'dskkjoesssadrpeww',
+        doctorId: 'qedlnfsnc',
+        bookingDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Zain Fathi',
+        age: 22,
+        img: '/images/avatars/default.png'
+    },
+    {
+        id: 'kdssfjfdfsddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 12,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'kdfsjffdhfghfgddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'sdjfds',
+        patientName: 'Mohamed Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'qsedldfffnfsncs',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,1).getTime(),
+        bookedAte:  new Date(2023,2,3).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'qedlcssdnfssnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,3,3).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'dskkjoessssadspeww',
+        doctorId: 'qedlnfsnc',
+        bookingDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Zain Fathi',
+        age: 22,
+        img: '/images/avatars/default.png'
+    },
+    {
+        id: 'kdfjffdhfghfgddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,2,3).getTime(),
+        patientId: 'sdjfds',
+        patientName: 'Mohamed Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    }, {
+        id: 'kdsssfjdfdfsddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 12,
+        img: '/images/avatars/raphael.jpg'
     },
 ]
 const searchDoctorResult = {
@@ -1034,4 +1135,4 @@ export const medicines =[
 ]
 export { doctors, specializations, nurses, patients, patientsData, 
     donationRequests, bookedAppointments, receptionists, shechedule,
-    searchDoctorResult, searchRequestResult, searchNurseResult, cities }
+    searchDoctorResult, searchRequestResult, searchNurseResult, cities, doctorApp }
