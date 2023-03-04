@@ -1,14 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "../../../features/search";
 
+import '../../../style/searchfilter.css';
 function SearchFilter({ overlay }) {
     const { searchFor, gender, availability  } = useSelector(store=>store.search.filter);
     const dispatch = useDispatch();
     const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
 
     return( <aside className={overlay?"filter-overlay":"search-filter"}>
-                    
+            <section className="collection">
                     { (searchFor ==='doctor'|| searchFor === 'nurse') && 
+                   
                         <div className="gender">
                             <h3>Gender</h3>
                             <div className="any-gender">
@@ -29,6 +31,7 @@ function SearchFilter({ overlay }) {
                                         value='1'
                                         onChange={ handleChange }
                                 />
+                                
                                 <label htmlFor='male'> Male</label>
                             </div>
                             <div className="female">
@@ -53,6 +56,7 @@ function SearchFilter({ overlay }) {
                                     checked = {availability === '0'}
                                     onChange={ handleChange } />
                             <label htmlFor='availability-any'>Any</label>
+                            
                         </div>
                         <div  className="today">
                             <input type = 'radio' 
@@ -72,7 +76,8 @@ function SearchFilter({ overlay }) {
                                     onChange={ handleChange }/>
                             <label htmlFor='tomorrow'>Tomorrow</label>
                         </div>
-                    </div>
+                     </div>
+                  </section>
                 </aside>);
 }
 

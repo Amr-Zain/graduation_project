@@ -1,0 +1,40 @@
+
+.collection .availability
+{
+     margin-top: 20px;
+}
+.collection input
+ {
+     /* appearance: none; */
+     border-radius: 50%;
+     width: 18px;
+     height: 18px;
+     border: 2px solid #999;
+     transition: 0.2s all linear;
+     margin-right: 4px;
+     position: relative;
+     top: 6px;
+}
+@media (max-width: 550px) {
+     .collection
+     {
+       display: flex;
+     }
+     .collection .availability
+     {
+          margin: 20px auto;
+     }
+ }
+ @media screen and (max-width: 780px) {
+     .collection
+     {
+       display: flex;
+     }
+     .collection .availability
+     {
+          margin: auto;
+     }
+ }
+ /* @media screen and (max-width: 1050px) {
+   
+ } */

@@ -1,5 +1,11 @@
 .search-filter {
     flex: 1 2 15%;
+    background: #0e4067;
+    padding: 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    height: fit-content;
+    margin-right: 16px;
 }
 
 @media screen and (max-width: 1050px) {
