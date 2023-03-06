@@ -15,9 +15,8 @@ import Form from 'react-bootstrap/Form';
 
 
 function Header() {
-    const { user, token, refreshToken, userType } = useSelector((state)=> state.authedUser);
+    const { user, token, refreshToken } = useSelector((state)=> state.authedUser);
     const dispatch = useDispatch();
-    console.log(userType)
     const handleLogout = async()=>{
         await deleteUserSession({ token, refreshToken});
         dispatch(removeAuthedUser());
@@ -27,12 +26,12 @@ function Header() {
             <Navbar className='background-header' expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="#">
-                        <img src='/images/logo-white.png' width={110} ></img>
+                        <img src='/images/logo-white.png' width={110} alt={'logo'} ></img>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" navbarScroll >
-                            <Nav.Link className='link-header' href={'/'+userType + DASHBOARD }>Home</Nav.Link>
+                            <Nav.Link className='link-header' href={'/'+user.userType + DASHBOARD }>Home</Nav.Link>
                             {/* <Nav.Link className='link-header' href={'/donate' }>Donate Blood</Nav.Link>
                             <Nav.Link className='link-header' href={'/blood_request' }>Blood Request</Nav.Link> */} 
                             <Nav.Link className='link-header' href={BLOOD_BANK}>Blood Bank</Nav.Link>
