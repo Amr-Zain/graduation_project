@@ -36,8 +36,12 @@ const Appointments = ({ isAppPage })=>{
     useEffect(()=>{
         dispatch(setAppointmentsThunk({ type, date }));
     },[date]);
-    return (  <div  className={isAppPage?'appoint-page':"appointmets"}>
-        <div className="top-text" onClick={appClick} ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
+    return (  <div style={{ height:'100vh' }}className={isAppPage?'appoint-page':"appointmets"}>
+        {appointments.length !== 0 ?<div className="top-text" onClick={appClick} ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
+        :
+        isAppPage && <div style={{marginTop:'7rem', textAlign:'center'}}> There Are No Upcoming Appointments </div>
+        }
+
         { type !=='patient' &&<div className="date">
             <DatePicker 
                 showIcon

@@ -244,6 +244,13 @@ export const UpdateAppointment = async({id, date}) =>{
         }, 1000);
     });
 }
+export const createDiagnosis = async({id, date}) =>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'diagnosis created' })
+        }, 1000);
+    });
+}
 export const AddAppointment = async({id, date}) =>{
     return new Promise((res)=>{
         setTimeout(() => {

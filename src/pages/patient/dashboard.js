@@ -14,7 +14,7 @@ function Dashboadrd() {
         <Header />
         <main >
             <Container>
-                <section className={"search-section"}>
+                <section className="search-section">
                     <SearchSection isOverlay={false}/>
                 </section>
                 <Appointments isAppPage={false} type ={ 'patient'}/>

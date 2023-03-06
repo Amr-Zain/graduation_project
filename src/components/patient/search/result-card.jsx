@@ -11,7 +11,6 @@ const ResultCard = ({ type, name, imageURL, specialization, fees, location, bloo
     <div className="image-top">
     { imageURL && <img src={ imageURL } alt={`${name}`} />}
     </div>
-  
     <div className="card-content">
         <div className="name">
             <h3 >{type==='doctor'?'D.':''}{name} </h3>

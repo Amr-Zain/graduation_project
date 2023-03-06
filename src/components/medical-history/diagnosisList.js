@@ -57,7 +57,7 @@ export default function DiagnosisList(){
                         type={'checkbox'}
                         name='loggedin doctor'
                         onChange={(e)=>dispatch(setByDoctor({ byDoctor: e.target.checked}))}
-                    /><lable>By you</lable>
+                    /><label>By you</label>
                 </div>
                 <div className="search-btn">
                     <button onClick={HandelSearch}>Search</button>

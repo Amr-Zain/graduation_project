@@ -38,7 +38,6 @@ const SearchSection = ()=>{
         if(cities.length === 0 && specializations.length === 0 ) dispatch(getCitiesAndSpecializations());
         else if(cities.length === 0 )dispatch(getCitiesAndSpecializations('cities'));
         else if(specializations.length === 0 )dispatch(getCitiesAndSpecializations('specializations'));
-        handleSearch();
     },[url])
     return(<>
                 <div className='search-for'>
