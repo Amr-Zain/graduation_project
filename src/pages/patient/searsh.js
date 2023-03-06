@@ -1,6 +1,7 @@
 import { Container } from 'react-bootstrap';
 import SearchComponents from '../../components/patient/search/'
 import Header from '../../components/header'
+import Footer from '../../components/Footer/Footer';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setFilter } from '../../features/search'; 
@@ -31,6 +32,7 @@ function Search({ type }) {
                     <SearchComponents />
                 </Container>
             </main>
+            <Footer />
         </>
         );
 }

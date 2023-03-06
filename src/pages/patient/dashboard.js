@@ -4,6 +4,7 @@ import PopulerNurses from "../../components/patient/popular_nurses";
 import SearchSection from "../../components/patient/search/search-section";
 import { Container } from "react-bootstrap";
 import Header from "../../components/header";
+import Footer from '../../components/Footer/Footer';
 import '../../style/search-section.css'
 
 function Dashboadrd() {
@@ -20,7 +21,9 @@ function Dashboadrd() {
                 <PopulerDoctors />
                 <PopulerNurses />
             </Container>
+        
         </main>
+         <Footer />
         </>
     );
 }
