@@ -1,14 +1,8 @@
 import SearchFilter from "./search-filter";
 import SearchSection from './search-section'
 import { createPortal } from 'react-dom'
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, createSearchParams } from 'react-router-dom';
-import { SEARCH } from '../../../constants/routes';
-import {  setUrl } from '../../../features/search'
+
 function SearchFilterOverlay({setOverlay}) {
-    const { cities, specializations, searchFor, city, specialization, bloodType,name, gender, availability, sort } = useSelector(store=>store.search.filter);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     return createPortal(
         <>
             <aside className="search-filter-overlay">

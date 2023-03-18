@@ -4,7 +4,7 @@ import { search } from "../api/data";
 
 const initialState ={
     filter:{
-        searchFor: 'doctor',
+        for: 'doctor',
         city:'',
         specialization:'',
         bloodType: '',
@@ -13,7 +13,7 @@ const initialState ={
         gender:'0',// 0 any ,1 man and 2 women
         availability: 0, //  0 any ,1 today and 2 tommo
         pageNumber:0,
-        limit:5
+        limit:10
     },
     url:'',
     isLoading: true,

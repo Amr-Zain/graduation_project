@@ -26,13 +26,11 @@ function Search({ type }) {
     }, [ url, params, searchParams ]);
     return (
         <>
-            <Header />
             <main>
                 <Container>
                     <SearchComponents />
                 </Container>
             </main>
-            <Footer />
         </>
         );
 }

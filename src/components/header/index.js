@@ -23,10 +23,10 @@ function Header() {
     }
     return (
         <div className='background-header'>
-            <Navbar className='background-header' expand="lg">
+            <Navbar className='background-header'  style={{height:'75px'}} expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#">
-                        <img src='/images/logo-white.png' width={110} alt={'logo'} ></img>
+                    <Navbar.Brand href="/" style={{height:'40px',marginBottom:'.5rem'}}>
+                        <img src='/images/logo-white.png' height={40} alt={'logo'} ></img>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">

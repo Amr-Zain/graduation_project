@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 import { createDiagnosis } from'../../api/data'
 
 function AddDiagnosis() {
-    const [ state, setState ] = useState({description:'', error:'', medicines:[{ name:'', dose:'', duration: '' }]});
-    const MedicinedList = state.medicines.map((med,i)=><MedicineInputs key={i}  id={i}{ ...med } setMedicines={setState} /> )
+    const [ state, setState ] = useState({description:'', error:'', medicines:[{ id: Math.ceil(Math.random() *10000), name:'', dose:'', duration: '', description:'' }]});
+    const MedicinedList = state.medicines.map((med)=><MedicineInputs key={med.id}  id={med.id}{ ...med } setMedicines={setState} /> )
     const { id:patientId } = useParams();
     console.log(patientId)
     const handelSubmitDiagnosis = async(e)=>{
@@ -22,7 +22,7 @@ function AddDiagnosis() {
     const addMedicine= ()=>{
         console.log(state.medicines.every(med=>(!med.name || !med.dose || !med.duration)) )
         if(state.medicines.every(med=>( med.name && med.dose && med.duration )) ){
-            setState(prv=>({ ...prv, medicines:[ ...prv.medicines, { name:'', dose:'', duration: '' }]}));
+            setState(prv=>({ ...prv, medicines:[ ...prv.medicines, { id: Math.ceil(Math.random() *10000), name:'', dose:'', duration: '' }]}));
             return;
         }
         setState(prv=>({...prv, error: 'Please Fillout The Medicines Fields First'}));
@@ -32,21 +32,23 @@ function AddDiagnosis() {
         <form>
             { state.error.length>0 && <div style={{textAlign:'center'}} className="error">{state.error}</div>}
             <div className="description">
-                <input 
-                    type='text'
+                <textarea 
                     name= 'description'
                     value={state.description}
                     placeholder= 'description'
                     onChange={(e)=>setState(prv=>({...prv, description:e.target.value}))}
                 />
             </div>
-            <fieldset>
-                <legend>Medicines:</legend>
-                <div className="medicines-input">
-                    {MedicinedList}
-                    <div className="add-medicine" onClick={addMedicine}>Medicine <MdAdd /> </div>
-                </div>
-            </fieldset>
+            {
+            state.medicines.length !==0 && 
+                <fieldset>
+                    <legend>Medicines:</legend>
+                    <div className="medicines-input">
+                        {MedicinedList}
+                    </div>
+                </fieldset>
+            }
+            <div className="add-medicine" onClick={addMedicine}> <MdAdd /> Medicine</div>
             <button className ='btn-submit' onClick={handelSubmitDiagnosis}>Submit</button>
         </form>
     </div> );

@@ -3,20 +3,15 @@ import { createUser, createUserSession } from "../api/data";
 
 const initialState = {
     user: {
-        userType: 'doctor',
-        id: 'qedlnfsnc',
-        name: 'Amr Zied',
-        email: 'amr@gmail.com',
-        description: 'He holds a PhD in Mansoura ',
-        phone: '01012121212',
-        specialization: 2,
-        fees: 299,
-        city: 'Mansoura',
-        governorate: 'Dakahlia',
-        location: 'Jahan Street',
-        imageURL : '/images/avatars/default.png',
-        rating: 4.3,
-        age: 30
+            userType: 'patient',
+            id: 'dskfhkldsjklf',
+            name: 'Ahmed mohamed',
+            email: 'mohamed@gmail.com',
+            city: 'Mansoura',
+            governorate: 'Dakahlia',
+            phone: '01012121212',
+            imageURL : '/images/avatars/default.png',
+            age: 30
         },
         token:'',
         refrexhToken: '',

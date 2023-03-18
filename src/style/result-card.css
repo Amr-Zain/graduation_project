@@ -10,13 +10,14 @@
      --back-buttun-blue: #0e4067;
  }
 
-.results .card{
+.card{
      display: flex;
      width: 100%;
      gap: 2rem;
      flex-direction: row;
      padding: 1rem;
      margin-bottom: 1rem;
+     /* height: 25rem; */
 }
 .results .card .image-top
 {
@@ -28,7 +29,7 @@
      border-radius: 50%;
      width: 100%;
 }
-.results .card .card-content>div{
+.card .card-content>div{
 
      display: flex;
      align-items: center;
@@ -37,23 +38,30 @@
      border-bottom: 1px solid #d9d9d9;
 }
 
-.results .card .card-content>div p{
+.card .card-content>div p{
      margin: 0;
 }
-.results .card .card-content .description p{
+.card .card-content .description p{
      font-size: 1.2rem;
 }
-.results .card .card-content .email ,.results .card .card-content .name{
+.card .card-content .email ,.results .card .card-content .name{
      border: none;
 }
-.results .card .card-content .email { 
+.card .card-content .email { 
      color: #D73F35;
 }
-.results .card .card-content .email p{
+.card .card-content .email p{
      color: var(--text--primary);
      font-weight: bold;
 }
-.results .card .card-content .email p:hover {
+.card .card-content .email p:hover {
      text-decoration: underline;
      cursor: pointer;
 }
+/* .appointment-picker{
+     width: 100%!important;
+     height: 24rem!important;
+}
+.appointment-picker__col ,.appointment-picker__col--enabled{
+     height: 100%!important;
+} */

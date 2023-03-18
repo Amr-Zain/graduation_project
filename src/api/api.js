@@ -14,6 +14,7 @@ const doctors = [
         location: 'Jahan Street',
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'qedlnfsnc',
@@ -29,6 +30,7 @@ const doctors = [
         location: 'Jahan Street',
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfsdfslk',
@@ -43,6 +45,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdslslk',
@@ -57,6 +60,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'ddgdfhtjhjf',
@@ -71,6 +75,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdsjkldsgfjslk',
@@ -85,6 +90,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdsjklgdfjjjslk',
@@ -99,6 +105,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjsgrsffddfdsjkljslk',
@@ -113,6 +120,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdsjklsfgjslk',
@@ -127,6 +135,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdsdsgffjkljslk',
@@ -141,6 +150,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfdsgfjfddfdsjkljslk',
@@ -155,6 +165,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfjfddfdsjkcgdfljslk',
@@ -169,6 +180,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'dsdfsarewew',
@@ -183,6 +195,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },
     {
         id: 'kdfsgdfjfddfdsjkljslk',
@@ -197,6 +210,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgddsafdfjfddfdsjkljslk',
         name: 'Osama',
@@ -210,6 +224,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgdfjfdjkljslk',
         name: 'Maha',
@@ -223,6 +238,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgdfddfdsjkljslk',
         name: 'sfds',
@@ -236,6 +252,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgdfjdfdjkljslk',
         name: 'Maha Osama',
@@ -249,6 +266,190 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointtTime:30
+    },{
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
+    },{
+        id: 'kdfsgdfjdfdjkljslk',
+        name: 'Maha Osama',
+        email: 'moh@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        location: 'Jahan Street',
+        specialization: 3,
+        fees: 599,
+        imageURL : '/images/avatars/default.png',
+        rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgdfdfjfddfdsjkljslk',
         name: 'hamada',
@@ -262,6 +463,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfddsgdfjfddfdsjkljslk',
         name: 'Maha Osama',
@@ -275,6 +477,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'kdfsgdfjfdfdjkljslk',
         name: 'Maha Osama',
@@ -288,6 +491,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
+        appointmentTime:30
     },{
         id: 'ckdfscgdfjfddfdsjkljslk',
         name: 'Amr Zain',
@@ -301,6 +505,7 @@ const doctors = [
         fees: 599,
         imageURL : '/images/avatars/orwell.jpg',
         rating: 4.3,
+        appointmentTime:30
     },
 ]
 
@@ -483,16 +688,20 @@ const donationRequests = [
         id : 'sfdklfdasfl',
         patientId: 'dskfhkldsjklf',
         city: 'Mansoura',
+        name: 'Amr Zain',
         governorate: 'Dakahlia',
         bloodType: 'O-',
         requiredDonaters: 5,
+        email:'amr@gmail.com',
         donators: ["dfnvcmxcsdfs",'kdfjfddfhjdfslk'],/* or just number */
-        date :Date.now()
+        date :Date.now(),
     },
     {
         id : 'sfdklfdasfl',
         patientId: 'kdfjfddfsljhgkk',
         city: 'Mansoura',
+        email:'zain@gmail.com',
+        name: 'Zain Fathi',
         governorate: 'Dakahlia',
         bloodType: 'O-',
         requiredDonaters: 5,

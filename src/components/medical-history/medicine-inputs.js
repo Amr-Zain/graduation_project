@@ -1,13 +1,13 @@
 import { RiDeleteBin5Line } from 'react-icons/ri'; 
 
-function MedicineInputs({ id, name, dose, duration, setMedicines  }) {
+function MedicineInputs({ id, name, dose, duration, description, setMedicines  }) {
     const medicineChange = (e)=>{
-        setMedicines(prv=>({...prv, error:'',medicines: prv.medicines.map((med,i)=>{
-            return i === id?{ ...med, [e.target.name]:e.target.value}:med;
+        setMedicines(prv=>({...prv, error:'',medicines: prv.medicines.map((med)=>{
+            return med.id === id?{ ...med, [e.target.name]:e.target.value}:med;
         })}));
     } 
     const handelDeleteMedicine = ()=>{
-        setMedicines(prv=>({ ...prv, error:'', medicines: prv.medicines.splice(id,1)}))
+        setMedicines(prv=>({ ...prv, error:'', medicines: prv.medicines.filter((med)=>med.id !==id)}))
     }
     return ( <div className="medicine-inputs-delete">
                 <div className="medicine-inputs">
@@ -22,19 +22,28 @@ function MedicineInputs({ id, name, dose, duration, setMedicines  }) {
                     </div>
                     <div className="dose">
                         <input
-                            type='text'
+                            type='number'
                             name= 'dose'
                             value={dose}
-                            placeholder= 'Dosage'
+                            placeholder= 'Dosage Aday'
                             onChange={medicineChange}
                         />
                     </div>
                     <div className="duration">
                         <input
-                            type='text'
+                            type='number'
                             name= 'duration'
                             value={duration}
-                            placeholder= 'Duration'
+                            placeholder= 'Duration in weeks'
+                            onChange={medicineChange}
+                        />
+                    </div>
+                    <div className="med-description">
+                        <input
+                            type='text'
+                            name= 'description'
+                            value={description}
+                            placeholder= 'Description'
                             onChange={medicineChange}
                         />
                     </div>

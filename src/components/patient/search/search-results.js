@@ -1,22 +1,22 @@
 import { MdFilterListAlt } from 'react-icons/md';
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from '../../../features/search';
-import { useNavigate } from 'react-router-dom';
 import SearchFilterOverlay from "./search-filter-overlay";
 import ResultCard from "./result-card";
 import '../../../style/search-results.css'
 import '../../../style/result-card.css';
 import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
+import { Row } from 'react-bootstrap';
+import BloodCard from './blood-results';
 function SearchResults() {
-    const { filter:{ searchFor, sort }, url,result:{data, count} } = useSelector(store=>store.search);
+    const { filter:{ for:searchFor, sort }, url,result:{data, count} } = useSelector(store=>store.search);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [ overlay, setOverlay ] = useState(false);
     const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
-    const ResultsItems = data.map(item=><ResultCard key={item.id} type={searchFor} {...item} />)
+    const Result = (searchFor ==='doctor' || searchFor  === 'nurse')? ResultCard : BloodCard;
+    const ResultsItems = data.map(item=><Result key={item.id} {...item} />)
     useEffect(()=>{
-        console.log('get results')
         dispatch(getSearchResult())
     },[url])
     return ( 
@@ -42,7 +42,9 @@ function SearchResults() {
                     </div>
                 </div>
                 <div className='results' >
-                    {ResultsItems}
+                    <Row style={{width: '100%',margin: '0'}}>
+                        {ResultsItems}
+                    </Row>
                 </div>
             </aside>
             {overlay && <SearchFilterOverlay setOverlay={setOverlay} />}

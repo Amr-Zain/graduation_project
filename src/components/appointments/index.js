@@ -1,16 +1,17 @@
 import { useEffect } from "react";
-import { setAppointmentsThunk, setDate } from "../../../features/appointments";
+import { setAppointmentsThunk, setDate } from "./../../features/appointments";
 import { useDispatch, useSelector } from "react-redux";
 import Appointment from "./patient-appointment"; 
 import DoctorNurseAppointment from "./doctor-nurse-appointment"; 
-import "../../../style/appointment.css";
+import "./../../style/appointment.css";
 import { Link, useNavigate } from "react-router-dom";
-import { APPOINTMENTS, PATIENT } from "../../../constants/routes";
+import { APPOINTMENTS, PATIENT } from "./../../constants/routes";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MdAdd } from 'react-icons/md'
 import { useState } from "react";
 import DeletteUpdateOverlay from "./delete-update-overlay";
+import { Row } from "react-bootstrap";
 const Appointments = ({ isAppPage })=>{
     const { appointments, date } = useSelector((store)=>store.appointments);
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Appointments = ({ isAppPage })=>{
     useEffect(()=>{
         dispatch(setAppointmentsThunk({ type, date }));
     },[date]);
-    return (  <div style={{ height:'100vh' }}className={isAppPage?'appoint-page':"appointmets"}>
+    return (  <div className={isAppPage?'appoint-page':"appointmets"}>
         {appointments.length !== 0 ?<div className="top-text" onClick={appClick} ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>
         :
         isAppPage && <div style={{marginTop:'7rem', textAlign:'center'}}> There Are No Upcoming Appointments </div>
@@ -53,7 +54,9 @@ const Appointments = ({ isAppPage })=>{
             />
         </div>}
         <div className="appointmets-container">
-            {AppointmentsList} 
+            <Row className={`${!isAppPage?'flex-nowrap':''}`}>
+                {AppointmentsList} 
+            </Row>
         </div>
         { 
             type !== 'patient' && 

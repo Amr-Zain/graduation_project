@@ -10,12 +10,10 @@ export default function MedicalHistory(){
         document.title = 'Medical History';
     });
     return(<>
-            <Header />
             <main className="medical-history">
                 <Container>
                     <MedicahComponents />
                 </Container>
             </main>
-            <Footer />
         </> )
 }

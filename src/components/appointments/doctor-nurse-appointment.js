@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MEDICAL_HISTORY, PATIENT } from "../../../constants/routes";
+import { MEDICAL_HISTORY, PATIENT } from "./../../constants/routes";
 import { RiDeleteBin5Line } from 'react-icons/ri'; 
 import { FiEdit } from 'react-icons/fi'; 
 

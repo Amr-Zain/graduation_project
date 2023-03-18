@@ -69,7 +69,7 @@ body {
 .top-text:hover{
   cursor: pointer;
 }
-.appointment {
+.appointmets .appointment {
   flex: 1 1 300px;
   box-shadow: 0 1px 1rem -4px #000;
   background: var(--back-ground);
@@ -81,7 +81,7 @@ body {
   max-width: 95%;
   transition: all 250ms ease-in-out;
 }
-.appointment:hover {
+.appointmets .appointment:hover {
   box-shadow: 0 4px 1rem -4px #000;
   transform: translateY(-3px);
 }
@@ -91,21 +91,20 @@ body {
 
 .appointment .doctor .image-text {
   display: flex;
-  margin: 1rem;
-  gap: 1rem;
+  margin: .75rem;
+  gap: .5rem;
   align-items: center;
 }
 
 .appointment .doctor .image-text .image img {
-
   border-radius: 50%;
 }
 
 .text-name-doctor .text-name-doctor {
   margin-bottom: 3px;
   color: var(--text--primary);
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .name-rating {
@@ -136,7 +135,7 @@ body {
 }
 
 /* start collection */
-.collection .specialization, .location, .fees {
+ .specialization, .location, .fees {
   
   display: flex;
   justify-content: start;
@@ -180,6 +179,7 @@ body {
   margin: 1rem auto;
 }
 .appoint-page .date input {
+    height: 100vh;
     border-color: hsl(0, 0%, 80%);
     border-radius: 4px;
     border-style: solid;
@@ -191,6 +191,7 @@ body {
 .appointment .patient .image-text a{
   display: flex;
   gap: 1rem;
+  margin: 0;
 }
 .appointment .patient .image-text a {
   display: flex;
@@ -231,7 +232,9 @@ body {
 .appointment .patient .delete-update-patient .delete:hover, .appointment .patient .delete-update-patient .update:hover{
   cursor: pointer;
 }
+@media (max-width:1180px) {
 
+}
 @media (max-width:780px) {
   .available {
     padding: 10px;

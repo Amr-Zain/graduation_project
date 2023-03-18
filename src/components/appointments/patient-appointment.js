@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { /* APPOINTMENTS, */ DOCTOR, PROFILE } from "../../../constants/routes";
+import { /* APPOINTMENTS, */ DOCTOR, PROFILE } from "./../../constants/routes";
 import { RiStethoscopeLine } from "react-icons/ri";
 import { BiMoney } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdLocationPin } from "react-icons/md";
-import { Container } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 const Appointment = ({ type, patientId, id, DoctorNurseId, img, name, 
     bookingDate,rating, specialization , location, fees, from, to  }) => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Appointment = ({ type, patientId, id, DoctorNurseId, img, name,
     navigate(DOCTOR + APPOINTMENTS + "/" + props.id);
   }; */
   return (
+        <Col sm={12} md={6} lg={4} xxl={3}>
         <div className="appointment" >
                 <div className="doctor" >
                     <div className="image-text" >
@@ -60,6 +61,7 @@ const Appointment = ({ type, patientId, id, DoctorNurseId, img, name,
                     <p>Available From {from} To {to}</p>
                 </div>}
         </div>
+        </Col>
     );
 };
 export default Appointment;

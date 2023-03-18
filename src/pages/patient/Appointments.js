@@ -1,15 +1,11 @@
-import AppComponents from '../../components/patient/appointments'
-import Header from '../../components/header';
-import Footer from '../../components/Footer/Footer';
+import AppComponents from '../../components/appointments';
 import { useEffect } from 'react';
 const Appointments = ()=>{
     useEffect(()=>{
         document.title = 'Appointments';
     },[])
     return(<>
-        <Header />
-        <AppComponents isAppPage ={ true } type ={'patient'}/>
-        <Footer />
+        <AppComponents isAppPage type ={'patient'}/>
     </>
     );
 }

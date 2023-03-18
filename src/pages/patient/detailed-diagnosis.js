@@ -20,7 +20,6 @@ function DetailedDiagnosis() {
         Diagnosis();
     })
     return ( <>
-            <Header />
             <main className="detailed-diagnosis">
                 <Container>
                     <Diagnosis {...diagnosis}  >
@@ -28,7 +27,6 @@ function DetailedDiagnosis() {
                     </Diagnosis>
                 </Container>
             </main>
-            <Footer />
             </>);
 }
 

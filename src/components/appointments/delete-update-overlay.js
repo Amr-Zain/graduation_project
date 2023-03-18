@@ -2,10 +2,10 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createPortal } from "react-dom";
-import { addAppointment, deleteAppointment, updateAppointmentDate } from "../../../features/appointments";
-import { DeleteAppointment, UpdateAppointment, AddAppointment } from "../../../api/data";
+import { addAppointment, deleteAppointment, updateAppointmentDate } from "./../../features/appointments";
+import { DeleteAppointment, UpdateAppointment, AddAppointment } from "./../../api/data";
 import { useDispatch, useSelector } from "react-redux";
-import '../../../style/delete-update-overlay.css'
+import './../../style/delete-update-overlay.css'
 
 function DeletteUpdateOverlay({ setOverlay, overlay }) {
     const currentSelected = useSelector(store=>store.appointments.date)
