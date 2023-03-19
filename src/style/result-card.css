@@ -58,6 +58,16 @@
      text-decoration: underline;
      cursor: pointer;
 }
+.chat-icon {
+     position: relative;
+     bottom:0;
+     right:0; 
+     justify-content: end;
+     border: none !important;
+     font-size:2rem;
+     color: var(--main-blue-vesion2);
+     cursor: pointer;
+}
 /* .appointment-picker{
      width: 100%!important;
      height: 24rem!important;

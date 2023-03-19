@@ -2,17 +2,17 @@
 const doctors = [
     {
         id: 'dskkjoerpeww',
-        name: 'Akram Ayman',
-        email: 'amr@gmail.com',
+        name: 'Eman Ayman',
+        email: 'Eman@gmail.com',
         password: 1234,
         description: 'He holds a PhD in Mansoura ',
         phone: '01012121212',
-        specialization: 2,
+        specialization: 'bones',
         fees: 299,
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-1.jpg',
         rating: 4.3,
         appointmentTime:30
     },
@@ -23,12 +23,12 @@ const doctors = [
         password: 1234,
         description: 'He holds a PhD in Mansoura ',
         phone: '01012121212',
-        specialization: 2,
+        specialization: 'bones',
         fees: 299,
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-2.jpg',
         rating: 4.3,
         appointmentTime:30
     },
@@ -41,9 +41,9 @@ const doctors = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        specialization: 3,
+        specialization: 'bones',
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-3.jpg',
         rating: 4.3,
         appointmentTime:30
     },
@@ -56,9 +56,9 @@ const doctors = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        specialization: 3,
+        specialization: 'bones',
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/25.png',
         rating: 4.3,
         appointmentTime:30
     },
@@ -71,9 +71,9 @@ const doctors = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        specialization: 3,
+        specialization: 'bones',
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/28.jpg',
         rating: 4.3,
         appointmentTime:30
     },
@@ -86,7 +86,7 @@ const doctors = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        specialization: 3,
+        specialization: 'bones',
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
@@ -101,7 +101,7 @@ const doctors = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         location: 'Jahan Street',
-        specialization: 3,
+        specialization: 'bones',
         fees: 599,
         imageURL : '/images/avatars/default.png',
         rating: 4.3,
@@ -433,7 +433,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/doctor-3.jpg',
         rating: 4.3,
         appointmentTime:30
     },{
@@ -447,7 +447,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/default.png',
         rating: 4.3,
         appointmentTime:30
     },{
@@ -461,7 +461,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/doctor-lab-1.jpg',
         rating: 4.3,
         appointmentTime:30
     },{
@@ -475,7 +475,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-lab-1.jpg',
         rating: 4.3,
         appointmentTime:30
     },{
@@ -489,7 +489,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-lab-2.jpg',
         rating: 4.3,
         appointmentTime:30
     },{
@@ -503,7 +503,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 3,
         fees: 599,
-        imageURL : '/images/avatars/orwell.jpg',
+        imageURL : '/images/avatars/team/doctor-lab-3.jpg',
         rating: 4.3,
         appointmentTime:30
     },
@@ -519,29 +519,62 @@ const specializations = [
 const nurses = [
     {
         id: 'sdggfgg',
-        name: 'Mohamed Ahmed',
+        name: 'Alaa Mohamed',
         email: 'mohamed@gmail.com',
-        description: 'He holds a PhD in Mansoura ',
         phone: '01012121212',
         city: 'Mansoura',
         governorate: 'Dakahlia',
         specialization: 2,
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-lab-1.jpg',
         fees: 99,
         rating: 4.3,
     },
     {
         id: 'kdfjsgsfdgfddfslk',
-        name: 'Mohamed Ahmed',
+        name: 'Wafaa Mohamed',
+        email: 'mohamed@gmail.com',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        imageURL : '/images/avatars/team/doctor-lab-2.jpg',
+        fees: 99,
+        rating: 4.3,
+    },
+    {
+        id: 'kdfjsgscjkfdgfddfslk',
+        name: 'Alaa Mohamed',
         email: 'mohamed@gmail.com',
         description: 'He holds a PhD in Mansoura ',
         phone: '01012121212',
         city: 'Mansoura',
         governorate: 'Dakahlia',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-lab-3.jpg',
         fees: 99,
         rating: 4.3,
-    }
+    },
+    {
+        id: 'kdfsdjfhjjsgscjkfdgfddfslk',
+        name: 'Alaa Mohamed',
+        email: 'mohamed@gmail.com',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        imageURL : '/images/avatars/team/doctor-lab-3.jpg',
+        fees: 99,
+        rating: 4.3,
+    },
+    {
+        id: 'kdfkfljkfsdjfhjjsgfhjsdscjkfdgfddfslk',
+        name: 'Wafaa Mohamed',
+        email: 'mohamed@gmail.com',
+        description: 'He holds a PhD in Mansoura ',
+        phone: '01012121212',
+        city: 'Mansoura',
+        governorate: 'Dakahlia',
+        imageURL : '/images/avatars/team/doctor-lab-3.jpg',
+        fees: 99,
+        rating: 4.3,
+    },
 ]
 const receptionists = [
     {
@@ -683,8 +716,7 @@ const patientsData = {
         
     ]
 }
-const donationRequests = [
-   {
+const donationRequests = [{
         id : 'sfdklfdasfl',
         patientId: 'dskfhkldsjklf',
         city: 'Mansoura',
@@ -1035,42 +1067,42 @@ export const popular_doctors =[
         id: 'dskkjoerpeww',
         name: 'Mohamed Ayman',
         specialization: 'Bones',
-        imageURL : '/images/avatars/dali.jpg',
+        imageURL : '/images/avatars/team/26.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfdsdfsgfddfslk',
         name: 'Tamer Abdo',
         specialization: 'Bones',
-        imageURL : '/images/avatars/karl.jpg',
+        imageURL : '/images/avatars/team/28.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfddfdslslk',
         name: 'Ahmed Mohamed',
         specialization: 'Bones',
-        imageURL : '/images/avatars/orwell.jpg',
+        imageURL : '/images/avatars/team/25.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfddjkljslk',
         name: 'Fathy Ahmed ',
         specialization: 'Bones',
-        imageURL : '/images/avatars/raphael.jpg',
+        imageURL : '/images/avatars/team/doctor-2.jpg',
         rating: 4.3,
     },
     {
         id: 'kdfjfddfdsfkjkljslk',
         name: 'Maha Osama',
         specialization: 'Bones',
-        imageURL : '/images/avatars/steve.jpg',
+        imageURL : '/images/avatars/team/doctor-3.jpg',
         rating: 4.3,
     },
     {
         id: 'sdfdfs',
         name: ' Osama Mahmoud',
         specialization: 'Bones',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-1.jpg',
         rating: 4.3,
     }
 ]
@@ -1082,7 +1114,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
             specializations: specializations[0].label,
-            doctorImageURL:'/images/avatars/raphael.jpg',
+            doctorImageURL:'/images/avatars/team/doctor-1.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1107,7 +1139,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
             specializations: specializations[0].label,
-            doctorImageURL:'/images/avatars/raphael.jpg',
+            doctorImageURL:'/images/avatars/team/doctor-3.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1132,7 +1164,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
             specializations: specializations[0].label,
-            doctorImageURL:'/images/avatars/raphael.jpg',
+            doctorImageURL:'/images/avatars/team/28.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1157,7 +1189,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
             specializations: specializations[0].label,
-            doctorImageURL:'/images/avatars/default.png',
+            doctorImageURL:'/images/avatars/team/27.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1182,7 +1214,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Amr Zain',
             specializations: specializations[0].label,
-            doctorImageURL:'/images/avatars/raphael.jpg',
+            doctorImageURL:'/images/avatars/team/26.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1207,7 +1239,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Zain',
             specializations: specializations[1].label,
-            doctorImageURL:'/images/avatars/orwell.jpg',
+            doctorImageURL:'/images/avatars/team/25.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1256,7 +1288,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Ahmed Fathi',
             specializations: specializations[1].label,
-            doctorImageURL:'/images/avatars/steve.jpg',
+            doctorImageURL:'/images/avatars/team/doctor-lab-1.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1280,7 +1312,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Zain',
             specializations: specializations[1].label,
-            doctorImageURL:'/images/avatars/dali.jpg',
+            doctorImageURL:'/images/avatars/doctor-lab-2.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1304,7 +1336,7 @@ export const diagnosis = [
             doctorId: 'dskkjoerpeww',
             doctorName: 'Zain',
             specializations: specializations[1].label,
-            doctorImageURL:'/images/avatars/orwell.jpg',
+            doctorImageURL:'/images/avatars/doctor-lab-3.jpg',
             date: Date.now(),
             description : 'headache',
             medicine:[
@@ -1337,6 +1369,12 @@ export const medicines =[
         duration: '5 weeks'
     },{
         id:'dfskjkgsr',
+        name: 'Panadol',
+        dose: 'thee time aday after eating', 
+        duration: '2 weeks'
+    },
+    {
+        id:'dfskjasdaakgsr',
         name: 'Panadol',
         dose: 'thee time aday after eating', 
         duration: '2 weeks'

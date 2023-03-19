@@ -37,12 +37,12 @@
     height: 38px;
     padding: 0 .5rem;
 }
-.appointment--enabled{
+/* .appointment--enabled{
     background-color: var(--text-dark-blue);
 }
 .appointment--enabled:hover {
     background-color: var(--main);
-}
+} */
 .book-appoitment .submit{
     width: 20rem;
 }

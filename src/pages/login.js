@@ -36,7 +36,7 @@ function Longin() {
                 </div>
                     <div className="col-sm-12 col-md-7 col-lg-6 from-log" >
                         <div className="logo-container">
-                            <img className="image-logo" src={'./images/logo.png'} alt="Logo" />
+                            <img className="image-logo" style={{width:'5rem !important'}} src={'./images/logo.png'} alt="Logo" />
                         </div>
                         <form className="flex-input" onSubmit={handleSubmit(onSubmit)}>
                             {error && <p>{error}</p>}

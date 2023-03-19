@@ -9,12 +9,38 @@
     --text-dark-blue: #0e4067;
     --back-buttun-blue: #0e4067;
 }
-.blood-bank, .blood-donation, .blood-request {
+.blood-donation, .blood-request {
     height:100vh; 
     display:flex; 
     justify-content: space-around;
     align-items: center
 }
+.blood-bank {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.blood-bank img {
+    width: 100%;
+}
+.blood-bank .tube{
+    margin-bottom: 5.1rem;
+    cursor: default;
+}
+.blood-bank .blood-request {
+    text-align: center;
+    font-size: 1.5rem;
+
+}
+.blood-bank .donate {
+    text-align: right;
+}
+.blood-bank .donate div {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color:var(--text--primary);
+}
+
 form {
     width: 25rem;
     display: flex;

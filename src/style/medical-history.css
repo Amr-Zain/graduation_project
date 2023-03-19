@@ -152,13 +152,15 @@ input[type=checkbox]:checked:after {
 }
 .diagnosis .doctor .img {
     width: 5rem;
+    height: 5rem;
 }
 .diagnosis .doctor .img a {
     display: block;
     width: 100%;
 }
 .diagnosis .doctor .img a  img{
-    width: 100%;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
 }
 .diagnosis .doctor .name a {

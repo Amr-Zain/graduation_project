@@ -8,9 +8,9 @@ const Card = ({ id, imageURL, name, rating, specialization}) => {
     const navigate = useNavigate();
     const handleClick = ()=>{
         if(specialization){
-            navigate(DOCTOR+PROFILE+`/${id}`)
+            navigate(PROFILE+DOCTOR+`/${id}`)
         }else{
-            navigate(NURSE+PROFILE+`/${id}`)
+            navigate(PROFILE+NURSE+`/${id}`)
         }
     }
     return( <div className="card" onClick={handleClick}>

@@ -10,7 +10,7 @@ const initialState = {
             city: 'Mansoura',
             governorate: 'Dakahlia',
             phone: '01012121212',
-            imageURL : '/images/avatars/default.png',
+            imageURL : '/images/avatars/karl.jpg',
             age: 30
         },
         token:'',

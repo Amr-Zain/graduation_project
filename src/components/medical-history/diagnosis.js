@@ -11,7 +11,7 @@ export default function Diagnosis(props){
                         <img src={props.doctorImageURL} alt={`Dr.${props.doctorName}`} />
                     </Link>
                 </div>
-                <div>
+            <div>
                     <div className="name">
                         <Link to={DOCTOR +`/${props.doctorId}`}>Dr.{props.doctorName}</Link>
                     </div>

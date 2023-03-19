@@ -83,6 +83,7 @@ export default function SignUp() {
                 <img
                   className="image-logo"
                   src={"./images/logo.png"}
+                  style={{width:'7.5rem !important'}}
                   alt="Logo"
                 />
               </div>
@@ -149,7 +150,7 @@ export default function SignUp() {
 
                     </>
                   )}
-                  {watch("userType") !== "patient" && (
+                  {/* {watch("userType") !== "patient" && (
                     <>
                       <br />
 
@@ -194,7 +195,7 @@ export default function SignUp() {
                         {...register("receptionPassword", { required: true })}
                       />
                     </>
-                  )}
+                  )} */}
                   <button
                     className="login-bottom"
                     onClick={handleSubmit(onSubmit)}

@@ -17,7 +17,8 @@
     margin-bottom: 5rem;
 }
 .description {
-    margin: 0;
+    margin: 0 auto;
+
     padding: 1rem;
     width: 50%;
 }

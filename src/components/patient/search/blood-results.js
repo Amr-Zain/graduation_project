@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import { DOCTOR, PROFILE } from '../../../constants/routes';
+import { BsFillChatDotsFill } from 'react-icons/bs'
 /* chunck shape { id: 30, number: 6, isReserved: true } */
 const BloodCard = ({ id, name, bloodType, email, date })=>{
     const { for: type } = useParams();
@@ -31,6 +32,9 @@ const BloodCard = ({ id, name, bloodType, email, date })=>{
                     <div className='email'>
                         <MdEmail />
                         <p onClick={(e) => {window.location.href ='mailto:'+email;}}>{email}</p>
+                    </div>
+                    <div className='chat-icon'>
+                        <BsFillChatDotsFill />
                     </div>
                 </div>
             </div>

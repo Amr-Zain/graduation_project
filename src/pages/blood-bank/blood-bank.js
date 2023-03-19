@@ -11,16 +11,19 @@ function BloodBank() {
     return (
             <Container>
             <main className="blood-bank">
-                <div className="donate">
+                <div className="blood-request">
                     <Link to={BLOOD_BANK+BLOOD_DONATION}>
-                        <img src="\images\blood_request.png" alt="blood request" width={'100px'}/>
-                        <div>Donate Blood</div>
+                        <img src="\images\blood_donation.png" alt="blood request" width={'100px'}/>
+                        <div>Blood Donation</div>
                     </Link>
                 </div>
-                <div className="blood-request">
+                <div className="tube">
+                    <img src="\images\blood_tube.png" alt="blood request" width={'100px'}/>
+                </div>
+                <div className="donate">
                     <Link to={BLOOD_BANK+BLOOD_REQUEST}>
                         <img src="\images\blood_request.png" alt="blood request" width={'100px'}/>
-                        <div>Blood Request</div>
+                        <div>Donate Request</div>
                     </Link>
                 </div>
             </main>

@@ -6,6 +6,7 @@ import '../../../style/appointment.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
+import { BsFillChatDotsFill } from 'react-icons/bs'
 import { DOCTOR, PROFILE } from '../../../constants/routes';
 /* chunck shape { id: 30, number: 6, isReserved: true } */
 const ResultCard = ({ isPage, id, name, imageURL, specialization, fees,
@@ -44,12 +45,12 @@ const ResultCard = ({ isPage, id, name, imageURL, specialization, fees,
                         <BiMoney  className="fees-icon"/>
                         <p>{fees}</p>
                     </div> 
-                    <div className='chat-icon'>
-                        chat icon
-                    </div>
                     <div className='email'>
                         <MdEmail />
                         <p onClick={(e) => {window.location.href ='mailto:'+email;}}>{email}</p>
+                    </div>
+                    <div className='chat-icon'>
+                        <BsFillChatDotsFill />
                     </div>
                 </div>
             </div>
