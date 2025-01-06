@@ -516,6 +516,25 @@ const specializations = [
     {id:4,value:'Eyes',label:'Eyes'},
     {id:5,value:'Neurologists',label:'Neurologists'},
 ]
+
+const bloodTypes = [
+    {id:1,value:'A+',label:'A+'},
+    {id:2,value:'A-',label:'A-'},
+    {id:3,value:'B+',label:'B+'},
+    {id:4,value:'B-',label:'B-'},
+    {id:5,value:'O+',label:'O+'},
+    {id:6,value:'O-',label:'O-'},
+    {id:7,value:'AB+',label:'AB+'},
+    {id:8,value:'AB-',label:'AB-'},
+    
+]
+const searchTypes = [
+    {id:1,value:'Doctor',label:'Doctor'},
+    {id:2,value:'Nurse',label:'Nurse'},
+    {id:3,value:'Donator',label:'Blood Donator'},
+    {id:4,value:'Donation_request',label:'Blood Request'},
+]
+
 const nurses = [
     {
         id: 'sdggfgg',
@@ -1380,6 +1399,6 @@ export const medicines =[
         duration: '2 weeks'
     },
 ]
-export { doctors, specializations, nurses, patients, patientsData, 
-    donationRequests, bookedAppointments, receptionists, shechedule,
+export { doctors, specializations, nurses, patients, patientsData, bloodTypes,
+    donationRequests, bookedAppointments, receptionists, shechedule, searchTypes,
     searchDoctorResult, searchRequestResult, searchNurseResult, cities, doctorApp }

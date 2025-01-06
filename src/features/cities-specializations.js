@@ -17,8 +17,7 @@ export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializa
             const specializations = await getSpecializations();
             return { specializations };
         }else{
-            const cities =  await getCities();
-            const specializations = await getSpecializations();
+            const [ cities, specializations ] = await Promise.all([ getCities(), getSpecializations() ])
             return { cities, specializations };
         }
 

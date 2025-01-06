@@ -24,7 +24,7 @@ function Header() {
     return (
         <div className='background-header'>
             <Navbar className='background-header' expand="lg">
-                <Container fluid>
+                <Container >
                     <a href="#">
                         <img src='/images/logo-white.png' width={64} alt={'logo'} ></img>
                     </a>

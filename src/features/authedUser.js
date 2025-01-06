@@ -4,7 +4,7 @@ import { createUser, createUserSession } from "../api/data";
 const initialState = {
     user: {
             userType: 'patient',
-            id: 'dskfhkldsjklf',
+            id: 'dskkjoerpeww',
             name: 'Ahmed mohamed',
             email: 'mohamed@gmail.com',
             city: 'Mansoura',

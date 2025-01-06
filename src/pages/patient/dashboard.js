@@ -1,7 +1,7 @@
-import PopulerDoctors from "../../components/patient/popular_doctors";
+import PopulerDoctors from "../../components/popular/popular_doctors";
 import Appointments from "../../components/appointments";
-import PopulerNurses from "../../components/patient/popular_nurses";
-import SearchSection from "../../components/patient/search/search-section";
+import PopulerNurses from "../../components/popular/popular_nurses";
+import SearchBar from "../../components/patient/search/search-bar";
 import { Container } from "react-bootstrap";
 import '../../style/search-section.css'
 
@@ -12,7 +12,7 @@ function Dashboadrd() {
         <main >
             <Container>
                 <section className="search-section">
-                    <SearchSection isOverlay={false}/>
+                    <SearchBar isOverlay={false}/>
                 </section>
                 <Appointments isAppPage={false} type ={ 'patient'}/>
                 <PopulerDoctors />

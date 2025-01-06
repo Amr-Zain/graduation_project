@@ -1,4 +1,4 @@
-import SearchSection from './search-section'
+import SearchBar from './search-bar'
 import SearchFilter from './search-filter';
 import SearchResults from './search-results';
 import '../../../style/search-section.css'
@@ -10,7 +10,7 @@ import SearchPagination from './search-pagination';
 function Search() {
     return (<>
             <section className={"search-section"}>
-                <SearchSection isOverlay={false}/>
+                <SearchBar isOverlay={false}/>
             </section>
             <div className="search-body" style={{display:'flex',justifyContent:'space-between'}}>
                 <SearchFilter />

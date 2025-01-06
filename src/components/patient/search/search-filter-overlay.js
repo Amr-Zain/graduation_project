@@ -1,12 +1,12 @@
 import SearchFilter from "./search-filter";
-import SearchSection from './search-section'
+import SearchSection from './search-bar'
 import { createPortal } from 'react-dom'
 
 function SearchFilterOverlay({setOverlay}) {
     return createPortal(
         <>
             <aside className="search-filter-overlay">
-                <SearchSection  />
+                <SearchSection removeOverlay ={()=> setOverlay(false)}  />
                 <SearchFilter overlay={true} />
             </aside>
             <div onClick={()=>{ setOverlay(false) }} className="over" style={{

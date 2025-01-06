@@ -171,7 +171,7 @@ export const getPatientDiagnosisCategoy = ()=>{
 }
 export const appointments = async ({ id })=>{
     //const patient = patients.find(p=>p.id ===id)
-    const apppointmets = bookedAppointments.filter(app=>app.patientId === id)
+    const apppointmets = bookedAppointments.filter(app=>true)
     const result = apppointmets.map(app=>{
         const doctor = doctors.find(doctor=>app.doctorId === doctor.id);
         if(doctor)return {  ...app, 

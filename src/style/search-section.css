@@ -79,6 +79,9 @@ body {
 
 .search-section div input, .search-section div select {
     height: 100%;
+    border-radius: 7px;
+    padding: 3px;
+    border: none;
 }
 .search-button .icon-search
 {

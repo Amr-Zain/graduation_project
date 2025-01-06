@@ -10,11 +10,13 @@ search section نفس كلاسات ال
         left: 50%;
         transform: translate(-50%,-55%);
         background-color: #052842e3;
-        color: white;
         padding: 3rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin-top: 7px;
         border-radius: 0.6rem;
+}
+.search-filter-overlay .filter-overlay {
+        color: #fff
 }

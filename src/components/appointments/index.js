@@ -27,15 +27,16 @@ const Appointments = ({ isAppPage })=>{
             navigate( '/'+type);
         }
     }
-    console.log({appointments, date, type, isAppPage })
+    //console.log({appointments, date, type, isAppPage })
     const AppointmentsList = type !=='patient'?
             appointments.map(app =><DoctorNurseAppointment key={app.id} overlay={overlay} 
                                                     setOverlay={setOverlay}{...app}/> )
         :
             appointments.map(app =><Appointment key={app.id} {...app}/> )
-    console.log(appointments)
+    //console.log(appointments)
     useEffect(()=>{
-        dispatch(setAppointmentsThunk({ type, date }));
+        //dispatch(setAppointmentsThunk({ type, date }));
+        
     },[date]);
     return (  <div className={isAppPage?'appoint-page':"appointmets"}>
         {appointments.length !== 0 ?<div className="top-text" onClick={appClick} ><Link to={PATIENT+APPOINTMENTS}>Upcoming Appointments</Link></div>

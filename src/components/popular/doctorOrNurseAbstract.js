@@ -17,7 +17,6 @@ const Card = ({ id, imageURL, name, rating, specialization}) => {
         <img src={ imageURL } 
             alt={ `${name}` } />
         <div className="card-content">
-            {specialization && <p className="specialization" >Specialization: {specialization}</p>}
             <div className="name-rating">
                 <h3 className="name">{ name }</h3>
                     <div className="rating">
@@ -27,6 +26,7 @@ const Card = ({ id, imageURL, name, rating, specialization}) => {
                         <span className="rating-value">{rating}</span>
                     </div>
             </div>
+            {specialization && <p className="specialization" >Specialization: {specialization}</p>}
         </div>
     </div>
 )    

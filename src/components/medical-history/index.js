@@ -16,13 +16,13 @@ export default function MedicalHistoryComponents(){
             <div className="choose">
                 <div className= {`diagnosis-btn ${type ==='diagnosis'?'active':''}`} onClick={()=>setType('diagnosis')}>Diagnosis</div>
                 <div className= {`current-medicines ${type === 'medicines' ?'active':''}`} onClick={()=>setType('medicines')}>Medicines</div>
-                <div className= {`diseases ${type === 'diseases' ?'active':''}`} onClick={()=>setType('diseases')}>Diseases</div>
+                <div className= {`diseases ${type === 'diseases' ?'active':''}` } onClick={()=>setType('diseases')}>Diseases</div>
                 <div className={`add-diagnosis ${type === 'add-diagnosis' ?'active':''}`} onClick={()=>setType('add-diagnosis')}><MdAdd />Diagnosis</div>
             </div>
             <div className="choosed-container">
                 {type === 'diagnosis' && <DiagnosisList />}                   
                 {type === 'medicines' && <Medicines /> }
-                {type === 'diseases' && <Diseases /> }
+                {type === 'diseases' && <Diseases />  }
                 {type === 'add-diagnosis' && <AddDiagnosis /> }
             </div>
             

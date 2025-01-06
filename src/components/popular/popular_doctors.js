@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import DoctorAbstract from "./doctorOrNurseAbstract";
 import '../../style/popular_doctors.css';
 const PopulerDoctors = () => {
-    const { popularDoctors, isLoading, error } = useSelector((store)=>store.popularDoctors);
+    const { popularDoctors } = useSelector((store)=>store.popularDoctors);
     const dispatch = useDispatch()
     //console.log(popularDoctors);
+    //make remove popular doctors form redux and add it as state hook
     const Doctors = popularDoctors.map(doctor =><DoctorAbstract key={doctor.id} {...doctor}/> )
     useEffect(()=>{
         dispatch(setPopularDoctorsThunk());

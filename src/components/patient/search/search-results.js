@@ -13,12 +13,15 @@ function SearchResults() {
     const { filter:{ for:searchFor, sort }, url,result:{data, count} } = useSelector(store=>store.search);
     const dispatch = useDispatch();
     const [ overlay, setOverlay ] = useState(false);
-    const handleChange = (e)=>dispatch(setFilter({[e.target.name]:e.target.value}))
+    const handleChange = (e)=>{
+        dispatch(setFilter({[e.target.name]:e.target.value}));
+        //sort in the front end or a back end request
+    }
     const Result = (searchFor ==='doctor' || searchFor  === 'nurse')? ResultCard : BloodCard;
     const ResultsItems = data.map(item=><Result key={item.id} {...item} />)
     useEffect(()=>{
         dispatch(getSearchResult())
-    },[url])
+    },[url])//removing the url state form here case infinte re-rendering
     return ( 
         <>
             <aside className="search-results">
@@ -30,15 +33,19 @@ function SearchResults() {
                         <div className='result-count'>
                             Search results: {count}
                         </div>
+                        { 
+                        (searchFor ==='doctor' || searchFor  === 'nurse')
+                        &&
                         <div>
-                            <label> sort by: </label>
+                            <label> Sort By:  </label>
                             <select name="sort" value={sort} onChange={handleChange}>
                                 <option id='0' value = '0'>Best Matched</option>
-                                {(searchFor === 'doctor' || searchFor==='nurse')&&<option id='1' value='1'>Top Rating</option>}
-                                <option id='2' value='2'>{(searchFor === 'doctor' || searchFor==='nurse')?"Price Low to High":"Free"}</option>
-                                <option id='3' value='3'>{(searchFor === 'doctor' || searchFor==='nurse')?"Price High to Low":"Paid"}</option>
+                                <option id='1' value='1'>Top Rating</option>
+                                <option id='2' value='2'>Price Low to High</option>
+                                <option id='3' value='3'>Price High to Low</option>
                             </select>
                         </div>
+                        }
                     </div>
                 </div>
                 <div className='results' >

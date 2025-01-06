@@ -39,8 +39,9 @@
     gap: 1rem;
     justify-content: center;
     border: solid 1px  hsl(0, 0%, 80%); 
-    margin: 2rem 0;
     padding: 1rem;
+    width: fit-content;
+    margin: 1.2rem auto;
 }
 .medical-history .choose>div{
     width: '3rem';
@@ -72,6 +73,7 @@
 }
 .choosed-container .filters div {
     max-width: 100%;
+   
 }
 .choosed-container .filters .search-btn button{
     width: 100%;
@@ -80,6 +82,7 @@
     color: var(--text-color-white);
     border: none;
     border-radius: .25rem;
+    margin-bottom: 6.9rem;
 }
 .choosed-container .filters .by-doctor-check {
     display: flex;
@@ -214,7 +217,7 @@ input[type=checkbox]:checked:after {
 }
 .medicines-table {
     border-collapse: collapse;
-    margin: 0 auto;
+    margin: 0 auto 3.2rem auto;
     font-size: 1.25rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: .25rem;

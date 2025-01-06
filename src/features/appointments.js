@@ -5,7 +5,87 @@ import {  } from 'react-icons/md'
 
 const initialState = {
     date: new Date(new Date().toDateString()).getTime(),
-    appointments: [],
+    appointments: [
+    {
+        id: 'qedldfffnfsnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'qedlcsdnfsnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'dskkjoesssadrpeww',
+        doctorId: 'qedlnfsnc',
+        bookingDate: new Date(2023,2,2).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Zain Fathi',
+        age: 22,
+        img: '/images/avatars/default.png'
+    },
+    {
+        id: 'qsedldfffnfsncs',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,1).getTime(),
+        bookedAte:  new Date(2023,2,3).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'qedlcssdnfssnc',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,3,3).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    },
+    {
+        id: 'dskkjoessssadspeww',
+        doctorId: 'qedlnfsnc',
+        bookingDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,2,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Zain Fathi',
+        age: 22,
+        img: '/images/avatars/default.png'
+    },
+    {
+        id: 'kdfjffdhfghfgddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,2,3).getTime(),
+        patientId: 'sdjfds',
+        patientName: 'Mohamed Zain',
+        age: 22,
+        img: '/images/avatars/raphael.jpg'
+    }, {
+        id: 'kdsssfjdfdfsddfslk',
+        doctorId: 'qedlnfsnc',
+        appointmentDate: new Date(2023,2,3).getTime(),
+        bookedAte:  new Date(2023,3,1).getTime(),
+        patientId: 'dskfhkldsjklf',
+        patientName: 'Amr Zain',
+        age: 12,
+        img: '/images/avatars/raphael.jpg'
+    },
+],
     isLoading: false,
 }
 export const setAppointmentsThunk = createAsyncThunk('appointments/setAppointments', 
@@ -13,10 +93,12 @@ export const setAppointmentsThunk = createAsyncThunk('appointments/setAppointmen
     try {
         const { userType, id } = thunkAPI.getState('authedUser').authedUser.user;
         //const { date } = thunkAPI.getState('authedUser').appointments;
-        console.log(date)
+    
+        console.log(userType)
         let result;
         if( userType === 'patient') result = await appointments({ id });
         else result = await doctorAppiontments({ doctorId: id, date})
+        console.log(result)
         return { appointments: result };
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);

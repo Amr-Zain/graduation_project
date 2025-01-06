@@ -13,7 +13,8 @@
 .result-pagination {
     flex: 1 1 75%;
 }
-.result-pagination .search-results{
+.result-pagination .search-results .search-sort{
+    padding: 1rem .25rem
 }
 .search-results .results{
     display:'flex';
