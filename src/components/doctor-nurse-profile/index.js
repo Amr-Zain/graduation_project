@@ -6,8 +6,8 @@ import Select from 'react-select';
 import ResultCard from "../patient/search/result-card";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import '../../style/appointment.css';
-import '../../style/result-card.css';
+import '../../style/appointment.css'; 
+//import '../../style/result-card.css';// I shoud add this style but it overrite the popular in the dashboard
 import AppPicker from "../doctor-schedule/appointment-picker";
 function Profile({ isPage }) {
     const { for:userType, id } = useParams();

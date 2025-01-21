@@ -8,24 +8,18 @@ const initialState ={
 }
 
 
-export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializations/getCitiesAndSpecializations',async(message, thunkAPI)=>{
+export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializations/getCitiesAndSpecializations',async(_, thunkAPI)=>{
     try {
-        if(message === 'cities'){
-            const cities =  await getCities();
-            return { cities };
-        }else if(message === 'specializations'){
-            const specializations = await getSpecializations();
-            return { specializations };
-        }else{
-            const [ cities, specializations ] = await Promise.all([ getCities(), getSpecializations() ])
+        if(thunkAPI.getState().cities.length === 0){
+            
+            const [ cities, specializations ] = await Promise.all([ getCities(), getSpecializations() ]);
             return { cities, specializations };
         }
-
+        return {};
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
     }
 });
-
 
 const citiesAndSpecializations = createSlice({
     name:'citiesAndSpecializations',
@@ -33,8 +27,11 @@ const citiesAndSpecializations = createSlice({
     extraReducers:
         (builder) => {
             builder
-                .addCase(getCitiesAndSpecializations.fulfilled, (state, { payload}) => {
-                    return {...state, ...payload}
+                .addCase(getCitiesAndSpecializations.fulfilled, (state, { payload:{ cities, specializations } }) => {
+                    if(cities){
+                        state.cities = cities;
+                        state.specializations = specializations;
+                    } 
                 });
         }
 });

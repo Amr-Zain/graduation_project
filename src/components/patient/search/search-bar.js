@@ -7,73 +7,69 @@ import 'react-datalist-input/dist/styles.css';
 import { useEffect } from 'react';
 import DataList from './data-list';
 import { bloodTypes, searchTypes } from '../../../api/api';
-import Input from './input';
 import HandleUrl from '../../../util/handle-url-filter';
 const SearchBar = ({ removeOverlay })=>{
-    const {filter:{searchFor, 
-        city, 
-        specialization, 
-        bloodType,
-        name, 
-        },
-        } = useSelector(store=>store.search);
-    const filter = useSelector(store=>store.search.filter)
-    const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    useEffect(()=>{
-        if(cities.length === 0 && specializations.length === 0 ) dispatch(getCitiesAndSpecializations());
-        else if(cities.length === 0 )dispatch(getCitiesAndSpecializations('cities'));
-        else if(specializations.length === 0 )dispatch(getCitiesAndSpecializations('specializations'));
+
+const filter = useSelector(store=>store.search.filter);
+const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const handleSearch = () => {
+    if (removeOverlay) removeOverlay();
+    navigate(HandleUrl(filter));
+    };
+
+    const handleChange = (name, value) => {
+    dispatch(setFilter({ [name]: value }));
+    };
+useEffect(()=>{
+    dispatch(getCitiesAndSpecializations());
     },)
-    return(<>
-                <div className='search-for'>
-                    <DataList name ='searchFor' value ={searchFor} items ={searchTypes}/>
-                </div>
-                <div className='city'>
-                    <DataList name='city'value={city} items={cities} /> 
-                </div>
-                { 
-                    searchFor === 'doctor'
-                    &&
-                    <DataList name ='specialization' value ={specialization} items ={specializations}/>
+return(<>
+        <div className="search-for">
+            <DataList name="searchFor" value={filter.searchFor} items={searchTypes} onChange={handleChange} />
+        </div>
+        <div className="city">
+            <DataList name="city" value={filter.city} items={cities} onChange={handleChange} />
+        </div>
+        {filter.searchFor === 'doctor' && (
+            <DataList
+            name="specialization"
+            value={filter.specialization}
+            items={specializations}
+            onChange={handleChange}
+            />
+        )}
+        {['donation_request', 'donator'].includes(filter.searchFor) && (
+            <DataList name="bloodType" value={filter.bloodType} items={bloodTypes} onChange={handleChange} />
+        )}
+        {['doctor', 'nurse'].includes(filter.searchFor) && (
+            <div className="name">
+            <input
+                className="text-name"
+                type="search"
+                value={filter.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                name="name"
+                placeholder={`Name Of The ${
+                filter.searchFor.charAt(0).toUpperCase() + filter.searchFor.slice(1)
+                }`}
+            />
+            </div>
+        )}
+        <div style={{ order: '10' }} className="search-button">
+            <button
+            className="icon-search"
+            onClick={handleSearch}
+            onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                handleSearch();
                 }
-                { 
-                    (searchFor === 'donation_request'|| searchFor === 'donator') 
-                    && 
-                    <DataList name ='bloodType' value ={bloodType} items ={bloodTypes}/>
-                }
-                {
-                    (searchFor === 'doctor'|| searchFor === 'nurse') 
-                    && 
-                    <div className='name'>
-                        <input 
-                            className = 'text-name'
-                            type = 'search'
-                            value = { name }
-                            onChange = { (e)=>dispatch(setFilter({[e.target.name]:e.target.value})) }
-                            name ='name'
-                            placeholder = { `Name Of The ${String(searchFor).charAt(0).toUpperCase()+ String(searchFor).slice(1)}`  }
-                        />
-                    </div>
-                }
-                    <div style={{order:'10'}} className='search-button'>
-                        <button  
-                        onClick={()=>{ 
-                            if(removeOverlay) removeOverlay();
-                            navigate(HandleUrl(filter))
-                        }} 
-                        className='icon-search'
-                        onKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                if(removeOverlay) removeOverlay();
-                                navigate(HandleUrl(filter));
-                            }
-                            }}
-                        >
-                            <BiSearch /> Search
-                        </button>
-                    </div>
-            </>);}
+            }}
+            >
+            <BiSearch /> Search
+            </button>
+        </div>
+        </>);}
 
 export default SearchBar;

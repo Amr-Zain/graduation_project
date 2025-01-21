@@ -21,7 +21,7 @@ const PatientDashboard = lazy(() => import('./pages/patient/dashboard'));
 const Search = lazy(() => import('./pages/patient/searsh'));
 const MedicalHistory = lazy(() => import('./pages/patient/medical-history'));
 const DetailedDiagnosis = lazy(() => import('./pages/patient/detailed-diagnosis'));
-const Appointments = lazy(() => import('./pages/patient/Appointments'));
+const PatientAppointments = lazy(() => import('./pages/patient/Appointments'));
 
 const NurseDashboard = lazy(() => import('./pages/nurse/dashboard'));
 
@@ -50,7 +50,7 @@ function App() {
 
             <Route path = {PATIENT} >
               <Route path= {PATIENT+DASHBOARD} element={<PatientDashboard />} />
-              <Route path = {PATIENT+APPOINTMENTS} element = { <Appointments /> }/>
+              <Route path = {PATIENT+APPOINTMENTS} element = { <PatientAppointments /> }/>
             </Route>
 
             <Route path = {DOCTOR}>

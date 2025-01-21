@@ -1,21 +1,17 @@
-
-
-
-function Input(props) {
+function Input({ type, id, name, value, checked, handleChange, label }) {
     return (
-                <div className={ props.className }>
-                    <input 
-                        type = { props.type } 
-                        id= { props.id } 
-                        name= { props.name } 
-                        value= { props.value }
-                        checked = { props.checked === props.value }
-                        onChange={ props.handleChange }
-                    />
-                    <label htmlFor= {props.id}>{String(props.id).charAt(0).toUpperCase()+ String(props.id).slice(1)}</label>
-                </div>
-
-            );
+        <div>
+            <input
+                type={type}
+                id={id}
+                name={name}
+                value={value}
+                checked={checked}
+                onChange={handleChange}
+                aria-label={label}
+            />
+            <label htmlFor={id}>{label}</label>
+        </div>
+    );
 }
-
-export default Input;
+export default Input

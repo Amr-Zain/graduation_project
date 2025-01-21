@@ -217,19 +217,19 @@ body {
 .app-date {
   color: var(--gray--text);
 }
-.appointment .patient .delete-update-patient {
+.appointment  .delete-update-patient {
   display: flex;
-  justify-content: space-around;
-  margin: 0.5rem;
+  justify-content: space-between;
+  margin: 0.5rem 1rem;
   font-size: 1.2rem;
 }
-.appointment .patient .delete-update-patient .delete {
+.appointment  .delete-update-patient .delete {
   color: rgb(237,73,86)
 }
-.appointment .patient .delete-update-patient .update {
+.appointment  .delete-update-patient .update {
   color: var(--main-blue-vesion2)
 }
-.appointment .patient .delete-update-patient .delete:hover, .appointment .patient .delete-update-patient .update:hover{
+.appointment  .delete-update-patient .delete:hover, .appointment  .delete-update-patient .update:hover{
   cursor: pointer;
 }
 @media (max-width:1180px) {

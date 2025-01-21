@@ -1,4 +1,4 @@
-import AppComponents from '../../components/appointments';
+import AppComponents from '../../components/appointments/patient-appointments';
 import { useEffect } from 'react';
 const Appointments = ()=>{
     useEffect(()=>{

@@ -62,7 +62,7 @@ function DeletteUpdateOverlay({ setOverlay, overlay }) {
                                     placeholderText="Date"
                                 />
                             </div>
-                            {overlay.type ==='add'&&
+                            {overlay.type ==='add' &&
                                 <div className="patient-email">
                                     <input name='patientEmail' 
                                         placeholder="Patient Email"

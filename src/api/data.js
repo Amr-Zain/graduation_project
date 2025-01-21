@@ -69,7 +69,7 @@ export const getSpecializations = async()=>{
         }, 1000);
     });
 }
-export const popularDoctors= async ()=>{
+export const getPopularDoctors= async ()=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res(popular_doctors)
@@ -170,22 +170,24 @@ export const getPatientDiagnosisCategoy = ()=>{
     });
 }
 export const appointments = async ({ id })=>{
-    //const patient = patients.find(p=>p.id ===id)
-    const apppointmets = bookedAppointments.filter(app=>true)
-    const result = apppointmets.map(app=>{
-        const doctor = doctors.find(doctor=>app.doctorId === doctor.id);
+    
+    const apppointmets = bookedAppointments;
+
+    const result = apppointmets.map((app,i)=>{
+        
+        const doctor =doctors[i];
         if(doctor)return {  ...app, 
                         DoctorNurseId: doctor.id,
                         name: doctor.name, 
-                        specialization:specializations.find(sp=>sp.id ===doctor.specialization).value, 
+                        specialization:specializations[0].value, 
                         fees:doctor.fees, 
-                        type: 'doctor',
+                        type:'doctor',
                         location: doctor.location,
                         img: doctor.imageURL,
                         rating: doctor.rating,
                         from:'8AM',
                         to:'3PM'}
-    })
+    });
     return new Promise((res)=>{
         setTimeout(() => {
             res(result)
@@ -253,9 +255,12 @@ export const DeleteAppointment = async(appointmentId) =>{
     });
 }
 export const UpdateAppointment = async({id, date}) =>{
+    const apps = await appointments({id:'dsjl'});
+    const appointment = apps[0];
+    appointment.bookingDate = date;
     return new Promise((res)=>{
         setTimeout(() => {
-            res({ messege: 'appontintment updated'})
+            res({ messege: 'appontintment updated', appointment})
         }, 1000);
     });
 }

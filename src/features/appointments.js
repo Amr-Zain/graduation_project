@@ -1,124 +1,64 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { appointments, doctorAppiontments, DeleteAppointment  } from "../api/data";
+import { appointments, doctorAppiontments, DeleteAppointment, UpdateAppointment  } from "../api/data";
 import {  } from 'react-icons/md'
-
 
 const initialState = {
     date: new Date(new Date().toDateString()).getTime(),
-    appointments: [
-    {
-        id: 'qedldfffnfsnc',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,2,2).getTime(),
-        bookedAte:  new Date(2023,3,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Amr Zain',
-        age: 22,
-        img: '/images/avatars/raphael.jpg'
-    },
-    {
-        id: 'qedlcsdnfsnc',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,2,2).getTime(),
-        bookedAte:  new Date(2023,2,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Amr Zain',
-        age: 22,
-        img: '/images/avatars/raphael.jpg'
-    },
-    {
-        id: 'dskkjoesssadrpeww',
-        doctorId: 'qedlnfsnc',
-        bookingDate: new Date(2023,2,2).getTime(),
-        bookedAte:  new Date(2023,2,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Zain Fathi',
-        age: 22,
-        img: '/images/avatars/default.png'
-    },
-    {
-        id: 'qsedldfffnfsncs',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,2,1).getTime(),
-        bookedAte:  new Date(2023,2,3).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Amr Zain',
-        age: 22,
-        img: '/images/avatars/raphael.jpg'
-    },
-    {
-        id: 'qedlcssdnfssnc',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,3,3).getTime(),
-        bookedAte:  new Date(2023,3,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Amr Zain',
-        age: 22,
-        img: '/images/avatars/raphael.jpg'
-    },
-    {
-        id: 'dskkjoessssadspeww',
-        doctorId: 'qedlnfsnc',
-        bookingDate: new Date(2023,2,3).getTime(),
-        bookedAte:  new Date(2023,2,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Zain Fathi',
-        age: 22,
-        img: '/images/avatars/default.png'
-    },
-    {
-        id: 'kdfjffdhfghfgddfslk',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,2,3).getTime(),
-        bookedAte:  new Date(2023,2,3).getTime(),
-        patientId: 'sdjfds',
-        patientName: 'Mohamed Zain',
-        age: 22,
-        img: '/images/avatars/raphael.jpg'
-    }, {
-        id: 'kdsssfjdfdfsddfslk',
-        doctorId: 'qedlnfsnc',
-        appointmentDate: new Date(2023,2,3).getTime(),
-        bookedAte:  new Date(2023,3,1).getTime(),
-        patientId: 'dskfhkldsjklf',
-        patientName: 'Amr Zain',
-        age: 12,
-        img: '/images/avatars/raphael.jpg'
-    },
-],
+    appointments: [],
     isLoading: false,
+    error:''
 }
-export const setAppointmentsThunk = createAsyncThunk('appointments/setAppointments', 
+export const getAppointments = createAsyncThunk('appointments/getAppointments', 
     async ({ date }, thunkAPI)=>{
     try {
-        const { userType, id } = thunkAPI.getState('authedUser').authedUser.user;
-        //const { date } = thunkAPI.getState('authedUser').appointments;
-    
-        console.log(userType)
+        const { userType, id } = thunkAPI.getState().authedUser.user;
         let result;
-        if( userType === 'patient') result = await appointments({ id });
-        else result = await doctorAppiontments({ doctorId: id, date})
-        console.log(result)
+        if( userType === 'patient'){
+            if(thunkAPI.getState().appointments.appointments.length ===0 ) result = await appointments({ id });
+        } 
+        else result = await doctorAppiontments({ doctorId: id, date});
         return { appointments: result };
+    
     } catch (error) {
+        console.error(error)
         return thunkAPI.rejectWithValue(error.message);
     }
 });
+export const updateAppointment = createAsyncThunk('appointments/updateAppointment',
+    async(data,thunkAPI)=>{
+        try {
+            const { id, date } = data;//appointmentId, new date
+            // API call her
+            const {appointment} = await UpdateAppointment({id, date});
+            appointment.id=id; //remove it after using the api
+            return { appointment };
+
+        }catch(error){
+
+        }
+    });
+export const cancelAppointment = createAsyncThunk('appointments/cancelAppointment',
+    async(data,thunkAPI)=>{
+        try {
+            const { id } = data;
+            // API call her
+            const {message} = await DeleteAppointment({id});
+            //remove it after using the api
+            return { id };
+
+        }catch(error){
+            
+        }
+    });
 const appointmentsSlice = createSlice({
     name:'appointments',
     initialState,
     reducers: {
-        setDate: (state, { payload })=>{
-            console.log(payload.date)
-            state.date = payload.date;
-        },
         addAppointment: (state, { payload })=>{
-            console.log(payload)
-            state.appointments = [...state.appointments, payload];
+            state.appointments.push(payload);
         },
         deleteAppointment: (state, { payload })=>{
-            console.log('payload')
-            return { ...state, appointments:state.appointments.filter(app=>app.id !== payload.appointmentId)}
+            state.appointments = state.appointments.filter(app=>app.id !== payload.appointmentId);
         },
         updateAppointmentDate: (state, { payload })=>{
             state.appointments = state.appointments.map((appointment)=>{
@@ -129,24 +69,34 @@ const appointmentsSlice = createSlice({
                     }
             })
         },
+        setDate: (state,{payload})=>{
+            state.date = payload.date;
+        }
     },
     extraReducers:  (builder) => {
         builder
-            .addCase(setAppointmentsThunk.fulfilled, (state, { payload }) => {
-                console.log(payload);
+            .addCase(getAppointments.fulfilled, (state, { payload }) => {
+                state.isLoading = false;
                 state.appointments = payload.appointments;
             })
-            .addCase(setAppointmentsThunk.pending, (state, action) => {
+            .addCase(getAppointments.pending, (state, action) => {
                 state.isLoading = true;
             })
-            .addCase(setAppointmentsThunk.rejected, (state, { payload}) => {
-                //console.log(payload)
-                //state.error = payload;
-            });
+            .addCase(getAppointments.rejected, (state, { payload}) => {
+                state.isLoading = false;
+                state.error = payload;
+            })
+            .addCase(updateAppointment.fulfilled,(state, { payload })=>{
+                console.log(payload)
+                const appointment = payload.appointment;
+                state.appointments = state.appointments.map(app=>app.id === appointment.id? {...app,...appointment} : app );
+            })
+            .addCase(cancelAppointment.fulfilled,(state, { payload })=>{
+                state.appointments = state.appointments.filter( app => app.id !== payload.id);
+            })
     },
 });
-
-export const { setDate, addAppointment, deleteAppointment, updateAppointmentDate } = appointmentsSlice.actions;
+export const { addAppointment, deleteAppointment, updateAppointmentDate, setDate } = appointmentsSlice.actions;
 
 export default appointmentsSlice.reducer;
 

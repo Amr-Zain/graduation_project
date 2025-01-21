@@ -58,7 +58,7 @@ const doctors = [
         location: 'Jahan Street',
         specialization: 'bones',
         fees: 599,
-        imageURL : '/images/avatars/25.png',
+        imageURL : './images/avatars/team/25.png',
         rating: 4.3,
         appointmentTime:30
     },
@@ -846,15 +846,7 @@ const bookedAppointments = [
         bookingDate: new Date(1675780227259).toDateString(),
         bookedAte: Date.now(),
         patientId: 'dskfhkldsjklf',
-    },
-    {
-        //key it to get the doctor today's cases is (doctorId,bookingDate:today)
-        id: 'kdfjffdhfghfgddfslk',
-        doctorId: 'kdfjfddfdsjkljslk',
-        bookingDate: new Date(1675780227259).toDateString(),
-        bookedAte: Date.now(),
-        patientId: 'sdjfds',
-    },
+    }
 ]
 const doctorApp = [
     {
