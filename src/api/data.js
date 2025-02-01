@@ -139,30 +139,29 @@ export const getProfile = async ({ id, userType })=>{
     }
 }
 
-export const getDiagnosisPref = ({ selectedCategories, date})=>{
-    console.log(date)
+export const getDiagnosisPref = ({ selectedCategories, date, patientId})=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res( diagnosis.filter(dia=>selectedCategories?.includes(dia.specializations)) )
-        }, 1000);
+        }, 1500);
     });
 }
-export const getDiagnosis = (id)=>{
+export const getDiagnosisById = ({patientId, id})=>{
     return new Promise((res)=>{
         setTimeout(() => {
-            res( diagnosis.filter(dia=>dia.id === id)[0] )
+            res( diagnosis.find(dia=>dia.id === id))
         }, 1000);
     });
 }
 
-export const getMedicines = ()=>{
+export const getPatientMedicines = ()=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res( medicines )
         }, 1000);
     });
 }
-export const getPatientDiagnosisCategoy = ()=>{
+export const getPatientDiagnosisCategoy = ({ patientId })=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res( specializations )
@@ -228,7 +227,7 @@ export const createUser = async( { userType, user} )=>{
     }
 
 }
-export const getPatientInfo = async( { id })=>{
+export const getPatient = async( { patientId })=>{
     return new Promise((res)=>{
         setTimeout(() => {
             res({
@@ -264,11 +263,25 @@ export const UpdateAppointment = async({id, date}) =>{
         }, 1000);
     });
 }
-export const createDiagnosis = async({id, date}) =>{
+export const postDiagnosis = async({ description, medicines, patientId }) =>{
     return new Promise((res)=>{
         setTimeout(() => {
             res({ messege: 'diagnosis created' })
-        }, 1000);
+        }, 2000);
+    });
+}
+export const PostDonation = async ({ bloodType, city, date })=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'Donation Request created' })
+        }, 2000);
+    });
+}
+export const PostBloodRequest = async ({ bloodType, city, date })=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'Donation Request created' })
+        }, 2000);
     });
 }
 export const AddAppointment = async({id, date}) =>{

@@ -10,9 +10,10 @@ const initialState ={
 
 export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializations/getCitiesAndSpecializations',async(_, thunkAPI)=>{
     try {
-        if(thunkAPI.getState().cities.length === 0){
+        if(thunkAPI.getState().citiesAndSpecializations.cities.length === 0){
             
             const [ cities, specializations ] = await Promise.all([ getCities(), getSpecializations() ]);
+            console.log(cities)
             return { cities, specializations };
         }
         return {};
@@ -29,6 +30,7 @@ const citiesAndSpecializations = createSlice({
             builder
                 .addCase(getCitiesAndSpecializations.fulfilled, (state, { payload:{ cities, specializations } }) => {
                     if(cities){
+
                         state.cities = cities;
                         state.specializations = specializations;
                     } 

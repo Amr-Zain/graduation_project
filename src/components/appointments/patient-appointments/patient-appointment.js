@@ -6,12 +6,8 @@ import { AiFillStar } from "react-icons/ai";
 import { MdLocationPin } from "react-icons/md";
 import { Col, Container } from "react-bootstrap";
 import { FiEdit } from "react-icons/fi";
-import { cancelAppointment, updateAppointment } from "../../../features/appointments";
-import { useDispatch } from "react-redux";
-const Appointment = ({ type, patientId, id, DoctorNurseId, img, name, 
-    bookingDate,rating, specialization , location, fees, from, to  }) => {
+const Appointment = ({ type, id,  img, name, bookingDate,rating, DoctorNurseId, specialization , location, fees, from, to, setOverlay  }) => {
   const navigate = useNavigate();
-const dispatch = useDispatch()
   const handleDcotorClick = () => {
     navigate( PROFILE + DOCTOR + "/" + id);
   };
@@ -30,7 +26,7 @@ const dispatch = useDispatch()
                             <h3 className="text-name-doctor" onClick={handleDcotorClick}>{`${type ==='doctor'?'Dr.':'Nurse'} ${name}`}</h3>
                             <div >
                                 <div className="app_date">
-                                    {bookingDate}
+                                    {new Date(bookingDate).toDateString()}
                                 <div />
                                 <div className="name-rating">
                                     <div className="rating" >
@@ -60,12 +56,12 @@ const dispatch = useDispatch()
                         </div>
                     </Container>
                 </div>
-                 <div className="delete-update-patient">
-                    <div className="delete" onClick={()=> dispatch(cancelAppointment({id}))} /* onClick={()=>setOverlay(prv=>({...prv,show:true, type:'delete', id, name: patientName}))} */>
+                <div className="delete-update-patient">
+                    <div className="delete" onClick={()=>setOverlay({show:true, type:'delete', id, name, DoctorNurseId, appType:type})}>
                         <RiDeleteBin5Line  />
                     </div>
                     <div className="update">
-                        <FiEdit onClick={()=> dispatch(updateAppointment({id, date:new Date("11/11/2011").toDateString()}))} />
+                        <FiEdit onClick={()=>setOverlay({show:true, type:'update', id, name, DoctorNurseId, appType:type})} />
                     </div>
                 </div>
                 {type ==='doctor' && <div className="available">

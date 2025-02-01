@@ -8,7 +8,7 @@ import { Row } from "react-bootstrap";
 
 import { getAppointments, setDate } from "./../../features/appointments";
 import DoctorNurseAppointment from "./doctor-nurse-appointment";
-import DeletteUpdateOverlay from "./delete-update-overlay";
+import DeletteUpdateOverlay from "./patient-appointments/delete-update-overlay";
 import { APPOINTMENTS, PATIENT } from "./../../constants/routes";
 import "./../../style/appointment.css";
 

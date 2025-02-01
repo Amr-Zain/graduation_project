@@ -12,7 +12,7 @@ function Dashboard() {
                 <section className="search-section">
                     <SearchBar isOverlay={false}/>
                 </section>
-                {/* <Appointments isAppPage={false} type ={ 'patient'}/> */}
+                <Appointments isAppPage={false} type ={ 'patient'}/>
                 <Populers />
             </Container>
         

@@ -25,9 +25,9 @@ function Header() {
         <div className='background-header'>
             <Navbar className='background-header' expand="lg">
                 <Container >
-                    <a href="#">
+                    <Nav.Link href="#">
                         <img src='/images/logo-white.png' width={64} alt={'logo'} ></img>
-                    </a>
+                    </Nav.Link>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" navbarScroll >

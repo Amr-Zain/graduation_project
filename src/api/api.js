@@ -1132,15 +1132,18 @@ export const diagnosis = [
                 {
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()    
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()    
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()    
                 },
             ]
         },
@@ -1157,15 +1160,18 @@ export const diagnosis = [
                 {
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },
             ]
         },
@@ -1182,15 +1188,18 @@ export const diagnosis = [
                 {
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },
             ]
         },
@@ -1207,15 +1216,18 @@ export const diagnosis = [
                 {
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },{
                     name: 'Panadol',
                     dose: 'thee time aday after eating', 
-                    duration: 'for 2 weeks'
+                    duration: 'for 2 weeks',
+                    date: Date.now()
                 },
             ]
         },
@@ -1367,28 +1379,32 @@ export const diagnosis = [
             ]
         },
 ]
-export const medicines =[
+export const medicines =[    
     {
         id:'dsfjfkljsd',
         name: 'Panadol',
         dose: 'thee times aday after eating', 
-        duration: '2 weeks'
+        duration: '2 weeks',
+        date: Date.now()
     },{
         id:'dsfjfkljsdxcz',
         name: 'omega-3',
         dose: 'two times aday after eating', 
-        duration: '5 weeks'
+        duration: '5 weeks',
+        date: Date.now()
     },{
         id:'dfskjkgsr',
         name: 'Panadol',
         dose: 'thee time aday after eating', 
-        duration: '2 weeks'
+        duration: '2 weeks',
+        date: Date.now()
     },
     {
         id:'dfskjasdaakgsr',
         name: 'Panadol',
         dose: 'thee time aday after eating', 
-        duration: '2 weeks'
+        duration: '2 weeks',
+        date: Date.now()
     },
 ]
 export { doctors, specializations, nurses, patients, patientsData, bloodTypes,

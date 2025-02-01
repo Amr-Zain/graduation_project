@@ -1,30 +1,53 @@
 import { useState } from "react";
 import DiagnosisList from "./diagnosisList";
-import Diseases from "./diseases";
 import Medicines from "./medicines";
 import { useSelector } from "react-redux";
 import PatientInfo from "./patientInfo";
 import { MdAdd } from 'react-icons/md';
 import AddDiagnosis from "./add-diagnosis";
-export default function MedicalHistoryComponents(){
-    const userType = useSelector(store=> store.authedUser.user.userType);
+import { useParams } from "react-router-dom";
 
-    const [ type, setType ] = useState('diagnosis');
+const tabs = [
+    { id: 'diagnosis', label: 'Diagnosis' },
+    { id: 'medicines', label: 'Medicines' },
+];
+export default function MedicalHistoryComponents() {
+    const userType = useSelector(store => store.authedUser.user.userType);
+    const [type, setType] = useState('diagnosis');
+    const { patientId } = useParams();
 
-    return(<>
-            {userType === 'doctor' && <PatientInfo /> }
-            <div className="choose">
-                <div className= {`diagnosis-btn ${type ==='diagnosis'?'active':''}`} onClick={()=>setType('diagnosis')}>Diagnosis</div>
-                <div className= {`current-medicines ${type === 'medicines' ?'active':''}`} onClick={()=>setType('medicines')}>Medicines</div>
-                <div className= {`diseases ${type === 'diseases' ?'active':''}` } onClick={()=>setType('diseases')}>Diseases</div>
-                <div className={`add-diagnosis ${type === 'add-diagnosis' ?'active':''}`} onClick={()=>setType('add-diagnosis')}><MdAdd />Diagnosis</div>
+    return (
+        <>
+            <PatientInfo patientId={patientId} />
+            <div className="tab-list" role="tablist">
+                {tabs.map((tab) => (
+                    <button
+                        key={tab.id}
+                        role="tab"
+                        aria-selected={type === tab.id}
+                        className={`tab-button ${type === tab.id ? 'active' : ''}`}
+                        onClick={() => setType(tab.id)}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
+                {userType === 'patient' && (
+                    <button
+                        role="tab"
+                        aria-selected={type === 'add-diagnosis'}
+                        className={`tab-button ${type === 'add-diagnosis' ? 'active' : ''}`}
+                        onClick={() => setType('add-diagnosis')}
+                    >
+                        <MdAdd aria-hidden="true" /> Add Diagnosis
+                    </button>
+                )}
             </div>
-            <div className="choosed-container">
-                {type === 'diagnosis' && <DiagnosisList />}                   
-                {type === 'medicines' && <Medicines /> }
-                {type === 'diseases' && <Diseases />  }
-                {type === 'add-diagnosis' && <AddDiagnosis /> }
+            <div className="tab-content">
+                {type === 'diagnosis' && <DiagnosisList patientId ={patientId} />}
+                {type === 'medicines' && <Medicines patientId ={patientId} />}
+                {type === 'add-diagnosis' && <AddDiagnosis patientId ={patientId} onSuccess={() => setType('diagnosis')} />}
             </div>
-            
-        </>)
+        </>
+    );
 }
+    

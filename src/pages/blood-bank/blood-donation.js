@@ -7,15 +7,26 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getCitiesAndSpecializations } from "../../features/cities-specializations";
 import '../../style/blood-bank.css'
+import { PostDonation } from "../../api/data";
 
 function BloodDonation() {
     const { cities } = useSelector(store=>store.citiesAndSpecializations);
     const dispatch = useDispatch();
     const { city } = useSelector(store=>store.authedUser.user);
     const [ formState, setFormState ] = useState({ bloodType: '', city:'', date:''});
+    const [ { isLoading, error, successed }, setStatus ] = useState({ isLoading:false, error:'', successed:''});
+
     const submit = async(e)=>{
         e.preventDefault();
         //await donate( data );
+        try{
+            setStatus(prv=>({...prv, isLoading:true}));
+            await PostDonation({ ...formState });
+        }catch(error){
+            setStatus(prv=>({ isLoading: false, successed:'', error: 'Some Wrong Happend, Please Try Again' }))
+        }finally {
+            setStatus(prv=>({ isLoading: false, successed: 'Donation Request Created successfully', error: '' }))
+        }
     }
     useEffect(()=>{
         document.title = 'Blood Donation';
@@ -23,6 +34,9 @@ function BloodDonation() {
     });
     return (<main className="blood-donation">
                 <form >
+                { error && <div style={{textAlign:'center',color:'red'}} className="error">{error}</div>}
+                { isLoading && <div style={{textAlign:'center'}} className="error">Loading...</div>}
+                { successed && <div style={{textAlign:'center'}} className="error">{successed}</div>}
                     <div className='date'>
                         <DatePicker 
                             showIcon

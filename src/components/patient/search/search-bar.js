@@ -22,8 +22,8 @@ const handleSearch = () => {
     const handleChange = (name, value) => {
     dispatch(setFilter({ [name]: value }));
     };
-useEffect(()=>{
-    dispatch(getCitiesAndSpecializations());
+    useEffect(()=>{
+        if(cities.length === 0)dispatch(getCitiesAndSpecializations());
     },)
 return(<>
         <div className="search-for">

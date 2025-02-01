@@ -6,7 +6,9 @@ const initialState = {
     date: new Date(new Date().toDateString()).getTime(),
     appointments: [],
     isLoading: false,
-    error:''
+    error:'',
+    appointmentUpdateLoading:false,
+    appointmentUpdateError:''
 }
 export const getAppointments = createAsyncThunk('appointments/getAppointments', 
     async ({ date }, thunkAPI)=>{
@@ -18,7 +20,6 @@ export const getAppointments = createAsyncThunk('appointments/getAppointments',
         } 
         else result = await doctorAppiontments({ doctorId: id, date});
         return { appointments: result };
-    
     } catch (error) {
         console.error(error)
         return thunkAPI.rejectWithValue(error.message);
@@ -30,11 +31,10 @@ export const updateAppointment = createAsyncThunk('appointments/updateAppointmen
             const { id, date } = data;//appointmentId, new date
             // API call her
             const {appointment} = await UpdateAppointment({id, date});
-            appointment.id=id; //remove it after using the api
-            return { appointment };
+            return { date: new Date(date).getTime(), id };
 
         }catch(error){
-
+            return thunkAPI.rejectWithValue(error.message);
         }
     });
 export const cancelAppointment = createAsyncThunk('appointments/cancelAppointment',
@@ -47,7 +47,7 @@ export const cancelAppointment = createAsyncThunk('appointments/cancelAppointmen
             return { id };
 
         }catch(error){
-            
+            return thunkAPI.rejectWithValue(error.message);
         }
     });
 const appointmentsSlice = createSlice({
@@ -63,7 +63,7 @@ const appointmentsSlice = createSlice({
         updateAppointmentDate: (state, { payload })=>{
             state.appointments = state.appointments.map((appointment)=>{
                     if (appointment.id === payload.id){
-                        return { ...appointment, appointmentDate: payload.date };
+                        return { ...appointment, appointmentDate: new Date(payload.date).getTime() };
                     }else{
                         return appointment;
                     }
@@ -86,13 +86,28 @@ const appointmentsSlice = createSlice({
                 state.isLoading = false;
                 state.error = payload;
             })
+            .addCase(updateAppointment.pending, (state, action) => {
+                state.appointmentUpdateLoading = true;
+            })
+            .addCase(updateAppointment.rejected, (state, { payload}) => {
+                state.appointmentUpdateLoading = false;
+                state.appointmentUpdateError = payload;
+            })
             .addCase(updateAppointment.fulfilled,(state, { payload })=>{
-                console.log(payload)
-                const appointment = payload.appointment;
-                state.appointments = state.appointments.map(app=>app.id === appointment.id? {...app,...appointment} : app );
+                //state.appointments = state.appointments.map(app=>app.id === appointment.id? {...app,...appointment} : app );
+                const index = state.appointments.findIndex(app=>app.id === payload.id);
+                state.appointments[index].bookingDate = payload.date;
+                state.appointmentUpdateLoading = false;
+
             })
             .addCase(cancelAppointment.fulfilled,(state, { payload })=>{
                 state.appointments = state.appointments.filter( app => app.id !== payload.id);
+            }).addCase(cancelAppointment.pending, (state, action) => {
+                state.appointmentUpdateLoading = true;
+            })
+            .addCase(cancelAppointment.rejected, (state, { payload}) => {
+                state.appointmentUpdateLoading = false;
+                state.appointmentUpdateError = payload;
             })
     },
 });

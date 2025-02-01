@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDiagnosis, setDate_category, setByDoctor } from '../../features/medicalHistory';
+import { getDiagnosis, changeFilterCategory, setFilterByDoctor, setFilterDate } from '../../features/medicalHistory';
 import Diagnosis from "./diagnosis";
 import Select from 'react-select'
 
@@ -10,24 +10,32 @@ const dates =[
     {value:2,label:'Last 2 years'},
     {value:3,label:'All'},
 ]
-export default function DiagnosisList(){
+export default function DiagnosisList({ patientId }){
     const dispatch = useDispatch();
-    const { diagnosis:{data:diagnosis, patientDiagnosisCategories, isLoading }, date, selectedCategories } = useSelector(store=>store.medicalHistory);
-    console.log(selectedCategories)
-    const diagList = diagnosis.map(diag=>(<Diagnosis key={diag.id} {...diag} />));
+    const { medicalHistory:{ 
+                    diagnosis:{ data:diagnosis, patientDiagnosisCategories, isLoading, error }, 
+                    filters: { date, selectedCategories, byDoctor }
+                    },
+            authedUser:{ 
+                user: { userType }
+                } 
+            } = useSelector(store=>store);
     const handleCategChange =(items)=>{
-        
-        dispatch(setDate_category({ selectedCategories: items.map(i=>i.label)}))
+        console.log(typeof changeFilterCategory)
+        dispatch(changeFilterCategory({ categories: items?.map(i=>i?.label) }))
     }
     const HandelSearch = ()=>{
-        dispatch(setDiagnosis({ type: 'diagnosis',selectedCategories, date}));
+        dispatch(getDiagnosis({ type: 'diagnosisList', patientId, daignosisId: null }));
     }
     useEffect(()=>{
-        
-        console.log(patientDiagnosisCategories)
-        if(patientDiagnosisCategories.length === 0 ) dispatch(setDiagnosis({type:'categories'}));
-        dispatch(setDiagnosis())
+        if(patientDiagnosisCategories.length === 0 ) dispatch(getDiagnosis({type:'categories', patientId: null, daignosisId: null }));
     },[]);
+    function renderDiagnosis(){
+        const diagList = diagnosis.map(diag=>(<Diagnosis key={diag.id} {...diag} />));
+        if(isLoading) return <>Loading</>
+        if(error) return <> Error: {error}</>
+        return diagList;
+    }
     return(<div className="diagnosis-list">
             <div className="filters">
                 <div className="Specializations">
@@ -36,7 +44,6 @@ export default function DiagnosisList(){
                         placeholder={'Specializations'}
                         options= { patientDiagnosisCategories } 
                         onChange ={handleCategChange} 
-                        /* defaultInputValue ={selectedCategories} */
                         value = {
                             patientDiagnosisCategories.filter(option => 
                                 selectedCategories.includes( option.label))
@@ -47,24 +54,26 @@ export default function DiagnosisList(){
                     <Select  
                         options= { dates } 
                         placeholder={'date'}
-                        onChange ={(item)=>dispatch(setDate_category({ date: item.value}))} 
+                        onChange ={(item)=>dispatch(setFilterDate({ date: item.value}))} 
                         value = { dates.filter(option => date===option.value)[0]}
                             
                         />
                 </div>
-                <div className="by-doctor-check">
+                {userType ==='doctor'&&<div className="by-doctor-check">
                     <input 
                         type={'checkbox'}
                         name='loggedin doctor'
-                        onChange={(e)=>dispatch(setByDoctor({ byDoctor: e.target.checked}))}
+                        checked ={byDoctor}
+                        onChange={(e)=>dispatch(setFilterByDoctor({ byDoctor: e.target.checked}))}
                     /><label>By you</label>
-                </div>
+                </div>}
                 <div className="search-btn">
                     <button onClick={HandelSearch}>Search</button>
                 </div>
             </div>
             <div className="diagnosis-container">
-                {diagList}
+                {renderDiagnosis()}
+
             </div>
         </div>);    
 }

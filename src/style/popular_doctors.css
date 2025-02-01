@@ -1,16 +1,5 @@
 
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100%;
-  min-width: 100%;
-}
 
 
 .popular-doctors .doctors::-webkit-scrollbar , .popular-nurses .nurses::-webkit-scrollbar {

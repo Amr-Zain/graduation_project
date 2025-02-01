@@ -3,7 +3,6 @@ import { MEDICAL_HISTORY, PATIENT } from "./../../constants/routes";
 import { RiDeleteBin5Line } from 'react-icons/ri'; 
 import { FiEdit } from 'react-icons/fi'; 
 
-import DeleteUpdateOverlay from "./delete-update-overlay";
 
 const Appointment = ({ patientId, id, DoctorNurseId, age,
     img, patientName, appointmentDate, overlay, setOverlay }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Row } from "react-bootstrap";
@@ -7,21 +7,24 @@ import { getAppointments } from "../../../features/appointments";
 import Appointment from "./patient-appointment";
 import { APPOINTMENTS, PATIENT } from "../../../constants/routes";
 import "./../../../style/appointment.css";
+import DeleteUpdateOverlay from "./delete-update-overlay";
 
 const Appointments = ({ isAppPage }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Redux state
     const { appointments, isLoading, error } = useSelector((store) => store.appointments);
-
-  
+  const [overlay, setOverlay] = useState({ show: false, type: "", id: "", name: "" });
+    const updateOverlay = useCallback((updates)=>{
+      setOverlay((state=>{
+        return{...state,...updates}
+      }))
+    },[])
     const handleAppClick = () => {
         navigate(PATIENT + APPOINTMENTS);
     };
     useEffect(() => {
-        console.log('apps',appointments)
-        dispatch(getAppointments({ date:null}));
+        if(appointments.length ===0)dispatch(getAppointments({ date:null}));
     },[]);
 
   const renderAppointmentsList = () => {
@@ -42,7 +45,7 @@ const Appointments = ({ isAppPage }) => {
     return (
       <Row className={!isAppPage ? "flex-nowrap" : ""}>
         {appointments.map((app) => (
-          <Appointment key={app.id} {...app} />
+          <Appointment key={app.id} {...app} setOverlay={updateOverlay} />
         ))}
       </Row>
     );
@@ -50,14 +53,16 @@ const Appointments = ({ isAppPage }) => {
 
   return (
     <div className={isAppPage ? "appoint-page" : "appointmets"}>
-      {appointments.length !== 0 && (
+      {(appointments.length !== 0 || isLoading ) && (
         <div className="top-text" onClick={handleAppClick}>
           <Link to={PATIENT + APPOINTMENTS}>Upcoming Appointments</Link>
         </div>
       )}
 
       <div className="appointmets-container">{renderAppointmentsList()}</div>
+      {overlay.show && <DeleteUpdateOverlay setOverlay={updateOverlay} overlay={overlay} />}
     </div>
+
   );
 };
 

@@ -1,13 +1,14 @@
 import { RiDeleteBin5Line } from 'react-icons/ri'; 
+import { deleteFormMedicine, setFormMedicine } from '../../features/medicalHistory';
+import { useDispatch } from 'react-redux';
 
-function MedicineInputs({ id, name, dose, duration, description, setMedicines  }) {
+function MedicineInputs({ id, name, dose, duration, description  }) {
+    const dispatch = useDispatch();
     const medicineChange = (e)=>{
-        setMedicines(prv=>({...prv, error:'',medicines: prv.medicines.map((med)=>{
-            return med.id === id?{ ...med, [e.target.name]:e.target.value}:med;
-        })}));
+        dispatch(setFormMedicine({ id, name:e.target.name, value: e.target.value }))
     } 
     const handelDeleteMedicine = ()=>{
-        setMedicines(prv=>({ ...prv, error:'', medicines: prv.medicines.filter((med)=>med.id !==id)}))
+        dispatch(deleteFormMedicine({ id }))
     }
     return ( <div className="medicine-inputs-delete">
                 <div className="medicine-inputs">

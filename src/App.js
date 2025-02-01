@@ -44,8 +44,8 @@ function App() {
             <Route path = {PROFILE +'/:for/:id'} element={ <Profile /> }/>
 
             <Route path={MEDICAL_HISTORY}>
-              <Route path = {MEDICAL_HISTORY+PATIENT+'/:id'} element = { <MedicalHistory /> }/>
-              <Route path = {MEDICAL_HISTORY+PATIENT+DIAGNOSIS+'/:id'} element = { <DetailedDiagnosis/> }/>
+              <Route path = {MEDICAL_HISTORY+PATIENT+'/:patientId'} element = { <MedicalHistory /> }/>
+              <Route path = {MEDICAL_HISTORY+PATIENT+DIAGNOSIS+'/:diagnosisId'} element = { <DetailedDiagnosis/> }/>
             </Route>
 
             <Route path = {PATIENT} >

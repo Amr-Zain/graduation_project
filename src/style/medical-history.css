@@ -1,17 +1,4 @@
-:root{
-    --main: #159190;
-    --main-blue-vesion2:#0e4067;
-    --secondary: 14, 64, 103;
-    --text--primary: #262626;
-    --gray--text: #8C8C8C;
-    --back-ground-white: #f5f5f5;
-    --text-color-white: #ffff;
-    --text-dark-blue: #0e4067;
-    --back-buttun-blue: #0e4067;
-    }
 
-.medical-history {
-}
 .medical-history .patient-info {
     display: flex;
     align-items: center;
@@ -34,7 +21,7 @@
     font-size: 1rem;
     color: var(--gray--text);
 }
-.medical-history .choose {
+.medical-history .tab-list{
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -43,7 +30,7 @@
     width: fit-content;
     margin: 1.2rem auto;
 }
-.medical-history .choose>div{
+.medical-history .tab-list>button{
     width: '3rem';
     background-color: var(--main-blue-vesion2);
     color: var(--text-color-white);
@@ -53,29 +40,28 @@
     cursor: pointer;
 }
 
-.medical-history .choose .active {
+.medical-history .tab-list .active {
     opacity: 80%;
 }
-.choosed-container .diagnosis-list {
+.tab-content .diagnosis-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.choosed-container  .filters {
+.tab-content  .filters {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: .5rem;
     width: 25rem;
     max-width: 100%;
-    margin-bottom: 2rem ;
 }
-.choosed-container .filters div {
+.tab-content .filters div {
     max-width: 100%;
    
 }
-.choosed-container .filters .search-btn button{
+.tab-content .filters .search-btn button{
     width: 100%;
     padding: .35rem;
     background-color: var(--main-blue-vesion2);
@@ -84,7 +70,7 @@
     border-radius: .25rem;
     margin-bottom: 6.9rem;
 }
-.choosed-container .filters .by-doctor-check {
+.tab-content .filters .by-doctor-check {
     display: flex;
     gap: 1rem;
 }
@@ -126,11 +112,12 @@ input[type=checkbox]:checked:after {
     top: 2px;
     left: 6px;
 }
-.choosed-container .diagnosis-container {
+.tab-content .diagnosis-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem
+    gap: 1.5rem;
+    padding: 1rem;
 }
 .detailed-diagnosis{
     margin: 2rem auto;
@@ -188,18 +175,18 @@ input[type=checkbox]:checked:after {
     color: var(--gray--text);
     margin: 0;
 }
-.choosed-container .medicines {
+.tab-content .medicines {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-.choosed-container .medicines .medicine {
+.tab-content .medicines .medicine {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
-.choosed-container .medicines .medicine .medicine-name {
+.tab-content .medicines .medicine .medicine-name {
     font-size: 1.25rem;
     font-weight: bold;
     display: flex;
@@ -207,7 +194,7 @@ input[type=checkbox]:checked:after {
     align-items: center;
     margin: 0;
 }
-.choosed-container .medicines .medicine .duration,.choosed-container .medicines .medicine .dose  {
+.tab-content .medicines .medicine .duration,.tab-content .medicines .medicine .dose  {
     font-size: 1.25rem;
     line-height: 1.4;
     display: flex;
@@ -252,7 +239,7 @@ input[type=checkbox]:checked:after {
 }
 
 @media (max-width:450px) {
-    .medical-history .choose {
+    .medical-history .tab-list{
         gap: 1rem;
     }
     .medical-history .patient-info {
@@ -277,7 +264,7 @@ input[type=checkbox]:checked:after {
 }
 
 @media (max-width:520px) {
-    .medical-history .choose {
+    .medical-history .tab-list{
         gap: .25rem;
         flex-wrap: wrap;
     }
