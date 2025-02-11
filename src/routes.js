@@ -90,7 +90,7 @@ const router = createBrowserRouter([
     },
      {
         path: '/'+PATIENT,
-        element: <ProtectedRoute allowedRoles={['patient']}><SharedLayout /></ProtectedRoute>,
+        element: <ProtectedRoute allowedRoles={[PATIENT]}><SharedLayout /></ProtectedRoute>,
         children: [
             { index: true, element: <PatientDashboard /> },
             { path: APPOINTMENTS, element: <PatientAppointments /> },
@@ -105,6 +105,7 @@ const router = createBrowserRouter([
             },
             {
                 path: MEDICAL_HISTORY,
+                element: <ProtectedRoute allowedRoles={[DOCTOR]} />,
                 children: [
                     { index: true, element: <MedicalHistory /> },
                     { path: DIAGNOSIS + '/:diagnosisId', element: <DetailedDiagnosis /> },
@@ -130,17 +131,17 @@ const router = createBrowserRouter([
     },
     {
         path: '/'+DOCTOR,
-        element: <ProtectedRoute allowedRoles={['doctor']} />,
+        element: <ProtectedRoute allowedRoles={[DOCTOR]} />,
         children: [{ index: true, element: <DoctorDashboard /> }]
     },
     {
         path: '/'+NURSE,
-        element: <ProtectedRoute allowedRoles={['nurse']} />,
+        element: <ProtectedRoute allowedRoles={[NURSE]} />,
         children: [{ index: true, element: <NurseDashboard /> }]
     },
     {
         path: '/'+RECEPTIONIST,
-        element: <ProtectedRoute allowedRoles={['receptionist']} />,
+        element: <ProtectedRoute allowedRoles={[RECEPTIONIST,DOCTOR]} />,
         children: [{ index: true, element: <ReceptionistDashboard /> }]
     },
     {
