@@ -10,13 +10,13 @@ export default function Diagnosis({ children, id, doctorId, doctorImageURL, doct
     return(<div className="diagnosis" >
             <div className="doctor" >
                 <div className="img" >
-                    <Link to={PROFILE+DOCTOR +`/${doctorId}`}>
+                    <Link to={'/'+PROFILE+'/'+DOCTOR +`/${doctorId}`}>
                         <img src={doctorImageURL} alt={`Dr.${doctorName}`} />
                     </Link>
                 </div>
             <div>
                     <div className="name">
-                        <Link to={PROFILE+DOCTOR +`/${doctorId}`}>Dr.{doctorName}</Link>
+                        <Link to={'/'+PROFILE+'/'+DOCTOR +`/${doctorId}`}>Dr.{doctorName}</Link>
                     </div>
                     <div>
                         <p>

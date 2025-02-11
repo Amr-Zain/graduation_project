@@ -1,36 +1,35 @@
 
-export const DOCTOR = '/doctor';
-export const PATIENTS_SCHEDULE = '/patiets_schedule';
-export const SPECIALIZATION = '/:specialization';
-export const CITY = '/:city';
+export const DOCTOR = 'doctor';
+export const PATIENTS_SCHEDULE = 'patiets_schedule';
+export const SPECIALIZATION = 'specialization';
 
-export const NURSE = '/nurse';
-export const RESERVATIONS = '/reservations';
+export const NURSE = 'nurse';
+export const RESERVATIONS = 'reservations';
 
-export const PATIENT = '/patient';
-export const APPOINTMENTS = '/appointments';
-export const SEARCH = '/search';
-export const MEDICAL_HISTORY = '/medical_history';
-export const DIAGNOSIS = '/diagnosis';
-
+export const PATIENT = 'patient';
+export const APPOINTMENTS = 'appointments';
+export const SEARCH = 'search';
+export const MEDICAL_HISTORY = 'medical_history';
+export const DIAGNOSIS = 'diagnosis';
 
 
-export const RECEPTIONIST = '/receptionist';
 
-export const TYPE = '/:type'
+export const RECEPTIONIST = 'receptionist';
+
 
 //FOR ALL
 export const DASHBOARD = '/'; 
-export const LOGIN = '/login'; 
-export const SIGNUP = '/signup'; 
-export const PROFILE = '/profile'; 
-export const NOT_FOUND = '/not_found'; 
+export const LOGIN = 'login'; 
+export const SIGNUP = 'signup'; 
+export const PROFILE = 'profile'; 
+export const NOT_FOUND = 'not_found'; 
 
-export const BLOOD_BANK = '/blood_bank';
-export const BLOOD_DONATION = '/blood_donation';
-export const DONATION_REQUEST = '/donation_request';
+export const BLOOD_BANK = 'blood_bank';
+export const BLOOD_DONATION = 'blood_donation';
+export const DONATION_REQUEST = 'donation_request';
 
-export const BLOOD_REQUEST = '/blood_request';
+export const BLOOD_REQUEST = 'blood_request';
+export const UNAUTHORIZED = 'unauthorized';
 
 /*
 

@@ -12,13 +12,13 @@ const tabs = [
     { id: 'medicines', label: 'Medicines' },
 ];
 export default function MedicalHistoryComponents() {
-    const userType = useSelector(store => store.authedUser.user.userType);
+    const {userType, id} = useSelector(store => store.authedUser.user);
     const [type, setType] = useState('diagnosis');
     const { patientId } = useParams();
-
+    const ID = patientId?  patientId : id;
     return (
         <>
-            <PatientInfo patientId={patientId} />
+            <PatientInfo patientId={ID} />
             <div className="tab-list" role="tablist">
                 {tabs.map((tab) => (
                     <button
@@ -43,9 +43,9 @@ export default function MedicalHistoryComponents() {
                 )}
             </div>
             <div className="tab-content">
-                {type === 'diagnosis' && <DiagnosisList patientId ={patientId} />}
-                {type === 'medicines' && <Medicines patientId ={patientId} />}
-                {type === 'add-diagnosis' && <AddDiagnosis patientId ={patientId} onSuccess={() => setType('diagnosis')} />}
+                {type === 'diagnosis' && <DiagnosisList patientId ={ID} />}
+                {type === 'medicines' && <Medicines patientId ={ID} />}
+                {type === 'add-diagnosis' && <AddDiagnosis patientId ={ID} onSuccess={() => setType('diagnosis')} />}
             </div>
         </>
     );

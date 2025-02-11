@@ -1,219 +1,182 @@
 import "../style/signup.css";
-
-import { createRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthedUserThunk } from "../features/authedUser";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { LOGIN } from "../constants/routes";
-import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
 import { getCitiesAndSpecializations } from "../features/cities-specializations";
+import Input from "../components/signup/input";
+import Select from "react-select";
+
 export default function SignUp() {
-    const {
+  const {
     register,
     handleSubmit,
-    watch,
-    } = useForm();
-    const [city_Specialization, setCity_Specialization] = useState({city:'',specialization:''});
-    const dispatch = useDispatch();
-    const {  cities, specializations } = useSelector((store) => store.citiesAndSpecializations);
-    const cityRef = createRef();
-    const specializationRef = createRef();
-    console.log(cities)
-    console.log(specializations)
-    const onSubmit = async (data) => {
-      if (!city_Specialization.city) {
-        console.log(cityRef.current.childNodes[0]);
-        cityRef.current.childNodes[0].focus();
-        return;
-      }
-      if (!city_Specialization.specialization) {
-        console.log(specializationRef.current.childNodes[0]);
-        specializationRef.current.childNodes[0].focus();
-        return;
-      }
-      dispatch(
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      userType: "patient"
+    }
+  });
+
+  
+  const dispatch = useDispatch();
+  const { cities, specializations } = useSelector((store) => store.citiesAndSpecializations);
+  const { user, error, isLoading } = useSelector((store) => store.authedUser);
+  const navigate = useNavigate();
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(
         setAuthedUserThunk({
-          userType: data.userType,
           create: true,
-          data: { ...data, ...city_Specialization },
+          user: { ...data },
         })
-    )}
-    useEffect(() => {
-      document.title = "Signup";
-      if(cities.length === 0 && specializations.length === 0 ) dispatch(getCitiesAndSpecializations());
-      else if(cities.length === 0 )dispatch(getCitiesAndSpecializations('cities'));
-      else if(specializations.length === 0 )dispatch(getCitiesAndSpecializations('specializations'));
-    }, []);
-    return (
-    <>
-      <div
-        className="container"
-        style={{
-          marginTop:
-            watch("userType") === "doctor"
-              ? "8.5rem"
-              : watch("userType") === "nurse"
-                ? "6.7rem"
-                : "2rem",
-        }}
-      >
-        <div className="row">
-          <div
-            className="col-sm-12 col-md-5 col-lg-6"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: 'center'
-            }}
-          >
-            <div className="login-signup-image" style={{}}>
+      );
+    } catch (error) {
+      console.error("Signup failed: ", error);
+    }
+  };
+
+  useEffect(() => {
+    document.title = "Signup";
+    console.log(user)
+    if(user.userType) navigate(`/${user.userType}`)
+    if (cities.length === 0 || specializations.length === 0) {
+      dispatch(getCitiesAndSpecializations());
+    }
+  }, [user]);
+
+  // Convert cities and specializations to required format for DatalistInput
+  const cityItems = cities.map(city => ({ id: city, value: city }));
+  const specializationItems = specializations.map(spec => ({ id: spec, value: spec }));
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12 col-md-5 col-lg-6">
+          <div className="login-signup-image">
+            <img
+              className="image-left"
+              src="/images/signup_login.png"
+              alt="Signup Illustration"
+            />
+          </div>
+        </div>
+
+        <div className="col-sm-12 col-md-7 col-lg-6">
+          <div className="grid-container from-sign">
+            <div className="logo-container">
               <img
-                className="image-left"
-                src={"./images/signup_login.png"}
-                alt="Logo"
+                className="image-logo"
+                src="/images/logo.png"
+                alt="App Logo"
               />
             </div>
-          </div>
-
-          <div className="col-sm-12 col-md-7 col-lg-6">
-            <div className="grid-container from-sign">
-              <div className="logo-container">
-                <img
-                  className="image-logo"
-                  src={"./images/logo.png"}
-                  style={{width:'7.5rem !important'}}
-                  alt="Logo"
-                />
-              </div>
-              <form className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex-input">
-                  <div className="select">
-                    <select
-                      className="select-patiant"
-                      {...register("userType")}
-                      id="userType"
-                    >
-                      <option value="patient">Patient</option>
-                      <option value="doctor">Doctor </option>
-                      <option value="nurse">Nurse</option>
-                    </select>
-                  </div>
-                  <br />
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    {...register("name", { required: true })}
-                  />
-                  <br />
-                  <input
-                    type="text"
-                    placeholder="Phone Number"
-                    {...register("phone", { required: true })}
-                  />
-                  <br />
-                  <input
-                    placeholder="E-mail"
-                    {...register("email", {
-                      required: true,
-                      pattern:
-                        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                    })}
-                  />
-                  <br />
-
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", { required: true })}
-                  />
-                  <DatalistInput
-                    id="city"
-                    name="city"
-                    placeholder="City"
-                    value ={city_Specialization.specialization}
-                    ref={cityRef}
-                    onSelect={(item) => {
-                      setCity_Specialization((prv) => ({...prv, city: item.value}));
-                    }}
-                    items={cities}
-                  />
-                  {watch("userType") === "patient" && (
-                    <>
-                      <input
-                        className="marg-left"
-                        type={"date"}
-                        placeholder="date"
-                        {...register("birthDay", { required: true })}
+            
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {error&& <div>{error}</div>}
+              <div className="flex-input">
+                <div>
+                  <Controller
+                    name="userType"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <Select
+                      {...field}
+                      placeholder='User Type'
+                      options={[{label:'Patient', value:'patient'},{label:'Doctor',value:'doctor'},{label:'Nurse',value:'nurse'}]}
                       />
-
-                    </>
-                  )}
-                  {/* {watch("userType") !== "patient" && (
-                    <>
-                      <br />
-
-                      <input
-                        placeholder="description"
-                        {...register("description", { required: true })}
-                      />
-                      <br />
-                      <input
-                        placeholder="fees"
-                        {...register("fees", { required: true })}
-                      />
-                      <br />
-                    </>
-                  )}
-                  {watch("userType") === "doctor" && (
-                    <>
-                      <DatalistInput
-                        id="Specialization"
-                        name="Specialization"
-                        placeholder="Specialization"
-                        ref={specializationRef}
-                        value ={city_Specialization.specialization}
-                        onSelect={(item) => {
-                          setCity_Specialization((prv) => ({...prv, specialization:item.value}));
-                        }}
-                        items={specializations}
-                      />
-                      <br />
-                      <input
-                        placeholder="Address"
-                        {...register("location", { required: true })}
-                      />
-                      <br />
-                      <input
-                        placeholder="Receptionist Email"
-                        {...register("receptionEmail", { required: true })}
-                      />
-                      <br />
-                      <input
-                        placeholder="Receptionist password"
-                        {...register("receptionPassword", { required: true })}
-                      />
-                    </>
-                  )} */}
-                  <button
-                    className="login-bottom"
-                    onClick={handleSubmit(onSubmit)}
-                  >
-                    Sign in
-                  </button>
+                    )}
+                    />
                 </div>
-              </form>
-            </div>
+                <Input
+                  type="text"
+                  placeholder="Full Name"
+                  register={register("name", { 
+                    required: "Full name is required",
+                    pattern: {
+                      value: /^[A-Za-z]+(?: [A-Za-z]+)+$/,
+                      message: "Please enter at least two names separated by space"
+                    },
+                    setValueAs: value => value.replace(/\s+/g, ' ').trim() 
+                  })}
+                  error={errors.name}
+                />
+                <Input
+                  type="tel"
+                  placeholder="Phone Number"
+                  register={register("phone", { 
+                    required: "Phone is required",
+                    pattern: {
+                      value: /^01[0-9]{9}$/,
+                      message: "Invalid phone number"
+                    }
+                  })}
+                  error={errors.phone}
+                />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  register={register("email", { 
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address"
+                    }
+                  })}
+                  error={errors.email}
+                />
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  register={register("password", { 
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters"
+                    }
+                  })}
+                  error={errors.password}
+                />
+                <div>
+                  <Controller
+                    name="city"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        placeholder='Choose City'
+                        rules={{ required: true }}
+                        options={cities}
+                      />
+                    )}
+                    />
+                  {errors.city && <span className="error">{errors.city.message}</span>}
+                </div>
+                  <Input
+                    type="date"
+                    placeholder="Birthday"
+                    register={register("birthDay", { 
+                      required: "Birthday is required" 
+                    })}
+                    error={errors.birthDay}
+                  />
+                <button disabled={isLoading} type="submit" className="login-bottom">
+                  {isLoading?'Loaing...':'Sign Up'}
+                </button>
+              </div>
+            </form>
+
             <p className="to-login">
-            Have an account? <Link to={LOGIN}>Log in</Link>{" "}
+              Have an account? <Link to={'/'+LOGIN}>Log in</Link>
             </p>
           </div>
-          <div></div>
         </div>
       </div>
-    </>
-    );
-  }
-
-
+    </div>
+  );
+}

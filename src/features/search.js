@@ -10,25 +10,26 @@ const initialState ={
         bloodType: '',
         name: '',
         sort:'0',
-        gender:'0',// 0 any ,1 man and 2 women
-        availability: 0, //  0 any ,1 today and 2 tommo
-        pageNumber:0,
+        gender:'0',
+        availability: 0,
+        page:0,
         limit:10
     },
-    url:'',
-    isLoading: true,
     result:{
-            data:[], 
-            count: 23
-        },
+        data:[], 
+        count: 0
+    },
+    isLoading: false,
+    error: '',
 }
 
-export const getSearchResult = createAsyncThunk('search/getSearchResult', async(_, thunkAPI)=>{
+export const getSearchResult = createAsyncThunk('search/getSearchResult', async({ searchQueries }, thunkAPI)=>{
     const {search:{ filter:{searchFor, city, specialization, 
-            bloodType, name, sort,gender, pageNumber, limit, availability}}} = thunkAPI.getState('search');
+            bloodType, name, sort,gender, page, limit, availability}}} = thunkAPI.getState('search');
     try {
-        const result = await search({searchFor, city, specialization, 
-            bloodType, name, sort,gender, pageNumber, limit, availability});
+        const result = await search({ searchQueries,searchFor, city, specialization, 
+            bloodType, name, sort,gender, page, limit, availability});
+            console.log('results', result);
         return { ...result };
 
     }catch(error){
@@ -53,14 +54,15 @@ const searchSlice = createSlice({
         (builder) => {
             builder
                 .addCase(getSearchResult.fulfilled, (state, { payload}) => {
-                    //console.log(payload);
                     state.isLoading = false;
-                    state.result = { ...payload }
+                    state.error = '';
+                    state.result.data = payload.data;
+                    state.result.count = payload.count;
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
                 })
                 .addCase(getSearchResult.rejected, (state, { payload }) => {
-                    console.log(payload)
+                    state.isLoading = false;
                     state.error = payload;
                 })
             }

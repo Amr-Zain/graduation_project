@@ -13,7 +13,6 @@ export const getCitiesAndSpecializations = createAsyncThunk('citiesAndSpecializa
         if(thunkAPI.getState().citiesAndSpecializations.cities.length === 0){
             
             const [ cities, specializations ] = await Promise.all([ getCities(), getSpecializations() ]);
-            console.log(cities)
             return { cities, specializations };
         }
         return {};

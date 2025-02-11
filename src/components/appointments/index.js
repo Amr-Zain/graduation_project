@@ -62,7 +62,7 @@ const Appointments = ({ isAppPage }) => {
         <div className={isAppPage ? "appoint-page" : "appointmets"}>
         {appointments.length !== 0 && (
             <div className="top-text">
-            <Link to={PATIENT + APPOINTMENTS}>Appointments</Link>
+            <Link to={'/'+PATIENT + '/'+APPOINTMENTS}>Appointments</Link>
             </div>
         )}
 

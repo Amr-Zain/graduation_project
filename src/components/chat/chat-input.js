@@ -14,6 +14,7 @@ export default function ChatInput({ userChatId }) {
         setShowEmojiPicker(!showEmojiPicker);
     };
     const userId = useSelector(store=>store.authedUser.user.id);
+    console.log(userId)
     const handleEmojiClick = (event, emojiObject) => {
         let message = msg;
         message += emojiObject.emoji;

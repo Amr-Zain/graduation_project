@@ -1,58 +1,74 @@
 import { BiSearch } from 'react-icons/bi';
 import { setFilter } from '../../../features/search'
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { getCitiesAndSpecializations } from '../../../features/cities-specializations'
 import 'react-datalist-input/dist/styles.css';
 import { useEffect } from 'react';
 import DataList from './data-list';
 import { bloodTypes, searchTypes } from '../../../api/api';
-import HandleUrl from '../../../util/handle-url-filter';
-const SearchBar = ({ removeOverlay })=>{
+import { PATIENT, SEARCH } from '../../../constants/routes';
+const SearchBar = ({ isOverlay, removeOverlay })=>{
 
-const filter = useSelector(store=>store.search.filter);
-const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
-const dispatch = useDispatch();
-const navigate = useNavigate();
-const handleSearch = () => {
-    if (removeOverlay) removeOverlay();
-    navigate(HandleUrl(filter));
+    const {searchFor, availability, sort, page, specialization, name, gender, bloodType, city } = useSelector(store=>store.search.filter);
+    const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
+    const dispatch = useDispatch();
+    const [ searchParams, setSearshParams ] = useSearchParams();
+    const navigate = useNavigate();
+    const handleSearch = () => {
+        if (removeOverlay) removeOverlay();
+        const queries = { searchFor, city, availability, sort, page }
+        if(searchFor === 'donator' || searchFor === 'donation_request') queries.bloodType = bloodType;
+        else {
+            if(searchFor ==='doctor')queries.specialization = specialization;
+            queries.name = name; 
+            queries.gender = gender;
+        }
+        if(!isOverlay) {
+            navigate({
+                pathname: `/${PATIENT}/${SEARCH}`,
+                search:`?${createSearchParams(queries)}`
+            });
+        }
+        else{
+            setSearshParams(queries);
+        }
     };
 
     const handleChange = (name, value) => {
-    dispatch(setFilter({ [name]: value }));
+        dispatch(setFilter({ [name]: value }));
     };
     useEffect(()=>{
         if(cities.length === 0)dispatch(getCitiesAndSpecializations());
-    },)
+    },[])
 return(<>
         <div className="search-for">
-            <DataList name="searchFor" value={filter.searchFor} items={searchTypes} onChange={handleChange} />
+            <DataList name="searchFor" value={searchFor} items={searchTypes} onChange={handleChange} />
         </div>
         <div className="city">
-            <DataList name="city" value={filter.city} items={cities} onChange={handleChange} />
+            <DataList name="city" value={city} items={cities} onChange={handleChange} />
         </div>
-        {filter.searchFor === 'doctor' && (
+        {searchFor === 'doctor' && (
             <DataList
             name="specialization"
-            value={filter.specialization}
+            value={specialization}
             items={specializations}
             onChange={handleChange}
             />
         )}
-        {['donation_request', 'donator'].includes(filter.searchFor) && (
-            <DataList name="bloodType" value={filter.bloodType} items={bloodTypes} onChange={handleChange} />
+        {['donation_request', 'donator'].includes(searchFor) && (
+            <DataList name="bloodType" value={bloodType} items={bloodTypes} onChange={handleChange} />
         )}
-        {['doctor', 'nurse'].includes(filter.searchFor) && (
+        {['doctor', 'nurse'].includes(searchFor) && (
             <div className="name">
             <input
                 className="text-name"
                 type="search"
-                value={filter.name}
+                value={name}
                 onChange={(e) => handleChange('name', e.target.value)}
                 name="name"
                 placeholder={`Name Of The ${
-                filter.searchFor.charAt(0).toUpperCase() + filter.searchFor.slice(1)
+                searchFor.charAt(0).toUpperCase() + searchFor.slice(1)
                 }`}
             />
             </div>

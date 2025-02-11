@@ -9,11 +9,9 @@ import { FiEdit } from "react-icons/fi";
 const Appointment = ({ type, id,  img, name, bookingDate,rating, DoctorNurseId, specialization , location, fees, from, to, setOverlay  }) => {
   const navigate = useNavigate();
   const handleDcotorClick = () => {
-    navigate( PROFILE + DOCTOR + "/" + id);
+    navigate( `/${PROFILE}/${DOCTOR}/${id}`);
   };
-  /* const handleAppointmentClick = (e) => {
-    navigate(DOCTOR + APPOINTMENTS + "/" + props.id);
-  }; */
+  
   return (
         <Col sm={12} md={6} lg={4} xxl={3}>
         <div className="appointment" >

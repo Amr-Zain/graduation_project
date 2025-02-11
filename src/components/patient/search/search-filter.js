@@ -5,13 +5,13 @@ import '../../../style/searchfilter.css';
 import RadioGroup from './radio-group';
 
 const GENDER_OPTIONS = [
-    { id: 'any', value: '0', label: 'Any' },
+    { id: 'anyGend', value: '0', label: 'Any' },
     { id: 'male', value: '1', label: 'Male' },
     { id: 'female', value: '2', label: 'Female' },
 ];
 
 const AVAILABILITY_OPTIONS = [
-    { id: 'any', value: '0', label: 'Any' },
+    { id: 'anyAval', value: '0', label: 'Any' },
     { id: 'today', value: '1', label: 'Today' },
     { id: 'tomorrow', value: '2', label: 'Tomorrow' },
 ];

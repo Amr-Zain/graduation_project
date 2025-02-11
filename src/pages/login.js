@@ -1,28 +1,29 @@
 
-import { useEffect, useState } from 'react';
-import Header from '../components/header';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthedUserThunk } from '../features/authedUser';
 import { useNavigate } from 'react-router-dom';
-import { createUserSession } from '../api/data';
-import { useForm } from 'react-hook-form';
-import { LOGIN, SIGNUP } from '../constants/routes';
+import { Controller, useForm } from 'react-hook-form';
+import { SIGNUP } from '../constants/routes';
 import { Link } from 'react-router-dom';
 import '../style/signup.css'
-import { Container, Row } from 'react-bootstrap';
+import Select from 'react-select';
+import Input from '../components/signup/input';
 
-function Longin() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+function Login() {
+    const { register, control, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const { userType, error, user } = useSelector((store)=>store.authedUser);
+    const { error, isLoading, user } = useSelector((store)=>store.authedUser);
     const dispatch = useDispatch();
     const onSubmit = async(data)=>{
-        console.log(watch('email'))
-        dispatch(setAuthedUserThunk({userType: data.userType, create:false, data:{ email: data.email, password: data.password}}));
+        console.log(data)
+        dispatch(setAuthedUserThunk({ create:false, user:data}));
     }
     useEffect(()=>{
         document.title = 'Login';
-    })
+        //get cookies or jwt if exist 
+        if(user.userType) navigate('/'+user.userType);
+    },[user])
     return (
         <>
             
@@ -40,24 +41,55 @@ function Longin() {
                         </div>
                         <form className="flex-input" onSubmit={handleSubmit(onSubmit)}>
                             {error && <p>{error}</p>}
-                            <div className='select'>
-                                <select className="select-patiant" {...register("userType")} id="userType">
-                                    <option value="patient">Patient</option>
-                                    <option value="doctor">Doctor</option>
-                                    <option value="nurse">Nurse</option>
-                                    <option value="receptionist">Receptionist</option>
-                                </select>
+                            <div>
+                                <Controller
+                                name="userType"
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field }) => (
+                                    <Select
+                                    {...field}
+                                    placeholder='User Type'
+                                    options={[
+                                        {label:'Patient', value:'patient'},
+                                        {label:'Doctor',value:'doctor'},
+                                        {label:'Nurse',value:'nurse'},
+                                        {label:'Receptionist', value:'receptionist'}
+                                    ]}
+                                />
+                                )}
+                                />
                             </div>
                             <br/>
-                            <input placeholder="E-mail" {...register('email', { required: true,pattern:/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ })} />
-
-                            <input type='password' placeholder="Password" {...register('password', { required: true })} />
-                            
-                            <button className="login-bottom"  onClick={handleSubmit(onSubmit)}>Log in</button>
+                            <Input
+                                type="email"
+                                placeholder="Email"
+                                register={register("email", { 
+                                    required: "Email is required",
+                                    pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                    message: "Invalid email address"
+                                    }
+                            })}
+                            error={errors.email}
+                            />
+                            <Input
+                                type="password"
+                                placeholder="Password"
+                                register={register("password", { 
+                                    required: "Password is required",
+                                    minLength: {
+                                    value: 8,
+                                    message: "Password must be at least 8 characters"
+                                    }
+                                })}
+                                error={errors.password}
+                            />
+                            <button className="login-bottom"  onClick={handleSubmit(onSubmit)}>{isLoading?'Loanding...':'Login'}</button>
                         </form>
                         <p className="to-login">
                         Don't have an account?       
-                       <Link to={SIGNUP}>Sign up</Link> </p>
+                        <Link to={'/'+SIGNUP}>Sign up</Link> </p>
                     </div>
                 </div>
             </div>
@@ -65,4 +97,4 @@ function Longin() {
     );
 }
 
-export default Longin;
+export default Login;

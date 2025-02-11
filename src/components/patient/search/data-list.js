@@ -11,6 +11,9 @@ function DataList(props) {
         <div className={props.name}>
         <DatalistInput
             value={String(props.value).charAt(0).toUpperCase() + String(props.value).slice(1)}
+            listboxProps={{
+                "aria-hidden": "false", // Force override
+            }}
             id={props.name}
             name={props.name}
             placeholder={props.name}

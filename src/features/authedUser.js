@@ -1,34 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createUser, createUserSession } from "../api/data";
+import { createUser, createUserSession, getUser } from "../api/data";
 
 const initialState = {
-    user: {
-            userType: 'patient',
-            id: 'dskkjoerpeww',
-            name: 'Ahmed mohamed',
-            email: 'mohamed@gmail.com',
-            city: 'Mansoura',
-            governorate: 'Dakahlia',
-            phone: '01012121212',
-            imageURL : '/images/avatars/karl.jpg',
-            age: 30
-        },
-        token:'',
-        refrexhToken: '',
-        error:''
+    user: JSON.parse(localStorage.getItem('user')) || {},
+    error:'',
+    isLoading:false,
 }
 export const setAuthedUserThunk = createAsyncThunk('authedUser/setAuthedUser', 
-    async ({ create, userType, data}, thunkAPI)=>{
+    async ({ create, user}, thunkAPI)=>{
     try {
-        let newState;
-        if(create){
-            newState = await createUser({userType, user: data });
-        }
-        else {
-            newState = await createUserSession({ userType, ...data});
-        }
-        //console.log(newState)
-        return { ...newState, userType }
+        const fun = create? createUser: createUserSession;
+        let data = await fun(user);
+        return data;
+    } catch (error) {
+        setError({error: error.message})
+        return thunkAPI.rejectWithValue(error.message);
+    }
+});
+export const getUserData = createAsyncThunk('authedUser/getUserData', 
+    async ({ token, refreshToken }, thunkAPI)=>{
+    try {
+        let data = await getUser({ token, refreshToken });
+        return data;
     } catch (error) {
         setError({error: error.message})
         return thunkAPI.rejectWithValue(error.message);
@@ -38,35 +31,33 @@ const authedUserSlice = createSlice({
     name:'authedUser',
     initialState,
     reducers: {
-        setAuthedUser:(state,{ payload })=>{
-            state = payload;
-        },
         removeAuthedUser:(state,action)=>{
-            //console.log(action)
-            return initialState;
-        },
-        updateTokens: (state,{ payload })=>{
-            const { token, refrexhToken } = payload;
-            if(token && refrexhToken) {
-                state = { ...state, token, refrexhToken}
-            }else if(token) state = { ...state, token}
+            state.user = {};
         },
         setError: (state, { payload}) =>{
-            //console.log('clear error')
             const { error } = payload;
             return { ...state, error}
         }
     },
     extraReducers:  (builder) => {
         builder
-            .addCase(setAuthedUserThunk.fulfilled, (state, action) => {
-                //console.log(action);
-                return action.payload;
+            .addCase(setAuthedUserThunk.pending, (state, action) => {
+                state.isLoading = true;
             })
-            .addCase(setAuthedUserThunk.rejected, (state, { payload}) => {
-                console.log(payload)
+            .addCase(setAuthedUserThunk.fulfilled, (state, { payload }) => {
+                state.user = payload.user;
+                state.isLoading = false;
+                //state = { ...payload, isLoading: false, error:''}
+            })
+            .addCase(setAuthedUserThunk.rejected, (state, { payload }) => {
+                state.isLoading = false;
                 state.error = payload;
-            });
+            })
+            .addCase(getUserData.fulfilled, (state, { payload }) => {
+                state.user = payload.user;
+                state.isLoading = false;
+                //state = { ...payload, isLoading: false, error:''}
+            })
     },
 });
 

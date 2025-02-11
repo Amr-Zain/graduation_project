@@ -9,19 +9,24 @@ import { useEffect, useState } from 'react';
 import { getSearchResult } from '../../../features/search'
 import { Row } from 'react-bootstrap';
 import BloodCard from './blood-results';
+import { useLocation } from 'react-router-dom';
 function SearchResults() {
-    const { filter:{ for:searchFor, sort }, url,result:{data, count} } = useSelector(store=>store.search);
+    const { filter:{ searchFor, sort },result:{data, count}, isLoading, error } = useSelector(store=>store.search);
     const dispatch = useDispatch();
     const [ overlay, setOverlay ] = useState(false);
     const handleChange = (e)=>{
         dispatch(setFilter({[e.target.name]:e.target.value}));
-        //sort in the front end or a back end request
     }
+    const location = useLocation();
+    
     const Result = (searchFor ==='doctor' || searchFor  === 'nurse')? ResultCard : BloodCard;
     const ResultsItems = data.map(item=><Result key={item.id} {...item} />)
     useEffect(()=>{
-        dispatch(getSearchResult())
-    },[url])//removing the url state form here case infinte re-rendering
+        dispatch(getSearchResult({ searchQueries: location.search}))
+    },[location.search])
+    if( isLoading){
+        return 'Loading...';
+    }
     return ( 
         <>
             <aside className="search-results">
@@ -49,6 +54,8 @@ function SearchResults() {
                     </div>
                 </div>
                 <div className='results' >
+                    {error&&<div>Error: {error}</div>}
+                    
                     <Row style={{width: '100%',margin: '0'}}>
                         {ResultsItems}
                     </Row>

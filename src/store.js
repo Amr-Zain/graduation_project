@@ -6,12 +6,14 @@ import appointments from './features/appointments';
 import search from './features/search';
 import medicalHistory from './features/medicalHistory';
 import chats from './features/chats';
+import  profile  from './features/profile';
 
 export const store = configureStore({
     reducer: {
         authedUser,
         populars,
         appointments,
+        profile,
         search,
         citiesAndSpecializations,
         medicalHistory,

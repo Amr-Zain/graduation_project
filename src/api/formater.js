@@ -1,22 +1,24 @@
 //import crypto from 'crypto';
 
+import { nanoid } from "@reduxjs/toolkit"
+
 const formate = ( user) =>{
     return {
         ...user,
-        id: Date.now(),
+        id: nanoid(12),
     }
 }
 
 const formateWithDate = (obj) =>{
     return {
         ...obj,
-        id: Date.now(),
+        id:nanoid(12),
         date: Date.now()
     }
 }
 const formateDonationRequest = ({ patientId, city, governorate,bloodType,requiredDonaters }) =>{
     const request = {
-        id :  Date.now(),
+        id : nanoid(12),
         patientId,
         city,
         governorate,

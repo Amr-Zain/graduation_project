@@ -55,7 +55,7 @@ const Appointments = ({ isAppPage }) => {
     <div className={isAppPage ? "appoint-page" : "appointmets"}>
       {(appointments.length !== 0 || isLoading ) && (
         <div className="top-text" onClick={handleAppClick}>
-          <Link to={PATIENT + APPOINTMENTS}>Upcoming Appointments</Link>
+          <Link to={'/'+PATIENT + '/'+APPOINTMENTS}>Upcoming Appointments</Link>
         </div>
       )}
 

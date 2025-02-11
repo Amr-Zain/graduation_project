@@ -12,7 +12,7 @@ const Appointment = ({ patientId, id, DoctorNurseId, age,
 return (<div className="appointment app-doctor" >
             <div className="patient" >
                 <div className="image-text" >
-                    <Link to={MEDICAL_HISTORY+PATIENT+'/'+patientId}>
+                    <Link to={'/'+MEDICAL_HISTORY+'/'+PATIENT+'/'+patientId}>
                             <div className="image" >
                                 <img width={"100px"} src={img} alt={patientName}/>
                             </div>

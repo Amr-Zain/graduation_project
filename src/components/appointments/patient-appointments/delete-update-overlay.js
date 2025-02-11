@@ -31,7 +31,7 @@ function DeleteUpdateOverlay({ overlay:{ id, type, appType, DoctorNurseId, name,
                 <div className="overlay-container">
                         <div style={{minWidth:'300px',fontSize:'1.2rem',color:'#262626'}}>
                             Do You Want To {type} The Appointment With 
-                                <Link to={PROFILE + '/'+appType + "/" + DoctorNurseId } style={{fontWeight:'bold'}}> {name}</Link>
+                                <Link to={'/'+PROFILE + '/'+appType + "/" + DoctorNurseId } style={{fontWeight:'bold'}}> {name}</Link>
                         </div>
                         
                         {
