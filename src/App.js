@@ -6,8 +6,6 @@ import { getUserData } from "./features/authedUser";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
-//import './style/custom.scss';
 function App() {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.authedUser); 
@@ -15,17 +13,16 @@ function App() {
 useEffect(()=>{
   const token = localStorage.getItem('token'); 
   const refreshToken = localStorage.getItem('refreshToken'); 
-  console.log('app')
-  if (token && Object.keys(user).length === 0) { 
+  if (token && !Object.keys(user).length) { 
       dispatch(getUserData({token, refreshToken}))
   } 
-},[dispatch, user])
+},[])
 
   return(
         <Suspense fallback={<h3>Loading</h3>}>
           <ToastContainer
             position="bottom-right"
-            /* autoClose={3000} */
+            autoClose={3000}
             hideProgressBar={false}
             closeOnClick
             pauseOnHover

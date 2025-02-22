@@ -25,7 +25,7 @@ const Appointments = ({ isAppPage }) => {
   const renderAppointmentsList = () => {
     if (isLoading) {
       return (
-        <div className="loading-placeholder">
+        <div className="loading-placeholder text-primary">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>

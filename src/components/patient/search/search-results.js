@@ -39,7 +39,7 @@ function SearchResults() {
 
     if (isLoading) {
         return (
-            <div className="d-flex justify-content-center align-items-center my-5 " style={{minHeight:'50vh'}}>
+            <div className="d-flex justify-content-center align-items-center my-5 text-primary" style={{minHeight:'50vh'}}>
                 <Spinner animation="border" role="status" variant="primary">
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
@@ -74,15 +74,6 @@ function SearchResults() {
                                     onChange={handleSortChange}
                                     className="react-select-container"
                                     classNamePrefix="react-select"
-                                    isSearchable={false}
-                                    styles={{
-                                        control: (base) => ({
-                                            ...base,
-                                            minWidth: '200px',
-                                            borderColor: '#dee2e6',
-                                            '&:hover': { borderColor: '#adb5bd' }
-                                        })
-                                    }}
                                 />
                             </div>
                         )}

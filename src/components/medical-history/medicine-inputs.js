@@ -22,6 +22,7 @@ function MedicineInputs({ id, name, dose, duration, description }) {
                         type="text"
                         name="name"
                         value={name}
+                        className='bg-white'
                         placeholder="Medicine Name"
                         onChange={medicineChange}
                     />
@@ -33,6 +34,7 @@ function MedicineInputs({ id, name, dose, duration, description }) {
                     <Form.Control
                         type="text"
                         name="dose"
+                        className='bg-white'
                         value={dose}
                         placeholder="Dosage per day"
                         onChange={medicineChange}
@@ -45,6 +47,7 @@ function MedicineInputs({ id, name, dose, duration, description }) {
                     <Form.Control
                         type="number"
                         name="duration"
+                        className='bg-white'
                         value={duration}
                         placeholder="Duration (weeks)"
                         onChange={medicineChange}
@@ -57,6 +60,7 @@ function MedicineInputs({ id, name, dose, duration, description }) {
                     <Form.Control
                         type="text"
                         name="description"
+                        className='bg-white'
                         value={description}
                         placeholder="Additional description"
                         onChange={medicineChange}

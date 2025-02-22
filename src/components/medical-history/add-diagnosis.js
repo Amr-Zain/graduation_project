@@ -6,7 +6,7 @@ import { Form, Button, Alert, Spinner, Card, Container } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 function AddDiagnosis({ patientId }) {
-    const { description, error, medicines, successed, isLoading } = useSelector(state => state.medicalHistory.diagnosisFrom);
+    const { description, error, medicines, isLoading } = useSelector(state => state.medicalHistory.diagnosisFrom);
     const MedicinedList = medicines.map((med) => <MedicineInputs key={med.id} id={med.id} {...med} />);
     const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ function AddDiagnosis({ patientId }) {
 
     return (
         <Container className="my-4">
-            <Card className="shadow-sm">
+            <Card className="shadow-sm bg-white">
                 <Card.Body>
                     <Form onSubmit={handleSubmitDiagnosis}>
                         <Card.Title className="mb-4">Add New Diagnosis</Card.Title>
@@ -55,7 +55,7 @@ function AddDiagnosis({ patientId }) {
                         {medicines.length > 0 && (
                             <Card className="mb-4">
                                 <Card.Header as="h5">Medicines</Card.Header>
-                                <Card.Body>
+                                <Card.Body >
                                     <div className="row g-3">
                                         {MedicinedList}
                                     </div>

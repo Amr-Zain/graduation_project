@@ -1,6 +1,6 @@
+
+
 /* Add to your CSS file */
-
-
 
 .card-hover-effect {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -13,6 +13,7 @@
 .card-hover-effect a:hover{
     text-decoration: underline!important;
 }
+
 /*med table*/
 .medicines-table th {
     background-color: #0e4067 ;

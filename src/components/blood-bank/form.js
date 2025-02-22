@@ -77,7 +77,7 @@ function BloodBankForm({ isRequest }) {
     useEffect(()=>{
         if(cities.length === 0)dispatch(getCitiesAndSpecializations('cities'))
     },[ ]);
-    return (  <Form onSubmit={submit} className="border p-4 rounded-3 shadow-sm"style={{backgroundColor:'#fff'}}>
+    return (  <Form onSubmit={submit} className="border p-4 rounded-3 shadow-sm bg-white">
         <h2 className="mb-4 text-center">{isRequest?'Donation Request':'Blood Donation'} </h2>
 
         <Form.Group className="mb-4">

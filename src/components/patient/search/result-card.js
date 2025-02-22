@@ -14,7 +14,7 @@ const ResultCard = ({ isPage, id, name, imageURL, specialization, fees,
 
     return (
         <Col md={12} lg={12} className="mb-2">
-            <Card className="h-100 shadow-sm hover-shadow">
+            <Card className="h-100 shadow-sm hover-shadow  bg-white">
                 <Row className="g-0 h-100">
                     <Col sm={4} className="d-flex align-items-center ">
                         <Card.Img 
@@ -27,8 +27,10 @@ const ResultCard = ({ isPage, id, name, imageURL, specialization, fees,
                         <Card.Body className="h-100 d-flex flex-column">
                             <div className="d-flex justify-content-between align-items-start mb-3">
                                 <Card.Title className="mb-0">
-                                    {type === 'doctor' && 'Dr. '}
-                                    {name}
+                                    <Link to={`/${PROFILE}/${type}/${id}`} className='underline-pointer text-dark'>
+                                        {type === 'doctor' && 'Dr. '}
+                                        {name}
+                                    </Link>
                                 </Card.Title>
                                 <Badge bg="warning" className="d-flex align-items-center gap-1">
                                     <AiFillStar />
@@ -69,7 +71,7 @@ const ResultCard = ({ isPage, id, name, imageURL, specialization, fees,
                                         <MdEmail className="text-primary" />
                                         <Button 
                                             variant="link" 
-                                            className="p-0 text-decoration-none"
+                                            className="p-0 text-dark text-decoration-none underline-pointer"
                                             href={`mailto:${email}`}
                                         >
                                             {email}

@@ -16,7 +16,7 @@ const DoctorNurseCard = ({ id, imageURL, name, rating, specialization }) => {
 
     return (
         <Col  sm={8} md={7} lg={5} xl={4} className="mb-4" style={{maxWidth:'fit-content'}}>
-        <Card className="h-100 appointment-card shadow-sm" onClick={handleClick}>
+        <Card className="h-100 appointment-card shadow-sm  bg-white" onClick={handleClick}>
             <Card.Body className="d-flex flex-column">
                 <div className="d-flex align-items-start mb-3">
                     <Card.Img
@@ -32,7 +32,7 @@ const DoctorNurseCard = ({ id, imageURL, name, rating, specialization }) => {
                         }}
                     />
                     <div className="flex-grow-1">
-                        <Card.Title className="mb-0 "/* text-primary */ style={{ cursor: 'pointer',color:'var(--text--primary)' }}>
+                        <Card.Title className="mb-0 text-dark underline-pointer" >
                             {name}
                         </Card.Title>
                         <div className="d-flex align-items-center mt-2">
@@ -41,7 +41,7 @@ const DoctorNurseCard = ({ id, imageURL, name, rating, specialization }) => {
                         </div>
                         {specialization && (
                     <div className="mt-auto">
-                        <p className="text-secondary mb-0">
+                        <p className=" mb-0">
                             Specialization: {specialization}
                         </p>
                     </div>

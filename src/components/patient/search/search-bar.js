@@ -9,12 +9,13 @@ import DataList from './data-list';
 import { bloodTypes, searchTypes } from '../../../api/api';
 import { PATIENT, SEARCH } from '../../../constants/routes';
 import '../../../style/search-section.css'
+import { Button } from 'react-bootstrap';
 const SearchBar = ({ isOverlay, removeOverlay })=>{
 
     const {searchFor, availability, sort, page, specialization, name, gender, bloodType, city } = useSelector(store=>store.search.filter);
     const { cities, specializations } = useSelector(store=>store.citiesAndSpecializations);
     const dispatch = useDispatch();
-    const [ searchParams, setSearshParams ] = useSearchParams();
+    const [ , setSearshParams ] = useSearchParams();
     const navigate = useNavigate();
     const handleSearch = () => {
         if (removeOverlay) removeOverlay();
@@ -74,18 +75,20 @@ return(<>
             />
             </div>
         )}
-        <div style={{ order: '10' }} className="search-button">
-            <button
-            className="icon-search"
-            onClick={handleSearch}
-            onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                handleSearch();
-                }
-            }}
+        <div style={{ order: '10' }} >
+            <Button 
+                onClick={handleSearch}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                    handleSearch();
+                    }
+                }}
+                variant="primary" 
+                type="submit" 
+                style={{whiteSpace:'nowrap'}}
             >
-            <BiSearch /> Search
-            </button>
+                 <BiSearch /> Search
+            </Button>
         </div>
         </>);}
 

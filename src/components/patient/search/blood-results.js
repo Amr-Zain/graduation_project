@@ -8,7 +8,7 @@ const BloodCard = ({ id, name, bloodType, city, email, date }) => {
 
     return (
         <Col md={12} lg={6} className="mb-4">
-            <Card className="h-100 shadow-sm hover-shadow">
+            <Card className="h-100 shadow-sm hover-shadow  bg-white">
                 <Card.Body className="d-flex flex-column gap-2">
                     <div className="d-flex justify-content-between align-items-start">
                         <Card.Title className="mb-0 fs-4">
@@ -21,22 +21,21 @@ const BloodCard = ({ id, name, bloodType, city, email, date }) => {
 
                     <Card.Text className="text-muted">
                         <p>{city}</p>
-                        <small>Last Donation:</small> {new Date(date).toDateString()}
+                        <small>Donation Day:</small> {new Date(date).toDateString()}
                     </Card.Text>
 
                     <Row className="g-2 mt-2">
-                        <Col xs={12} md={6}>
+                        <Col xs={6}>
                             <Button 
                                 variant="outline-primary" 
-                                className="w-100 d-flex align-items-center gap-2"
+                                className="w-100 d-flex align-items-center gap-2 underline-pointer"
                                 href={`mailto:${email}`}
                             >
-                                <MdEmail />
-                                <span className="d-none d-sm-inline">Email</span>
+                                <MdEmail className="text-primary" />
+                                <span className="d-inline">Email</span>
                             </Button>
                         </Col>
-                        
-                        <Col xs={12} md={6}>
+                        <Col xs={6}>
                             <Button 
                                 variant="primary" 
                                 className="w-100 d-flex align-items-center gap-2"
@@ -45,7 +44,7 @@ const BloodCard = ({ id, name, bloodType, city, email, date }) => {
                                 }}
                             >
                                 <BsFillChatDotsFill />
-                                <span className="d-none d-sm-inline">Chat</span>
+                                <span className="d-inline">Chat</span>
                             </Button>
                         </Col>
                     </Row>

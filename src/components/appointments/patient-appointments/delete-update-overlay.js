@@ -17,7 +17,6 @@ function DeleteUpdateModal({
   const [date, setDate] = useState(new Date());
   const { 
     appointmentUpdateLoading: isLoading, 
-    appointmentUpdateError: error 
   } = useSelector(store => store.appointments);
 
   const handleClose = () => setOverlay({ show: false });
@@ -25,7 +24,7 @@ function DeleteUpdateModal({
   const handleConfirm = async () => {
     try {
       if (type === 'delete') {
-        toast.promise(
+        await toast.promise(
           dispatch(cancelAppointment({ id })),
           {
             pending: 'Canceling appointment...',
@@ -38,7 +37,7 @@ function DeleteUpdateModal({
           }
         );
       } else if (type === 'update') {
-        toast.promise(
+        await toast.promise(
           dispatch(updateAppointment({ id, date })),
           {
             pending: 'Updating appointment...',
@@ -72,12 +71,11 @@ function DeleteUpdateModal({
       </Modal.Header>
 
       <Modal.Body className="py-4">
-        <p className="mb-4" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+        <p className="mb-4">
           Do you want to {type} the appointment with{' '}
           <Link 
             to={`/${PROFILE}/${appType}/${DoctorNurseId}`}
-            className="fw-bold text-decoration-none"
-            style={{ color: 'var(--primary)' }}
+            className="fw-bold underline-pointer text-dark"
           >
             {name}
           </Link>?
@@ -103,12 +101,7 @@ function DeleteUpdateModal({
         <Button
           variant="secondary"
           onClick={handleClose}
-          className="px-4"
-          style={{
-            backgroundColor: 'var(--background-white)',
-            color: 'var(--text-primary)',
-            border: 'none'
-          }}
+          className="px-4 bg-white text-dark border-0"
         >
           Cancel
         </Button>

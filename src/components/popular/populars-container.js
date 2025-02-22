@@ -11,7 +11,7 @@ const PopulersContainer = ({ DoctorsOrNurses, isLoading, type }) => {
             <Container className="appointments-container">
                 <Row className="g-4 flex-nowrap">
                     {isLoading ? (
-                        <div className="loading-placeholder">
+                        <div className="loading-placeholder  text-primary">
                             <Spinner animation="border" role="status">
                                 <span className="visually-hidden">Loading...</span>
                             </Spinner>

@@ -42,7 +42,7 @@ export default function DiagnosisList({ patientId }) {
     const renderDiagnosis = () => {
         if (isLoading) {
             return (
-                <div className="text-center my-5">
+                <div className="text-center my-5 text-primary">
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
@@ -53,7 +53,7 @@ export default function DiagnosisList({ patientId }) {
         if (error) {
             return <Alert variant="danger" className="my-4">Error: {error}</Alert>;
         }
-
+    
         return (
             <Row xs={1} md={2} lg={3} className="g-4">
                 {diagnosis.map(diag => (
@@ -67,7 +67,7 @@ export default function DiagnosisList({ patientId }) {
 
     return (
         <>
-            <Card className="shadow-sm mb-4">
+            <Card className="shadow-sm mb-4  bg-white">
                 <Card.Body>
                     <Row className="g-3 justify-content-center align-items-end">
                         <Col xs={12} md={6} lg={3}>

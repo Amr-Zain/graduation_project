@@ -23,7 +23,7 @@ function PatientInfo({ patientId }) {
 
     if (isLoading) {
         return (
-            <Card className="shadow-sm mt-5 p-4"> 
+            <Card className="shadow-sm mt-5 p-4 bg-white"> 
                 <Card.Body className="d-flex justify-content-center align-items-center p-4">
                     <div className="loading-placeholder">
                         <Spinner animation="border" role="status">
@@ -47,7 +47,7 @@ function PatientInfo({ patientId }) {
     }
 
     return (
-        <Card className="shadow-sm mt-5 p-4"> 
+        <Card className="shadow-sm mt-5 p-4  bg-white"> 
             <Card.Body>
                 <Row className="align-items-center"> 
                     <Col xs="auto"> 

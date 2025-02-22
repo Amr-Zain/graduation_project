@@ -37,7 +37,7 @@ export default function Medicines({ patientId, isDiagnosis, medicines: Diagnosis
 
     if (isLoading) {
         return (
-            <div className="text-center my-4">
+            <div className="text-center my-4 text-primary">
                 <Spinner animation="border" role="status" size="sm">
                     <span className="visually-hidden">Loading medicines...</span>
                 </Spinner>
@@ -56,7 +56,7 @@ export default function Medicines({ patientId, isDiagnosis, medicines: Diagnosis
     return (
         <>
             <div className="table-responsive">
-                <Table striped bordered hover className="medicines-table">
+                <Table striped bordered hover className="medicines-table shadow-sm border rounded">
                     <thead className="" >
                         <tr>
                             <th className="medicine-mobile-sm" >Medicine </th>

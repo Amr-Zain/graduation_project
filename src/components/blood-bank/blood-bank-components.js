@@ -3,13 +3,13 @@ import { BLOOD_BANK, BLOOD_DONATION, BLOOD_REQUEST, PATIENT } from "../../consta
 import { Row, Col } from "react-bootstrap";
 
 function BloodBankComponents() {
-    return ( <Row className="min-vh-100 g-4 justify-content-around align-items-center">
+    return ( <Row className="my-auto g-4 justify-content-around align-items-center"style={{minHeight:'50vh'}}>
         <Col xs={5} md={4} className="text-center">
             <Link 
                 to={`/${PATIENT}/${BLOOD_BANK}/${BLOOD_DONATION}`} 
                 className="text-decoration-none text-dark"
             >
-                <div className="p-4 border rounded-3 shadow-sm hover-effect" style={{backgroundColor:'#fff'}}>
+                <div className="p-4 border rounded-3 shadow-sm hover-effect bg-white" >
                     <img 
                         src="/images/blood_donation.png" 
                         alt="Blood donation" 
@@ -28,7 +28,7 @@ function BloodBankComponents() {
                 className="text-decoration-none text-dark"
                 
             >
-                <div className="p-4 border rounded-3 shadow-sm hover-effect" style={{backgroundColor:'#fff'}}>
+                <div className="p-4 border rounded-3 shadow-sm hover-effect bg-white">
                     <img 
                         src="/images/blood_request.png" 
                         alt="Blood request" 

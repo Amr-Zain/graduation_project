@@ -90,7 +90,9 @@
     position: absolute;
     width: 60px;
 }
-
+.next a, .previous a {
+    color: var(--text-color-white), i !important;
+}
 .next {
     border-left: solid 1px var(--border-color);
     right: 0;

@@ -17,7 +17,7 @@ export default function Diagnosis({ children, id, doctorId, doctorImageURL, pati
     };
 
     return (
-        <Card className={`mb-1 shadow-sm card-hover-effect ${isPage?'mt-5':''}`} onClick={handleDiagnosisClick} style={{ cursor: 'pointer' }}>
+        <Card className={`mb-1 shadow-sm card-hover-effect bg-white ${isPage?'mt-5':''}`} onClick={handleDiagnosisClick} style={{ cursor: 'pointer' }}>
             <Card.Body>
                 <Row className="g-3 align-items-center">
                     <Col xs="auto">
@@ -48,7 +48,6 @@ export default function Diagnosis({ children, id, doctorId, doctorImageURL, pati
                     </Col>
                 </Row>
 
-                {/* Diagnosis Content */}
                 <div className="mt-3">
                     <Card.Text className="mb-2">
                         <strong>Description:</strong> {description}

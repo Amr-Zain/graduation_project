@@ -17,26 +17,24 @@ navigate(`/${PROFILE}/${type}/${id}`);
 
 return (
 <Col xs={12} sm={6} md={6} lg={4} className="mb-4" style={{maxWidth:'320px'}}>
-    <Card  className="h-90 appointment-card align-items-center shadow-sm p-0">
+    <Card  className="h-90 appointment-card align-items-center shadow-sm p-0  bg-white" >
     <Card.Body className="d-flex flex-column">
         <div className="d-flex align-items-center mb-3">
         <Card.Img
             variant="top"
             src={img || DEFAULT_IMG_URL}
             alt={`${type === 'doctor' ? 'Dr.' : 'Nurse'} ${name}`}
-            className="rounded-circle me-3"
+            className="rounded-circle me-3 underline-pointer"
             style={{ 
             width: '80px', 
             height: '80px', 
             objectFit: 'cover', 
-            cursor: 'pointer' 
             }}
             onClick={handleDoctorClick}
         />
         <div className="flex-grow-1">
             <Card.Title 
-            className="mb-0 "/* text-primary */ 
-            style={{ cursor: 'pointer', color:'var(--text--primary)' }}
+            className="mb-0 text-dark underline-pointer"
             onClick={handleDoctorClick}
             >
             {`${type === 'doctor' ? 'Dr.' : 'Nurse'} ${name}`}
