@@ -1,45 +1,58 @@
-import { RiStethoscopeLine } from 'react-icons/ri';
-import { MdLocationPin , MdEmail} from 'react-icons/md';
-import { BiMoney } from 'react-icons/bi';
-import { AiFillStar } from 'react-icons/ai';
-import '../../../style/appointment.css'
-import { Link, useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
-import { DOCTOR, PROFILE } from '../../../constants/routes';
-import { BsFillChatDotsFill } from 'react-icons/bs'
-/* chunck shape { id: 30, number: 6, isReserved: true } */
-const BloodCard = ({ id, name, bloodType, email, date })=>{
-    const { for: type } = useParams();
+import { Card, Row, Col, Button, Badge } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { BsFillChatDotsFill } from 'react-icons/bs';
+import { MdEmail } from 'react-icons/md';
+
+const BloodCard = ({ id, name, bloodType, city, email, date }) => {
     const navigate = useNavigate();
-   
-    return(
-        <Col md={12} lg={6} className={'gx-2'}>
-            <div className="card" onClick={()=>navigate('chat/'+id)}>
-                <div className="card-content" style={{flexGrow: '1'}} >
-                    <div className="name">
-                        <h3 >{name} </h3>
+
+    return (
+        <Col md={12} lg={6} className="mb-4">
+            <Card className="h-100 shadow-sm hover-shadow">
+                <Card.Body className="d-flex flex-column gap-2">
+                    <div className="d-flex justify-content-between align-items-start">
+                        <Card.Title className="mb-0 fs-4">
+                            {name}
+                            <Badge bg="danger" className="ms-2">
+                                {bloodType}
+                            </Badge>
+                        </Card.Title>
                     </div>
-                    <div className="blood-type">
-                        <p><span style={{marginRight: '.2rem'}}>Blood Type:</span>{bloodType}</p>
-                    </div>
-                    <div> 
-                        { new Date(date).toDateString()}
-                    </div>
-                    <div className='chat-icon'>
-                        chat icon
-                    </div>
-                    <div className='email'>
-                        <MdEmail />
-                        <p onClick={(e) => {window.location.href ='mailto:'+email;}}>{email}</p>
-                    </div>
-                    <div className='chat-icon'>
-                        <BsFillChatDotsFill />
-                    </div>
-                </div>
-            </div>
+
+                    <Card.Text className="text-muted">
+                        <p>{city}</p>
+                        <small>Last Donation:</small> {new Date(date).toDateString()}
+                    </Card.Text>
+
+                    <Row className="g-2 mt-2">
+                        <Col xs={12} md={6}>
+                            <Button 
+                                variant="outline-primary" 
+                                className="w-100 d-flex align-items-center gap-2"
+                                href={`mailto:${email}`}
+                            >
+                                <MdEmail />
+                                <span className="d-none d-sm-inline">Email</span>
+                            </Button>
+                        </Col>
+                        
+                        <Col xs={12} md={6}>
+                            <Button 
+                                variant="primary" 
+                                className="w-100 d-flex align-items-center gap-2"
+                                onClick={(e) => {
+                                    navigate('chat/' + id);
+                                }}
+                            >
+                                <BsFillChatDotsFill />
+                                <span className="d-none d-sm-inline">Chat</span>
+                            </Button>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
         </Col>
-);    
-}
+    );
+};
 
 export default BloodCard;

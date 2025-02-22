@@ -12,7 +12,7 @@ function DataList(props) {
         <DatalistInput
             value={String(props.value).charAt(0).toUpperCase() + String(props.value).slice(1)}
             listboxProps={{
-                "aria-hidden": "false", // Force override
+                "aria-hidden": "false", 
             }}
             id={props.name}
             name={props.name}

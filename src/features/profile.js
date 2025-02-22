@@ -1,16 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {  createDoctorApointment, createNurseAppointment, getClinic, getProfileData, setAppointment } from "../api/data";
+import { DOCTOR } from "../constants/routes";
 
+
+
+const d = new Date(); 
 const initialState = {
     profileData:{ 
         isLoading: false,
         error:''
     },
     clinic:{
-        initShecheduleDate: new Date().getTime(),
-        appointmentTime: 0,
+        initShecheduleDate: new Date(d.getFullYear(),d.getMonth(),d.getDay(),9).getTime(),//that houre will be handled later in the backend
+        appointmentTime: null,
         shecheduleDay:[],//
-        clinicId:'',
+        clinicId:null,
         clinicName:'',
         clinicLocation:'',
         appointmentPeriod:0, //in minutes,
@@ -41,8 +45,7 @@ export const getClinicAppointments = createAsyncThunk('profile/getClinicAppointm
 export const bookAppointment = createAsyncThunk('profile/bookAppointment', 
     async ({ type, date,clinicId, doctorId, nurseId }, thunkAPI)=>{
     try {
-        if( !date ) throw new Error('please Select Date')
-        if(type ==='doctor')   {
+        if(type ===DOCTOR)   {
             return await createDoctorApointment({ date, clinicId, doctorId});
             //add to the appointments slice
         } 
@@ -61,9 +64,13 @@ const profile = createSlice({
         },
         setAppointmentTime: (state, { payload })=>{
             state.clinic.appointmentTime = payload.appointmentTime;
+            state.error ='';
         },
         setInitShecheduleDate:( state, { payload })=>{
             state.clinic.initShecheduleDate = payload.initDate;
+        },
+        setError:(state,{ payload })=>{
+            state.error = payload;
         }
 
     },
@@ -88,8 +95,9 @@ const profile = createSlice({
                 state.clinic.error ='';
                 state.error ='';
             })
-            .addCase(getClinicAppointments.fulfilled, (state, action) => {
-                state.clinic = {appointmentTime:'',...action.payload.clinic, isLoading: false, error:'' }
+            .addCase(getClinicAppointments.fulfilled, (state, {payload}) => {
+                
+                state.clinic = {appointmentTime:'',...payload.clinic, isLoading: false, error:'' }
             })
             .addCase(getClinicAppointments.rejected, (state, { payload}) => {
                 state.clinic.isLoading = false;
@@ -111,7 +119,7 @@ const profile = createSlice({
     },
 });
 
-export const { setClinicId, setInitShecheduleDate, setAppointmentTime } = profile.actions
+export const { setClinicId, setInitShecheduleDate, setAppointmentTime, setError } = profile.actions
 
 export default profile.reducer;
 

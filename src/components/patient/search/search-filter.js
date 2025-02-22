@@ -1,8 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "../../../features/search";
-
-import '../../../style/searchfilter.css';
-import RadioGroup from './radio-group';
+import { useSelector } from "react-redux";
+import RadioGroup from "./radio-group";
 
 const GENDER_OPTIONS = [
     { id: 'anyGend', value: '0', label: 'Any' },
@@ -18,33 +15,30 @@ const AVAILABILITY_OPTIONS = [
 
 function SearchFilter({ overlay }) {
     const { searchFor, gender, availability } = useSelector(store => store.search.filter);
-    const dispatch = useDispatch();
 
-    const handleChange = (e) => dispatch(setFilter({ [e.target.name]: e.target.value }));
+
+    
 
     return (
-        <aside className={overlay ? "filter-overlay" : "search-filter"}>
-            <section className="collection">
+        <aside>
+            <section className="collection p-2" style={{display:overlay?'flex':'block',justifyContent:'space-between'}}>
                 {(searchFor === 'doctor' || searchFor === 'nurse') && (
                     <RadioGroup
-                        title="Gender"
-                        name="gender"
-                        options={GENDER_OPTIONS}
-                        selectedValue={gender}
-                        onChange={handleChange}
+                        title= "Gender"
+                        name= "gender"
+                        options= {GENDER_OPTIONS}
+                        selectedValue= {gender}
                     />
                 )}
                 <RadioGroup
-                    title="Availability"
-                    name="availability"
-                    options={AVAILABILITY_OPTIONS}
-                    selectedValue={availability}
-                    onChange={handleChange}
+                    title= "Availability"
+                    name= "availability"
+                    options= {AVAILABILITY_OPTIONS}
+                    selectedValue= {availability}
                 />
             </section>
         </aside>
     );
 }
-
 
 export default SearchFilter;

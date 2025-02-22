@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import DataList from './data-list';
 import { bloodTypes, searchTypes } from '../../../api/api';
 import { PATIENT, SEARCH } from '../../../constants/routes';
+import '../../../style/search-section.css'
 const SearchBar = ({ isOverlay, removeOverlay })=>{
 
     const {searchFor, availability, sort, page, specialization, name, gender, bloodType, city } = useSelector(store=>store.search.filter);

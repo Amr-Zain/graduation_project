@@ -1,0 +1,164 @@
+
+
+/*cart*/
+.doctor-nurse-img{
+    height: 17rem;
+}
+
+@media (min-width:576px) {
+    .doctor-nurse-img{
+        height: 100%;
+    }
+}
+
+/*search fiter overlay*/
+@media (max-width: 576px) {
+    .offcanvas { 
+        width: 85% !important; 
+    }
+}
+
+
+
+
+/*pagination*/
+
+.result-pagination {
+    flex: 1 1 75%;
+}
+.result-pagination .search-results .search-sort{
+    padding: 1rem .25rem
+}
+.search-results .results{
+    display:'flex';
+    flex-wrap:'wrap';
+}
+.filter-icon{
+    display: none;
+}
+.search-sort-select {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.filter-icon p{
+    margin: 0 !important;
+}
+.pagination ul {
+    width: 100%;
+}
+
+.pagination {
+    --border-color: #808e9b;
+    align-items: center;
+    background-color: var(--main-blue-vesion2);
+    border-radius: 0.25rem;
+    box-shadow: 1px 5px 16px -4.5px;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    justify-content: center;
+    list-style-type: none;
+    position: relative;
+    width: 100%;
+}
+
+.item {
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 0.8rem;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.disabled-page {
+    color: var(--gray--text);
+}
+
+.active {
+    border: solid 1px var(--border-color);
+    border-radius: 40px;
+    color: var(--border-color);
+}
+
+.next,
+.previous {
+    height: 50px;
+    position: absolute;
+    width: 60px;
+}
+
+.next {
+    border-left: solid 1px var(--border-color);
+    right: 0;
+}
+
+.previous {
+    border-right: solid 1px var(--border-color);
+    left: 0;
+}
+
+.filter-icon {
+    display: flex;
+    align-items: center;
+}
+
+.search-sort {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-results {
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .item {
+        font-size: 0.9rem;
+        height: 35px;
+        width: 35px;
+    }
+
+    .next,
+    .previous {
+        width: 70px;
+    }
+
+    .pagination {
+        height: 60px;
+    }
+}
+
+@media (min-width: 768px) {
+    .item {
+        font-size: 1rem;
+        height: 45px;
+        width: 45px;
+    }
+
+    .next,
+    .previous {
+        width: 100px;
+    }
+
+    .filter-icon {
+        display: none;
+    }
+
+    .search-sort {
+        display: block;
+    }
+}
+
+@media (min-width: 1200px) {
+    .search-results {
+        width: auto;
+    }
+}
+
+.pagination-page {
+    font-weight: 700;
+}

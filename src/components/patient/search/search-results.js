@@ -1,68 +1,116 @@
-import { MdFilterListAlt } from 'react-icons/md';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
+import Select from 'react-select';
+import { MdFilterListAlt } from 'react-icons/md';
 import { setFilter } from '../../../features/search';
 import SearchFilterOverlay from "./search-filter-overlay";
 import ResultCard from "./result-card";
-import '../../../style/search-results.css'
-import '../../../style/result-card.css';
-import { useEffect, useState } from 'react';
-import { getSearchResult } from '../../../features/search'
-import { Row } from 'react-bootstrap';
 import BloodCard from './blood-results';
-import { useLocation } from 'react-router-dom';
+import { getSearchResult } from '../../../features/search';
+
+const sortOptions = [
+    { value: '0', label: 'Best Matched' },
+    { value: '1', label: 'Top Rating' },
+    { value: '2', label: 'Price Low to High' },
+    { value: '3', label: 'Price High to Low' }
+];
 function SearchResults() {
-    const { filter:{ searchFor, sort },result:{data, count}, isLoading, error } = useSelector(store=>store.search);
+    const { filter: { searchFor, sort }, result: { data, count }, isLoading, error } = useSelector(store => store.search);
     const dispatch = useDispatch();
-    const [ overlay, setOverlay ] = useState(false);
-    const handleChange = (e)=>{
-        dispatch(setFilter({[e.target.name]:e.target.value}));
-    }
+    const [overlay, setOverlay] = useState(false);
     const location = useLocation();
+
+
+    const handleSortChange = (selectedOption) => {
+        dispatch(setFilter({ sort: selectedOption.value }));
+    };
+    const [searchParams] = useSearchParams();
     
-    const Result = (searchFor ==='doctor' || searchFor  === 'nurse')? ResultCard : BloodCard;
-    const ResultsItems = data.map(item=><Result key={item.id} {...item} />)
-    useEffect(()=>{
-        dispatch(getSearchResult({ searchQueries: location.search}))
-    },[location.search])
-    if( isLoading){
-        return 'Loading...';
+    const cartType = searchParams.get('searchFor')
+    const Result = (cartType === 'doctor' || cartType === 'nurse') ? ResultCard : BloodCard;
+    const ResultsItems = data.map(item => (
+            <Result key={item.id} {...item} />));
+
+    useEffect(() => {
+        dispatch(getSearchResult({ searchQueries: location.search }));
+    }, [dispatch, location.search]);
+
+    if (isLoading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center my-5 " style={{minHeight:'50vh'}}>
+                <Spinner animation="border" role="status" variant="primary">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
-    return ( 
+
+    return (
         <>
             <aside className="search-results">
-                <div className='search-sort'>
-                    <div className='filter-icon' onClick={()=>setOverlay(true)}>
-                        <MdFilterListAlt /> <p>filter</p>
-                    </div>
-                    <div className='search-sort-select'>
-                        <div className='result-count'>
-                            Search results: {count}
+                <div className="d-flex justify-content-between justify-content-md-end align-items-start align-items-sm-center my-3">
+                    <Button 
+                        variant="outline-secondary" 
+                        onClick={() => setOverlay(true)}
+                        className="d-flex d-md-none align-items-center gap-2 mb-2 mb-md-0"
+                    >
+                        <MdFilterListAlt />
+                        <span>Filters</span>
+                    </Button>
+
+                    <div className="d-flex flex-wrap flex-sm-row flex-column-reverse align-items-start align-items-sm-center gap-1 gap-sm-3">
+                        <div className="text-muted px-2">
+                            Results: <strong>{count}</strong>
                         </div>
-                        { 
-                        (searchFor ==='doctor' || searchFor  === 'nurse')
-                        &&
-                        <div>
-                            <label> Sort By:  </label>
-                            <select name="sort" value={sort} onChange={handleChange}>
-                                <option id='0' value = '0'>Best Matched</option>
-                                <option id='1' value='1'>Top Rating</option>
-                                <option id='2' value='2'>Price Low to High</option>
-                                <option id='3' value='3'>Price High to Low</option>
-                            </select>
-                        </div>
-                        }
+                        
+                        {(searchFor === 'doctor' || searchFor === 'nurse') && (
+                            <div className="d-flex  align-items-center gap-2">
+                                <span className="text-muted d-none d-sm-block">Sort by:</span>
+                                <Select
+                                    options={sortOptions}
+                                    value={sortOptions.find(option => option.value === sort)}
+                                    onChange={handleSortChange}
+                                    className="react-select-container"
+                                    classNamePrefix="react-select"
+                                    isSearchable={false}
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            minWidth: '200px',
+                                            borderColor: '#dee2e6',
+                                            '&:hover': { borderColor: '#adb5bd' }
+                                        })
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className='results' >
-                    {error&&<div>Error: {error}</div>}
-                    
-                    <Row style={{width: '100%',margin: '0'}}>
-                        {ResultsItems}
-                    </Row>
-                </div>
+
+                {error && (
+                    <Alert variant="danger" className="mb-4">
+                        Error: {error}
+                    </Alert>
+                )}
+
+                <Row className="g-4">
+                    {data.length > 0 ? (
+                        ResultsItems
+                    ) : (
+                        <Col>
+                            <Alert variant="info" className="text-center">
+                                No results found
+                            </Alert>
+                        </Col>
+                    )}
+                </Row>
             </aside>
+
             {overlay && <SearchFilterOverlay setOverlay={setOverlay} />}
-            </>);
+        </>
+    );
 }
 
 export default SearchResults;

@@ -1,11 +1,12 @@
-function Input(props) {
+function Input({ type, placeholder, register,error, ...rest}) {
     return ( <div>
                 <input
-                    type={props.type}
-                    placeholder={props.placeholder}
-                    {...props.register}
+                    type={type}
+                    placeholder={placeholder}
+                    {...register}
+                    {...rest}
                 />
-                {props.error && <span className="error-message">{props.error.message}</span>}
+                {error && <span className="error-message">{error.message}</span>}
             </div> );
 }
 

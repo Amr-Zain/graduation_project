@@ -1,34 +1,48 @@
-import SearchBar from './search-bar'
-import SearchFilter from './search-filter';
-import SearchResults from './search-results';
-import '../../../style/search-section.css'
-import '../../../style/search-filter.css'
-import '../../../style/search-filter-overlay.css'
-import SearchPagination from './search-pagination';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import SearchBar from './search-bar';
+import SearchFilter from './search-filter';
+import SearchResults from './search-results';
+import SearchPagination from './search-pagination';
 import { setFilter } from '../../../features/search';
-
+import '../../../style/search.css'
 
 function Search() {
-    //I should get the queires in hear and set the state of filter to be reltive to it
-    const [ searchParams ] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
-    useEffect(()=>{
+
+    useEffect(() => {
         dispatch(setFilter(Object.fromEntries(searchParams)));
-    },[searchParams])
-    return (<>
-            <section className={"search-section"}>
-                <SearchBar isOverlay={false}/>
-            </section>
-            <div className="search-body" style={{display:'flex',justifyContent:'space-between'}}>
-                <SearchFilter />
-                <div className='result-pagination'>
-                    <SearchResults />
-                    <SearchPagination />
-                </div>
-            </div> 
-        </>);
+    }, [dispatch, searchParams]);
+
+    return (
+        <Container>
+            <Row>
+                <Col xs={12}>
+                    <section className="search-section">
+                        <SearchBar isOverlay={false} />
+                    </section>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={3} className="d-none d-md-block"> 
+                    <section className="search-body">
+                        <SearchFilter />
+                    </section>
+                </Col>
+                <Col md={9}>
+                    <section className="search-body">
+                        <div className='result-pagination'>
+                            <SearchResults />
+                            <SearchPagination />
+                        </div>
+                    </section>
+                </Col>
+            </Row>
+        </Container>
+    );
 }
+
 export default Search;

@@ -1,8 +1,16 @@
-import { createBrowserRouter, Navigate, Outlet, useLocation } from "react-router-dom";
-import { APPOINTMENTS, BLOOD_BANK, BLOOD_DONATION, BLOOD_REQUEST, DIAGNOSIS, DOCTOR, LOGIN, MEDICAL_HISTORY, NURSE, PATIENT, PROFILE, RECEPTIONIST, SEARCH, SIGNUP, UNAUTHORIZED } from "./constants/routes";
-import SharedLayout from "./pages/shared-layout";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import { APPOINTMENTS, BLOOD_BANK, BLOOD_DONATION, BLOOD_REQUEST, DOCTOR, LOGIN, MEDICAL_HISTORY, NURSE, PATIENT, PROFILE, RECEPTIONIST, SEARCH, SIGNUP, UNAUTHORIZED, SETTINGS, DETAILED_DIAGNOSIS } from "./constants/routes";
 import { lazy } from "react";
-import { useSelector } from 'react-redux';
+
+
+import PatientSharedLayout from "./pages/patient/shared-layout";
+import DoctorSharedLayout from "./pages/doctor/shared";
+
+
+import ProtectedRoute from "./routes-components/protected-route";
+import NotFoundOrUnauthorized from "./routes-components/not-found-unauthed";
+import AuthRoute from "./routes-components/authed-routes";
+import { useSelector } from "react-redux";
 
 const SignUp = lazy(() => import('./pages/signup'));
 const Login = lazy(() => import('./pages/login'));
@@ -18,66 +26,26 @@ const BloodDonation = lazy(() => import('./pages/blood-bank/blood-donation'));
 const MedicalHistory = lazy(() => import('./pages/patient/medical-history'));
 const DetailedDiagnosis = lazy(() => import('./pages/patient/detailed-diagnosis'));
 
-const Profile = lazy(() => import('./pages/profile'));
-const NotFound = lazy(() => import('./pages/not_found'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
 
 const DoctorDashboard = lazy(() => import('./pages/doctor/dashboard'));
-const PatientQueue = lazy(() => import('./pages/doctor/patients'));
+const DoctorAppointments =lazy(()=> import("./pages/doctor/appointments"));
+const Settings = lazy(()=>import("./pages/doctor/settings"));
 
 const NurseDashboard = lazy(() => import('./pages/nurse/dashboard'));
 
 const ReceptionistDashboard = lazy(() => import('./pages/receptionist/dashboard'));
 
-
-const ProtectedRoute = ({ allowedRoles, children }) => {
-    const {user} = useSelector(state => state.authedUser);
-    const location = useLocation();
-    console.log(location.pathname)
-    if (Object.keys(user).length === 0) {
-        return <Navigate to={'/'+LOGIN} replace />;
-    }
-
-    if (allowedRoles && !allowedRoles.includes(user.userType)) {
-        return <Navigate to={'/'+UNAUTHORIZED} replace />;
-    }
-
-    return children || <Outlet />;
-};
-
-const AuthRoute = ({ children }) => {
-    const { user } = useSelector(state => state.authedUser);
-
-    if (Object.keys(user).length !==0) {
-        return <Navigate to={`/${user.userType}`} replace />;
-    }
-
-    return <Outlet />;
-};
-
-const Unauthorized = () => (
-    <div>
-        <h1>Unauthorized</h1>
-        <p>You do not have permission to access this page.</p>
-    </div>
-);
+const Profile = lazy(()=>import("./pages/profile"));
 
 
-const NotFoundOrUnauthorized = () => {
-    const {user} = useSelector(state => state.authedUser);
-    const location = useLocation();
 
-    if (location.pathname === '/'+UNAUTHORIZED && Object.keys(user).length === 0) {
-        return <Navigate to={'/'+LOGIN} replace />;
-    }
-
-    if (location.pathname === '/'+UNAUTHORIZED) {
-        return <Unauthorized />;
-    } else {
-        return <NotFound />;
-    }
-};
-
+const SharedLayoutForRoles = ()=>{
+    const {userType} = useSelector(state=>state.authedUser.user);
+    if(userType === PATIENT ) return <PatientSharedLayout />
+    //we will see the other roles later this will be used for profile only 
+    return ;    
+}
 const router = createBrowserRouter([
     {
         path: '/',
@@ -88,51 +56,73 @@ const router = createBrowserRouter([
             { path: SIGNUP, element: <SignUp /> },
         ]
     },
-     {
+    {
         path: '/'+PATIENT,
-        element: <ProtectedRoute allowedRoles={[PATIENT]}><SharedLayout /></ProtectedRoute>,
+        element: <ProtectedRoute allowedRoles={[PATIENT]}><PatientSharedLayout /></ProtectedRoute>,
         children: [
             { index: true, element: <PatientDashboard /> },
             { path: APPOINTMENTS, element: <PatientAppointments /> },
             { path: SEARCH, element: <Search /> },
             {
                 path: BLOOD_BANK,
-                element: <BloodBank />,
                 children: [
+                    {index:true, element: <BloodBank />},
                     { path: BLOOD_REQUEST, element: <BloodRequest /> },
                     { path: BLOOD_DONATION, element: <BloodDonation /> },
                 ]
             },
             {
                 path: MEDICAL_HISTORY,
-                element: <ProtectedRoute allowedRoles={[DOCTOR]} />,
                 children: [
-                    { index: true, element: <MedicalHistory /> },
-                    { path: DIAGNOSIS + '/:diagnosisId', element: <DetailedDiagnosis /> },
+                    { index:true, element: <MedicalHistory /> },
+                    { path: DETAILED_DIAGNOSIS + '/:diagnosisId', element: <DetailedDiagnosis /> },
                 ]
             },
         ]
     },
     {
-        path:'/'+ MEDICAL_HISTORY,
+        path:`/${MEDICAL_HISTORY}`,
+        element: <ProtectedRoute allowedRoles={[DOCTOR]} />,
         children: [
             {
-                path: PATIENT + '/:patientId',
-                element: <MedicalHistory />
+                path: `:patientId`,
+                children:[
+                    {
+                        index:true,
+                        element: <MedicalHistory />,
+                    },
+                    {
+                        path:`${DETAILED_DIAGNOSIS}/:diagnosisId`,
+                        element: <DetailedDiagnosis />
+                    },
+                ]
             },
-            {
-                path: PATIENT + DIAGNOSIS + '/:diagnosisId',
-                element: <DetailedDiagnosis />
-            }]
+            ]
     },
     {
         path: '/'+PROFILE + '/:userType/:id',
-        element: <Profile />
+        element: <ProtectedRoute allowedRoles={[PATIENT, DOCTOR, NURSE, RECEPTIONIST]}>
+                        <SharedLayoutForRoles />
+                </ProtectedRoute>,
+        children:[{ index:true,element: <Profile />}]
     },
     {
         path: '/'+DOCTOR,
-        element: <ProtectedRoute allowedRoles={[DOCTOR]} />,
-        children: [{ index: true, element: <DoctorDashboard /> }]
+        element: <ProtectedRoute allowedRoles={[DOCTOR]}><DoctorSharedLayout /></ProtectedRoute>,
+        children: [
+            { 
+                index: true,
+                element: <DoctorDashboard /> 
+            },
+            {
+                path: APPOINTMENTS,
+                element:<DoctorAppointments />
+            },
+            {
+                path: SETTINGS,
+                element:<Settings />
+            },
+        ]
     },
     {
         path: '/'+NURSE,

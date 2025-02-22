@@ -1,50 +1,103 @@
 import MedicineInputs from "./medicine-inputs";
 import { MdAdd } from 'react-icons/md'
-import '../../style/add-diagnosis.css'
 import { useDispatch, useSelector } from "react-redux";
 import { addFormMedicine, createDiagnosis, setFormError, setFromDescription } from "../../features/medicalHistory";
+import { Form, Button, Alert, Spinner, Card, Container } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 function AddDiagnosis({ patientId }) {
-    const { description, error, medicines, successed, isLoading } = useSelector(state=>state.medicalHistory.diagnosisFrom)
-    const MedicinedList = medicines.map((med)=><MedicineInputs key={med.id}  id={med.id}{ ...med } /> )
+    const { description, error, medicines, successed, isLoading } = useSelector(state => state.medicalHistory.diagnosisFrom);
+    const MedicinedList = medicines.map((med) => <MedicineInputs key={med.id} id={med.id} {...med} />);
     const dispatch = useDispatch();
-    const handelSubmitDiagnosis = async(e)=>{
+
+    const handleSubmitDiagnosis = async (e) => {
         e.preventDefault();
-        if(medicines.every(med=>( med.name && med.dose && med.duration )) && description ){
+        if (medicines.every(med => (med.name && med.dose && med.duration)) && description) {
             dispatch(setFormError(''));
-            dispatch(createDiagnosis({ description, medicines, patientId }));
+            await toast.promise(
+                dispatch(createDiagnosis({ description, medicines, patientId })),
+                {
+                    pending:'Submitting The Diagnosis...',
+                    error: error ||'Someting Want Wrong, Please Try Again',
+                    success:'Submited The Diagnosis Successfully'
+                }
+
+            )
+        } else {
+            dispatch(setFormError('Please fill out all medicine fields first'));
         }
-        else dispatch(setFormError( 'Please Fillout The Medicines Fields First' ));        
-    }
-    const addMedicineHandeler= ()=>{
-            dispatch(addFormMedicine());
-    }
-    return ( <div className="add-diagnosis">
-        <form>
-            { error && <div style={{textAlign:'center',color:'red'}} className="error">{error}</div>}
-            { isLoading && <div style={{textAlign:'center'}} className="error">Loading...</div>}
-            { successed && <div style={{textAlign:'center'}} className="error">{successed}</div>}
-            <div className="description">
-                <textarea 
-                    name= 'description'
-                    value={description}
-                    placeholder= 'description'
-                    onChange={(e)=>dispatch(setFromDescription(e.target.value))}
-                />
-            </div>
-            {
-            medicines.length !==0 && 
-                <fieldset>
-                    <legend>Medicines:</legend>
-                    <div className="medicines-input">
-                        {MedicinedList}
-                    </div>
-                </fieldset>
-            }
-            <div className="add-medicine" onClick={addMedicineHandeler}> <MdAdd /> Medicine</div>
-            <button className ='btn-submit' onClick={handelSubmitDiagnosis}>Submit</button>
-        </form>
-    </div> );
+    };
+
+    const addMedicineHandler = () => {
+        dispatch(addFormMedicine());
+    };
+
+    return (
+        <Container className="my-4">
+            <Card className="shadow-sm">
+                <Card.Body>
+                    <Form onSubmit={handleSubmitDiagnosis}>
+                        <Card.Title className="mb-4">Add New Diagnosis</Card.Title>
+
+                        {error && <Alert variant="danger" className="text-center">{error}</Alert>}
+                        
+                        <Form.Group className="mb-4" controlId="diagnosisDescription">
+                            <Form.Label>Diagnosis Description</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={4}
+                                value={description}
+                                placeholder="Enter diagnosis description..."
+                                onChange={(e) => dispatch(setFromDescription(e.target.value))}
+                            />
+                        </Form.Group>
+
+                        {medicines.length > 0 && (
+                            <Card className="mb-4">
+                                <Card.Header as="h5">Medicines</Card.Header>
+                                <Card.Body>
+                                    <div className="row g-3">
+                                        {MedicinedList}
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        )}
+
+                        <Button
+                            variant="outline-primary"
+                            className="mb-4 d-flex align-items-center gap-2"
+                            onClick={addMedicineHandler}
+                            type="button"
+                        >
+                            <MdAdd /> Add Medicine
+                        </Button>
+
+                        <Button 
+                            variant="primary" 
+                            type="submit" 
+                            className="w-100" 
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="ms-2">Submitting...</span>
+                                </>
+                            ) : (
+                                'Submit Diagnosis'
+                            )}
+                        </Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Container>
+    );
 }
 
 export default AddDiagnosis;

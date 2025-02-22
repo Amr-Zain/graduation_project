@@ -1,3 +1,4 @@
+import { appendErrors } from 'react-hook-form';
 import { doctors, specializations, nurses, patients, patientsData, medicines,
     donationRequests, bookedAppointments, receptionists, shechedule, doctorApp, cities, popular_doctors, diagnosis } from './api'
 
@@ -124,6 +125,7 @@ export const getPopulerNurses= async ()=>{
 }
 export const search = async ({ searchQueries,searchFor, city, specialization, 
     bloodType, name, sort,gender, page, limit, availability })=>{
+        
     if(searchFor === 'doctor'){
         const doctorsList = doctors.slice(page*limit, page*limit+limit );
         return new Promise((res)=>{
@@ -173,54 +175,12 @@ export const getProfileData = async ({ id, userType })=>{
     }
 }
 export const getClinic = async ({ clinicId, date })=>{
+    console.log({date})
+    
     return new Promise((res)=>{
         setTimeout(() => {
             res({
-                shecheduleDay:[[
-                { id: 1, number: 'sdlfk;fks', /* , periods: 2  */},
-                { id: 2, number: 2, peroids:1 },
-                { id: 3, number: '3', isReserved: true, peroids:1 },
-                { id: 4, number: '4', peroids:1 },
-                { id: 5, number: 5, peroids:1 },
-                { id: 6, number: 6, peroids:1 },
-            ],
-            [
-                { id: 7, number: 1, isReserved: true, peroids:1 },
-                { id: 8, number: 2, isReserved: true, peroids:1 },
-                { id: 9, number: '3', isReserved: true, peroids:1 },
-                { id: 10, number: '4', peroids:1 },
-                { id: 11, number: 5, peroids:1 },
-                { id: 12, number: 6, peroids:1 }
-            ],
-            [
-                { id: 13, number: 1, peroids:1 },
-                { id: 14, number: 2, peroids:1 },
-                { id: 15, number: 3, isReserved: true, peroids:1 },
-                { id: 16, number: '4', peroids:1 },
-                { id: 17, number: 5, peroids:1 },
-                { id: 18, number: 6, peroids:1 }
-            ],
-            [
-                { id: 19, number: 1, peroids:1 },
-                { id: 20, number: 2, peroids:1 },
-                { id: 21, number: 3, peroids:1 },
-                { id: 22, number: '4', peroids:1 },
-                null,
-                { id: 23, number: 5, peroids:1 },
-                { id: 24, number: 6, peroids:1 }
-            ],
-            [
-                { id: 25, number: 1, isReserved: true, peroids:1 },
-                { id: 26, number: 2, peroids:1 },
-                null,
-                { id: 27, number: '3', isReserved: true, peroids:1 },
-                { id: 28, number: '4', peroids:1 },
-                null,
-                { id: 29, number: 5, peroids:1 },
-                { id: 30, number: 6, isReserved: true, peroids:1 }
-            
-            ]
-                ],
+                shecheduleDay:generateDays({from:10,to:16,appointmentPeriod:30}),
                 initShecheduleDate:date,
                 clinicId,
                 clinicName:'new cairo',
@@ -230,6 +190,24 @@ export const getClinic = async ({ clinicId, date })=>{
     });
    
 }
+const generateDays = ({from, to, appointmentPeriod}) => {
+        const days = []
+        for(let d=0;d<5;d++){
+            const appointments = [];
+            for (let i = from; i < to; i++) { // Generate all 24 hours
+                    for (let j = 0; j < 60 / appointmentPeriod; j++) {
+                        const hour = i.toString().padStart(2, '0');
+                        const minute = (j * appointmentPeriod).toString().padStart(2, '0');
+                        appointments.push({
+                            number: appointments.length + 1,
+                            time: `${hour}:${minute}`,
+                        });
+                    }
+            }
+            days.push(appointments)
+        }
+    return days;
+};
 
 export const getDiagnosisPref = ({ selectedCategories, date, patientId})=>{
     return new Promise((res)=>{
@@ -335,7 +313,7 @@ export const getPatient = async( { patientId })=>{
 export const doctorAppiontments = async({ doctorId, date}) =>{
     return new Promise((res)=>{
         setTimeout(() => {
-            res(doctorApp.filter(app=>app.appointmentDate == date && app.doctorId === doctorId))
+            res(doctorApp)
         }, 1000);
     });
 }
@@ -427,4 +405,15 @@ export const createNurseAppointment = ({ date, nurseId })=>{
             res({appointment ,messege: 'Donation Request created' })
         }, 1000);
     });
+}
+export const createClinic = ({})=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res({ messege: 'Clinic created successfully' })
+        }, 1000);
+    });
+}
+export const getTotal =(isTotal)=>{
+    const count = isTotal?2025:20;
+    return new Promise((res)=>res(count));
 }

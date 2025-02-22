@@ -1,276 +1,34 @@
+/* Add to your CSS file */
 
-.medical-history .patient-info {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 2rem;
+
+
+.card-hover-effect {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.medical-history .patient-info .image {
-    width: 8rem;
+
+.card-hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.medical-history .patient-info .image img {
-    width: 100%;
-    border-radius: 50%;
+.card-hover-effect a:hover{
+    text-decoration: underline!important;
 }
-.medical-history .patient-info .info h3 {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: var(--text--primary);
+/*med table*/
+.medicines-table th {
+    background-color: #0e4067 ;
+    color: white;
+    border-bottom: 2px solid #dee2e6;
 }
-.medical-history .patient-info .info p {
+.medicines-table thead th {
+    white-space: nowrap;
     font-size: 1rem;
-    color: var(--gray--text);
-}
-.medical-history .tab-list{
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    border: solid 1px  hsl(0, 0%, 80%); 
-    padding: 1rem;
-    width: fit-content;
-    margin: 1.2rem auto;
-}
-.medical-history .tab-list>button{
-    width: '3rem';
-    background-color: var(--main-blue-vesion2);
-    color: var(--text-color-white);
-    border-radius: .25rem;
-    padding: .5rem 1rem;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-.medical-history .tab-list .active {
-    opacity: 80%;
-}
-.tab-content .diagnosis-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.tab-content  .filters {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: .5rem;
-    width: 25rem;
-    max-width: 100%;
-}
-.tab-content .filters div {
-    max-width: 100%;
-   
-}
-.tab-content .filters .search-btn button{
-    width: 100%;
-    padding: .35rem;
-    background-color: var(--main-blue-vesion2);
-    color: var(--text-color-white);
-    border: none;
-    border-radius: .25rem;
-    margin-bottom: 6.9rem;
-}
-.tab-content .filters .by-doctor-check {
-    display: flex;
-    gap: 1rem;
-}
-input[type=checkbox] {
-    position: relative;
-      cursor: pointer;
-}
-input[type=checkbox]:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 0;
-    left: 0;
-    background-color:#e9e9e9;
-}
-input[type=checkbox]:checked:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 0;
-    left: 0;
-    background-color:var(--main-blue-vesion2);
-}
-input[type=checkbox]:checked:after {
-    content: "";
-    display: block;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    position: absolute;
-    top: 2px;
-    left: 6px;
-}
-.tab-content .diagnosis-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 1rem;
-}
-.detailed-diagnosis{
-    margin: 2rem auto;
-    max-width: 600px;
-}
-.diagnosis {
-    flex: 0 1 400px;
-    background-color: white;
-    box-shadow: 0 1px 1rem -4px #000;
-    padding: 1rem;
-    border-radius: .25rem;
-    transition: all 250ms ease-in-out;
-}
-.diagnosis:hover {
-    box-shadow: 0 4px 1rem -4px #000;
-    transform: translateY(-3px);
-}
-.diagnosis .doctor{
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-.diagnosis .doctor .img {
-    width: 5rem;
-    height: 5rem;
-}
-.diagnosis .doctor .img a {
-    display: block;
-    width: 100%;
-}
-.diagnosis .doctor .img a  img{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-}
-.diagnosis .doctor .name a {
-    font-size: 1.25rem;
-    color: var(--text--primary); 
-    font-weight: bold;   
-}
-.diagnosis .doctor .name a:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-.diagnosis .diagnosis-info {
-    cursor: pointer;
-}
-.diagnosis .diagnosis-info .diagnosis-description{
-    margin: .6rem 0;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4;
-}
-/* .diagnosis-container  */.diagnosis .date p {
-    color: var(--gray--text);
-    margin: 0;
-}
-.tab-content .medicines {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.tab-content .medicines .medicine {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-.tab-content .medicines .medicine .medicine-name {
-    font-size: 1.25rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-.tab-content .medicines .medicine .duration,.tab-content .medicines .medicine .dose  {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-.medicines-table {
-    border-collapse: collapse;
-    margin: 0 auto 3.2rem auto;
-    font-size: 1.25rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border-radius: .25rem;
-}
-.diagonsis-medicines-table {
-    width: 100%;
-    margin-bottom: .5rem;
-}
-.medicines-table thead tr {
-    background-color: var(--main-blue-vesion2);
-    color: #ffffff;
-    text-align: left;
-}
-.medicines-table th,
-.medicines-table td {
-    padding: 12px 15px;
-}
-.medicines-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.medicines-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.medicines-table tbody tr:last-of-type {
-    border-bottom: 2px solid var(--main-blue-vesion2);
-}
-.medicines-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-
-@media (max-width:450px) {
-    .medical-history .tab-list{
-        gap: 1rem;
-    }
-    .medical-history .patient-info {
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-    }
-    .medical-history .patient-info .image {
-        width: 6rem;
-    }
-    .medical-history .patient-info .image img {
-        width: 100%;
-        border-radius: 50%;
-    }
-    .medical-history .patient-info .info h3 {
-        font-size: 1.25rem;
-    }
-}
-@media (max-width:780px) {
+@media (max-width: 576px) {
     .medicines-table {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
-}
-
-@media (max-width:520px) {
-    .medical-history .tab-list{
-        gap: .25rem;
-        flex-wrap: wrap;
-    }
-    .medical-history .choose>div{
-        padding:.5rem;
-        font-size: .9rem;
-        flex:  0 0 45%;
+    .medicine-mobile-sm {
+        padding: 0.35rem;
     }
 }

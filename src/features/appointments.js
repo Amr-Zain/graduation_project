@@ -14,9 +14,10 @@ export const getAppointments = createAsyncThunk('appointments/getAppointments',
     async ({ date }, thunkAPI)=>{
     try {
         const { userType, id } = thunkAPI.getState().authedUser.user;
-        let result;
+        let result=[];
         if( userType === 'patient'){
-            if(thunkAPI.getState().appointments.appointments.length ===0 ) result = await appointments({ id });
+                result = await appointments({ id });
+                return { appointments: result}
         } 
         else result = await doctorAppiontments({ doctorId: id, date});
         return { appointments: result };
@@ -102,8 +103,11 @@ const appointmentsSlice = createSlice({
             })
             .addCase(cancelAppointment.fulfilled,(state, { payload })=>{
                 state.appointments = state.appointments.filter( app => app.id !== payload.id);
+                state.appointmentUpdateLoading = false;
+                state.appointmentUpdateError = '';
             }).addCase(cancelAppointment.pending, (state, action) => {
                 state.appointmentUpdateLoading = true;
+                state.appointmentUpdateError = '';
             })
             .addCase(cancelAppointment.rejected, (state, { payload}) => {
                 state.appointmentUpdateLoading = false;

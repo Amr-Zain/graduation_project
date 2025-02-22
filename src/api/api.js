@@ -615,7 +615,7 @@ const patients = [
         city: 'Mansoura',
         governorate: 'Dakahlia',
         phone: '01012121212',
-        imageURL : '/images/avatars/default.png',
+        imageURL : '/images/avatars/team/doctor-1.jpg',
         age: 30
     },
     {
@@ -754,7 +754,7 @@ const donationRequests = [{
         email:'zain@gmail.com',
         name: 'Zain Fathi',
         governorate: 'Dakahlia',
-        bloodType: 'O-',
+        bloodType: 'A-',
         requiredDonaters: 5,
         donators: ["dfnvcmxcsdfs"],/* or just number */
         date :Date.now()

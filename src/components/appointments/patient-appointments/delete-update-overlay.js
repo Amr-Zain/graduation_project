@@ -1,69 +1,146 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { createPortal } from "react-dom";
-import { cancelAppointment, updateAppointment } from "../../../features/appointments";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import '../../../style/delete-update-overlay.css'
 import { Link } from "react-router-dom";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { cancelAppointment, updateAppointment } from "../../../features/appointments";
 import { PROFILE } from "../../../constants/routes";
 
-function DeleteUpdateOverlay({ overlay:{ id, type, appType, DoctorNurseId, name, }, setOverlay }) {
-    const dispatch  = useDispatch();
-    const [date, setDate ]= useState(new Date());
-    const { appointmentUpdateLoading:isLoading, appointmentUpdateError:error } = useSelector(store=>store.appointments);
+function DeleteUpdateModal({ 
+  overlay: { id, type, appType, DoctorNurseId, name }, 
+  setOverlay 
+}) {
+  const dispatch = useDispatch();
+  const [date, setDate] = useState(new Date());
+  const { 
+    appointmentUpdateLoading: isLoading, 
+    appointmentUpdateError: error 
+  } = useSelector(store => store.appointments);
 
-    const onDateChange = (date)=>{
-        setDate(date);
+  const handleClose = () => setOverlay({ show: false });
+
+  const handleConfirm = async () => {
+    try {
+      if (type === 'delete') {
+        toast.promise(
+          dispatch(cancelAppointment({ id })),
+          {
+            pending: 'Canceling appointment...',
+            success: 'Appointment canceled successfully!',
+            error: {
+              render({data}) {
+                return data?.message || 'Failed to cancel appointment';
+              }
+            }
+          }
+        );
+      } else if (type === 'update') {
+        toast.promise(
+          dispatch(updateAppointment({ id, date })),
+          {
+            pending: 'Updating appointment...',
+            success: 'Appointment updated successfully!',
+            error: {
+              render({data}) {
+                return data?.message || 'Failed to update appointment';
+              }
+            }
+          }
+        );
+      }
+      handleClose();
+    } catch (err) {
+      toast.error(err.message || 'An error occurred');
     }
-    // use toaster
-    //show the user some effects while excuting the actions could I use the same appointments fetching pendding and error lets t
-    const confirmClickHandler = async ()=>{
-        if(type === 'delete'){
-            await dispatch(cancelAppointment({ id }))
-        }else if(type === 'update'){
-            await dispatch(updateAppointment({id, date}))
-        }
-        setOverlay({show:false});
-    }
-    return createPortal( 
+  };
+
+  return (
+    <Modal
+      show={true}
+      onHide={handleClose}
+      centered
+      backdrop="static"
+      keyboard={false}
+    >
+      <Modal.Header closeButton className="border-0">
+        <Modal.Title as="h5">
+          Confirm {type.charAt(0).toUpperCase() + type.slice(1)}
+        </Modal.Title>
+      </Modal.Header>
+
+      <Modal.Body className="py-4">
+        <p className="mb-4" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+          Do you want to {type} the appointment with{' '}
+          <Link 
+            to={`/${PROFILE}/${appType}/${DoctorNurseId}`}
+            className="fw-bold text-decoration-none"
+            style={{ color: 'var(--primary)' }}
+          >
+            {name}
+          </Link>?
+        </p>
+
+        {type === 'update' && (
+          <Form.Group className="mb-3">
+            <DatePicker
+              selected={date}
+              onChange={date => setDate(date)}
+              minDate={new Date()}
+              showIcon
+              closeOnScroll={true}
+              placeholderText="Select Date"
+              className="form-control"
+              wrapperClassName="w-100"
+            />
+          </Form.Group>
+        )}
+      </Modal.Body>
+
+      <Modal.Footer className="border-0">
+        <Button
+          variant="secondary"
+          onClick={handleClose}
+          className="px-4"
+          style={{
+            backgroundColor: 'var(--background-white)',
+            color: 'var(--text-primary)',
+            border: 'none'
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
+          onClick={handleConfirm}
+          disabled={isLoading}
+          className="px-4"
+          style={{
+            backgroundColor: type === 'delete' ? 'var(--bs-danger)' : 'var(--primary)',
+            borderColor: type === 'delete' ? 'var(--bs-danger)' : 'var(--primary)'
+          }}
+        >
+          {isLoading ? (
             <>
-                <div className="overlay-container">
-                        <div style={{minWidth:'300px',fontSize:'1.2rem',color:'#262626'}}>
-                            Do You Want To {type} The Appointment With 
-                                <Link to={'/'+PROFILE + '/'+appType + "/" + DoctorNurseId } style={{fontWeight:'bold'}}> {name}</Link>
-                        </div>
-                        
-                        {
-                            type ==='update'&&<div className="date">
-                            <DatePicker 
-                                showIcon
-                                selected={ date }
-                                closeOnScroll={(e) => e.target === document}
-                                minDate={new Date()} 
-                                onChange={onDateChange}
-                                placeholderText="Date"
-                            />
-                            </div>
-                        }
-                        <div className={`confirm `} 
-                            onClick={confirmClickHandler}
-                            onKeyDown={(e) => e.key === 'Enter' && confirmClickHandler()}
-                        > {isLoading?'loading':type}</div>
-                        <div className="back" onClick={()=>setOverlay({show:false})}> Cancel</div>
-                </div>
-                    
-                <div onClick={()=>setOverlay({show:false})} className="over" style={{
-                position: 'fixed',
-                left: '0',
-                top: '0',
-                width: '100%',
-                height: '100%',
-                zIndex:"50",
-                backgroundColor: 'rgb(0 0 0 / 60%)',
-                display:'block'
-                }}></div>
-            </>, document.getElementById('root2') );
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="me-2"
+              />
+              Processing...
+            </>
+          ) : (
+            type.charAt(0).toUpperCase() + type.slice(1)
+          )}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
-export default DeleteUpdateOverlay;
+export default DeleteUpdateModal;

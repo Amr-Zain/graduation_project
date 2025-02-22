@@ -1,24 +1,25 @@
-import React from 'react';
-import Input from './input';
+import { FormCheck, FormGroup, FormLabel } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../../features/search";
 
-const RadioGroup = ({ title, name, options, selectedValue, onChange }) => (
-    <div className={name}>
-        <fieldset>
-            <legend>{title}</legend>
-            {options.map((option) => (
-                <Input
-                    key={option.id}
-                    type="radio"
-                    id={option.id}
-                    name={name}
-                    value={option.value}
-                    checked={selectedValue === option.value}
-                    handleChange={onChange}
-                    label={option.label}
-                />
-            ))}
-        </fieldset>
-    </div>
-);
+const RadioGroup = ({ title, name, options, selectedValue }) => {
+    const dispatch = useDispatch();
+    const onChange = (e) => dispatch(setFilter({ [e.target.name]: e.target.value }));
 
-export default RadioGroup;
+    return<FormGroup className="mb-3"> 
+        <FormLabel>{title}</FormLabel>
+        {options.map((option) => (
+            <FormCheck
+                key={option.id}
+                type="radio"
+                id={option.id}
+                name={name}
+                value={option.value}
+                checked={selectedValue === option.value}
+                onChange={onChange}
+                label={option.label}
+            />
+        ))}
+    </FormGroup>
+};
+export default RadioGroup

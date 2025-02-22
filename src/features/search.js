@@ -60,6 +60,7 @@ const searchSlice = createSlice({
                     state.result.count = payload.count;
                 }).addCase(getSearchResult.pending,(state,{ payload })=>{
                     state.isLoading = true;
+                    state.error = '';
                 })
                 .addCase(getSearchResult.rejected, (state, { payload }) => {
                     state.isLoading = false;

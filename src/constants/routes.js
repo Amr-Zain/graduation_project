@@ -11,6 +11,7 @@ export const APPOINTMENTS = 'appointments';
 export const SEARCH = 'search';
 export const MEDICAL_HISTORY = 'medical_history';
 export const DIAGNOSIS = 'diagnosis';
+export const DETAILED_DIAGNOSIS = 'DetailedDiagnosis';
 
 
 
@@ -30,6 +31,7 @@ export const DONATION_REQUEST = 'donation_request';
 
 export const BLOOD_REQUEST = 'blood_request';
 export const UNAUTHORIZED = 'unauthorized';
+export const SETTINGS = 'settings';
 
 /*
 

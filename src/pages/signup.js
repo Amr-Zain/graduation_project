@@ -1,182 +1,258 @@
-import "../style/signup.css";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuthedUserThunk } from "../features/authedUser";
-import { Controller, useForm } from "react-hook-form";
-import { LOGIN } from "../constants/routes";
-import "react-datalist-input/dist/styles.css";
-import { getCitiesAndSpecializations } from "../features/cities-specializations";
-import Input from "../components/signup/input";
-import Select from "react-select";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+import { Container, Row, Col, Form, Button, Image, Alert } from 'react-bootstrap';
+import Select from 'react-select';
+import { setAuthedUserThunk } from '../features/authedUser';
+import { LOGIN, DOCTOR } from '../constants/routes';
+import { getCitiesAndSpecializations } from '../features/cities-specializations';
 
-export default function SignUp() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
+const SignUp = () => {
+  const { 
+    register, 
+    control, 
+    handleSubmit, 
+    watch,
+    formState: { errors } 
   } = useForm({
     defaultValues: {
-      userType: "patient"
+      userType: { label: 'Patient', value: 'patient' }
     }
   });
-
   
-  const dispatch = useDispatch();
-  const { cities, specializations } = useSelector((store) => store.citiesAndSpecializations);
-  const { user, error, isLoading } = useSelector((store) => store.authedUser);
   const navigate = useNavigate();
+  const { error, isLoading, user } = useSelector((store) => store.authedUser);
+  const { cities, specializations } = useSelector((store) => store.citiesAndSpecializations);
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
-    try {
-      await dispatch(
-        setAuthedUserThunk({
-          create: true,
-          user: { ...data },
-        })
-      );
-    } catch (error) {
-      console.error("Signup failed: ", error);
-    }
+    dispatch(setAuthedUserThunk({ 
+      create: true, 
+      user: data 
+    }));
   };
 
   useEffect(() => {
-    document.title = "Signup";
-    console.log(user)
-    if(user.userType) navigate(`/${user.userType}`)
+    document.title = 'Sign Up';
+    if (user.userType) navigate('/' + user.userType);
     if (cities.length === 0 || specializations.length === 0) {
       dispatch(getCitiesAndSpecializations());
     }
-  }, [user]);
+  }, [user, navigate, dispatch, cities, specializations]);
 
-  // Convert cities and specializations to required format for DatalistInput
-  const cityItems = cities.map(city => ({ id: city, value: city }));
-  const specializationItems = specializations.map(spec => ({ id: spec, value: spec }));
+  const userTypeOptions = [
+    { label: 'Patient', value: 'patient' },
+    { label: 'Doctor', value: 'doctor' },
+    { label: 'Nurse', value: 'nurse' },
+  ];
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-12 col-md-5 col-lg-6">
-          <div className="login-signup-image">
-            <img
-              className="image-left"
-              src="/images/signup_login.png"
-              alt="Signup Illustration"
+    <Container  className="min-vh-100 d-flex align-items-center">
+      <Row className="g-0 justify-content-center w-100">
+        <Col md={6} className="d-none d-md-block">
+          <Image
+            src="/images/signup_login.png"
+            alt="Signup illustration"
+            fluid
+            className="h-100 w-100 object-fit-cover"
+          />
+        </Col>
+        
+        <Col sm={12} md={6} lg={4} className="bg-light p-5">
+          <div className="text-center mb-4">
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              fluid
+              style={{ maxWidth: '200px' }}
             />
           </div>
-        </div>
 
-        <div className="col-sm-12 col-md-7 col-lg-6">
-          <div className="grid-container from-sign">
-            <div className="logo-container">
-              <img
-                className="image-logo"
-                src="/images/logo.png"
-                alt="App Logo"
-              />
-            </div>
-            
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {error&& <div>{error}</div>}
-              <div className="flex-input">
-                <div>
-                  <Controller
-                    name="userType"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <Select
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            {error && <Alert variant="danger" className="mb-3">{error}</Alert>}
+
+            <Form.Group className="mb-3">
+              <Controller
+                name="userType"
+                control={control}
+                rules={{ required: "User Type is required" }}
+                render={({ field, fieldState: { error } }) => (
+                  <>
+                    <Select
                       {...field}
-                      placeholder='User Type'
-                      options={[{label:'Patient', value:'patient'},{label:'Doctor',value:'doctor'},{label:'Nurse',value:'nurse'}]}
-                      />
-                    )}
+                      options={userTypeOptions}
+                      placeholder="Select User Type"
+                      classNamePrefix="react-select"
+                      className={error ? 'is-invalid' : ''}
                     />
-                </div>
-                <Input
-                  type="text"
-                  placeholder="Full Name"
-                  register={register("name", { 
-                    required: "Full name is required",
-                    pattern: {
-                      value: /^[A-Za-z]+(?: [A-Za-z]+)+$/,
-                      message: "Please enter at least two names separated by space"
-                    },
-                    setValueAs: value => value.replace(/\s+/g, ' ').trim() 
-                  })}
-                  error={errors.name}
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  register={register("phone", { 
-                    required: "Phone is required",
-                    pattern: {
-                      value: /^01[0-9]{9}$/,
-                      message: "Invalid phone number"
-                    }
-                  })}
-                  error={errors.phone}
-                />
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  register={register("email", { 
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address"
-                    }
-                  })}
-                  error={errors.email}
-                />
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  register={register("password", { 
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Password must be at least 8 characters"
-                    }
-                  })}
-                  error={errors.password}
-                />
-                <div>
-                  <Controller
-                    name="city"
-                    control={control}
-                    render={({ field }) => (
+                    {error && (
+                      <Form.Text className="text-danger">{error.message}</Form.Text>
+                    )}
+                  </>
+                )}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="Full Name"
+                isInvalid={!!errors.name}
+                {...register('name', {
+                  required: 'Full name is required',
+                  pattern: {
+                    value: /^[A-Za-z]+(?: [A-Za-z]+)+$/,
+                    message: 'Enter at least two names'
+                  }
+                })}
+              />
+              {errors.name && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.name.message}
+                </Form.Control.Feedback>
+              )}
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="email"
+                placeholder="Email Address"
+                isInvalid={!!errors.email}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address'
+                  }
+                })}
+              />
+              {errors.email && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.email.message}
+                </Form.Control.Feedback>
+              )}
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="tel"
+                placeholder="Phone Number (01XXXXXXXXX)"
+                isInvalid={!!errors.phone}
+                {...register('phone', {
+                  required: 'Phone number is required',
+                  pattern: {
+                    value: /^01[0-9]{9}$/,
+                    message: 'Invalid Egyptian phone number'
+                  }
+                })}
+              />
+              {errors.phone && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.phone.message}
+                </Form.Control.Feedback>
+              )}
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                isInvalid={!!errors.password}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 8,
+                    message: 'Minimum 8 characters required'
+                  }
+                })}
+              />
+              {errors.password && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.password.message}
+                </Form.Control.Feedback>
+              )}
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Controller
+                name="city"
+                control={control}
+                rules={{ required: "City is required" }}
+                render={({ field, fieldState: { error } }) => (
+                  <>
+                    <Select
+                      {...field}
+                      options={cities}
+                      placeholder="Select City"
+                      classNamePrefix="react-select"
+                      className={error ? 'is-invalid' : ''}
+                    />
+                    {error && (
+                      <Form.Text className="text-danger">{error.message}</Form.Text>
+                    )}
+                  </>
+                )}
+              />
+            </Form.Group>
+
+            {watch('userType')?.value === DOCTOR && (
+              <Form.Group className="mb-3">
+                <Controller
+                  name="specialization"
+                  control={control}
+                  rules={{ required: "Specialization is required" }}
+                  render={({ field, fieldState: { error } }) => (
+                    <>
                       <Select
                         {...field}
-                        placeholder='Choose City'
-                        rules={{ required: true }}
-                        options={cities}
+                        options={specializations}
+                        placeholder="Select Specialization"
+                        classNamePrefix="react-select"
+                        className={error ? 'is-invalid' : ''}
                       />
-                    )}
-                    />
-                  {errors.city && <span className="error">{errors.city.message}</span>}
-                </div>
-                  <Input
-                    type="date"
-                    placeholder="Birthday"
-                    register={register("birthDay", { 
-                      required: "Birthday is required" 
-                    })}
-                    error={errors.birthDay}
-                  />
-                <button disabled={isLoading} type="submit" className="login-bottom">
-                  {isLoading?'Loaing...':'Sign Up'}
-                </button>
-              </div>
-            </form>
+                      {error && (
+                        <Form.Text className="text-danger">{error.message}</Form.Text>
+                      )}
+                    </>
+                  )}
+                />
+              </Form.Group>
+            )}
 
-            <p className="to-login">
-              Have an account? <Link to={'/'+LOGIN}>Log in</Link>
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="date"
+                isInvalid={!!errors.birthDay}
+                {...register('birthDay', {
+                  required: 'Birth date is required'
+                })}
+              />
+              {errors.birthDay && (
+                <Form.Control.Feedback type="invalid">
+                  {errors.birthDay.message}
+                </Form.Control.Feedback>
+              )}
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-100 mb-3"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Creating Account...' : 'Sign Up'}
+            </Button>
+
+            <p className="text-center mb-0">
+              Already have an account?{' '}
+              <Link to={'/' + LOGIN}>Login</Link>
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
+
+export default SignUp;

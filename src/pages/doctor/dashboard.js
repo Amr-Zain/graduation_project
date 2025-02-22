@@ -1,14 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
+import {  useEffect } from 'react';
+import DoctorAppointments from '../../components/doctor/appointments';
 
-import Header from '../../components/header'
-import Appointments from '../../components/appointments';
 function Dashboadrd() {
-    const doctorApp = useSelector(store => store.appointments);
-    return <>
-            <main>
-                <Appointments isAppPage ={ true } type ={'doctor'}/>
+    
+    useEffect(()=>{
+        document.title = 'Doctor-Dashboard';
+    })
+    return (
+            <main >
+                <div>
+                    <h2>Today Appointments</h2>
+                    <div>
+                        <DoctorAppointments date={Date.now()} />
+                    </div>
+                </div>
             </main>
-        </>;
+            );
 }
 
 export default Dashboadrd;

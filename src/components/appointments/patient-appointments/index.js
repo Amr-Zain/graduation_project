@@ -1,49 +1,56 @@
+
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { Row } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
+import { Row, Spinner, Alert } from "react-bootstrap";
 import { getAppointments } from "../../../features/appointments";
 import Appointment from "./patient-appointment";
 import { APPOINTMENTS, PATIENT } from "../../../constants/routes";
-import "./../../../style/appointment.css";
 import DeleteUpdateOverlay from "./delete-update-overlay";
+import '../../../style/appointment.css'
 
 const Appointments = ({ isAppPage }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-    const { appointments, isLoading, error } = useSelector((store) => store.appointments);
+  const { appointments, isLoading, error } = useSelector((store) => store.appointments);
   const [overlay, setOverlay] = useState({ show: false, type: "", id: "", name: "" });
-    const updateOverlay = useCallback((updates)=>{
-      setOverlay((state=>{
-        return{...state,...updates}
-      }))
-    },[])
-    const handleAppClick = () => {
-        navigate(PATIENT + APPOINTMENTS);
-    };
-    useEffect(() => {
-        if(appointments.length ===0)dispatch(getAppointments({ date:null}));
-    },[]);
+
+  const updateOverlay = useCallback((updates) => {
+    setOverlay(state => ({ ...state, ...updates }));
+  }, []);
+
+  useEffect(() => {
+    if(!appointments.length)dispatch(getAppointments({ date: null }));
+  }, [dispatch]);
 
   const renderAppointmentsList = () => {
     if (isLoading) {
-      return <div>Loading appointments...</div>;
+      return (
+        <div className="loading-placeholder">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      );
     }
-    if(error){
-        return (
-            <div style={{ marginTop: "7rem", textAlign: "center", color: "red" }}>
-            Error: {error}. Please try again later.
-            </div>
-        );
+
+    if (error) {
+      return (
+        <Alert variant="danger" className="mt-4 text-center">
+          Error: {error}. Please try again later.
+        </Alert>
+      );
     }
+
     if (appointments.length === 0) {
-      return isAppPage && <div style={{ marginTop: "7rem", textAlign: "center" }}>There Are No Upcoming Appointments</div>;
+      return isAppPage && (
+        <div className="no-appointments text-center m-5">
+          There Are No Upcoming Appointments
+        </div>
+      );
     }
 
     return (
-      <Row className={!isAppPage ? "flex-nowrap" : ""}>
+      <Row className={`${!isAppPage ? "flex-nowrap" : "justify-content-center justify-content-sm-start "}`}>
         {appointments.map((app) => (
           <Appointment key={app.id} {...app} setOverlay={updateOverlay} />
         ))}
@@ -51,18 +58,23 @@ const Appointments = ({ isAppPage }) => {
     );
   };
 
+
   return (
-    <div className={isAppPage ? "appoint-page" : "appointmets"}>
-      {(appointments.length !== 0 || isLoading ) && (
-        <div className="top-text" onClick={handleAppClick}>
-          <Link to={'/'+PATIENT + '/'+APPOINTMENTS}>Upcoming Appointments</Link>
+    <div className={isAppPage ? "" : "appointments-slider"}>
+      {(appointments.length !== 0 || isLoading) && (
+        <div className="title">
+          <Link to={`/${PATIENT}/${APPOINTMENTS}`}>
+            Upcoming Appointments
+          </Link>
         </div>
       )}
 
-      <div className="appointmets-container">{renderAppointmentsList()}</div>
+      <div className="appointments-container">
+          {renderAppointmentsList()}
+      </div>
+      
       {overlay.show && <DeleteUpdateOverlay setOverlay={updateOverlay} overlay={overlay} />}
     </div>
-
   );
 };
 

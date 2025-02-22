@@ -5,7 +5,7 @@ const Appointments = ()=>{
         document.title = 'Appointments';
     },[])
     return(<>
-        <AppComponents isAppPage type ={'patient'}/>
+        <AppComponents isAppPage />
     </>
     );
 }

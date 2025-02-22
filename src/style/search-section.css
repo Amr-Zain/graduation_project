@@ -1,202 +1,171 @@
-:root {
-  --main: #159190;
-  --main-blue-vesion2:#0e4067;
-  --secondary: 14, 64, 103;
-  --text--primary: #262626;
-  --gray--text: #8C8C8C;
-  --back-ground-white: #f5f5f5;
-  --text-color-white: #ffff;
-  --text-dark-blue: #0e4067;
-  --back-buttun-blue: #0e4067;
-}
-body {
-    background-color: var(--back-ground-white);
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,300&display=swap');
-  }
-  *{
-    font-family: 'Tajawal', sans-serif !important;
-  }
-.react-datalist-input__listbox{
+/* ======================
+   React DataList Components
+   ====================== */
+   .react-datalist-input__listbox {
     max-height: 200px !important;
     overflow: scroll;
 }
+
 .react-datalist-input__listbox::-webkit-scrollbar {
     display: none;
 }
 
-.search-section
-{
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    gap:.5rem;
-    border-radius: 0.6rem;
-    margin-right: 3px;
-    background: #8f8f8f00;
-    width: fit-content;
-    max-width: 98%;
-    margin: 11px auto;
-    box-shadow: 1px 5px 16px -4.5px;
-    height: 4rem;
-}
-.search-section div {
-    height: 36px;
-}
-
-.search-section div input, .search-section div select {
-    height: 100%;
-}
-.search-for
-{
-    background: var( --text-color-white);
-    border-radius: 0.3rem;
-    margin-right: 2px;
-    border: none;
-}
-.react-datalist-input__container
-{
+.react-datalist-input__container {
     border: none;
     border-radius: 0.4rem;
-    padding: 0px 3px 0px 0px;
+    padding: 0 3px 0 0;
     outline: none;
-  
 }
-.react-datalist-input__container input
-{
+
+.react-datalist-input__container input {
     outline: none;
     border: none;
     padding: 8px 50px 8px 10px;
 }
-.text-name
-{
+
+/* ======================
+   Search Section
+   ====================== */
+.search-section {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.6rem;
+    margin: 11px auto;
+    background: #8f8f8f00;
+    width: fit-content;
+    max-width: 98%;
+    box-shadow: 1px 5px 16px -4.5px;
+    height: 4rem;
+}
+
+.search-section div {
+    height: 36px;
+}
+
+.search-section input,
+.search-section select {
+    height: 100%;
+    border: none;
+    border-radius: 7px;
+    padding: 3px;
+}
+
+.search-for {
+    background: var(--text-color-white);
+    border-radius: 0.3rem;
+    margin-right: 2px;
+}
+
+.text-name {
     padding: 6px 50px 6px 10px;
-    border: 1px solid gray;
     border-radius: 0.4rem;
-    margin: 0px;
-    outline: none;
+    margin: 0;
     border: none;
 }
 
-.search-section div input, .search-section div select {
-    height: 100%;
-    border-radius: 7px;
-    padding: 3px;
-    border: none;
-}
-.search-button .icon-search
-{
+/* ======================
+   Search Button & Components
+   ====================== */
+.search-button .icon-search {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     width: fit-content;
-    gap: .5rem;
+    gap: 0.5rem;
     height: 100%;
     padding: 0 8px 0 5px;
     margin-left: 3px;
     background: var(--back-buttun-blue);
     color: var(--text-color-white);
     font-size: 18px;
-    outline: none;
     border: none;
     border-radius: 0.3rem;
 }
 
-.blood-text
-{
+.blood-text {
     background: #0e4067;
     color: white;
     font-size: 1rem;
-    margin: 0px 2px 0px 7px;
+    margin: 0 2px 0 7px;
     border: none;
     border-radius: 0.3rem;
     padding: 4px;
 }
 
+/* ======================
+   Media Queries (Mobile First)
+   ====================== */
+/* Base mobile styles */
+.search-section .city,
+.search-section .specialization,
+.search-section .blood-type,
+.search-section .name {
+    display: none;
+}
 
-@media only screen and (max-width: 400px) {
+/* Small devices (400px and up) */
+@media (min-width: 400px) {
     .search-section .city {
-        display: none;
-    } 
-    
-}
-
-@media only screen and (max-width: 450px) {
-    .search-section .city {
-        display: none;
-    } 
-    
-}
-
-@media only screen and (max-width: 600px) {
-    .search-section .specialization, .search-section .blood-type , .search-section .name {
-        display: none;
-    } 
-}
-
-@media only screen and (min-width: 600px) {
-    .search-section .specialization, .search-section .blood-type, .search-section .name  {
-        display: none;
-    } 
-    .search-for {
-        padding: 0px 4px ;
+        display: flex;
     }
 }
 
-@media only screen and (min-width: 768px) {
-    .search-section .city, .search-section .specialization, .search-section .blood-type{
+
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+    .search-section .specialization,
+    .search-section .blood-type,
+    .search-section .name {
         display: flex;
-    } 
+    }
+    
     .search-for {
-        padding: 0px 4px ;
+        padding: 0 4px;
     }
     .react-datalist-input__container input {
         padding: 12px 23px 11px 5px;
     }
+    
     .text-name {
-        padding: 4px 3px 4px 3px;
+        padding: 4px 3px;
         height: 36px;
     }
-    .icon-search {
-            padding: 3px 8px;
-    font-size: 12px;
-}
-
     
+    .icon-search {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
 }
 
-@media only screen and (min-width: 992px) {
-    .search-section .city, .search-section .specialization, .search-section .blood-type , .search-section .name   {
-        display: flex;
-    } 
-   
+@media (min-width: 992px) {
     .react-datalist-input__container input {
         padding: 8px 23px 8px 5px;
     }
+    
     .text-name {
-        padding: 6px 7px 6px 7px;
+        padding: 6px 7px;
         height: 36px;
     }
+    
     .icon-search {
         padding: 7px 18px;
         font-size: 14px;
     }
 }
 
-@media only screen and (min-width: 1200px) {
-    .search-section .city, .search-section .specialization, .search-section .blood-type {
-        display: flex;
-    } 
-    .react-datalist-input__container
-    {
-        padding: 0px 3px 0px 0px;
-    }
-    .react-datalist-input__container input
-    {
-        padding: 8px 50px 8px 10px;
-    }
-    .text-name
-    {
-        padding: 6px 50px 6px 10px;
+@media (min-width: 1200px) {
+    .react-datalist-input__container {
+        padding: 0 3px 0 0;
     }
     
+    .react-datalist-input__container input {
+        padding: 8px 50px 8px 10px;
+    }
+    
+    .text-name {
+        padding: 6px 50px 6px 10px;
+    }
 }

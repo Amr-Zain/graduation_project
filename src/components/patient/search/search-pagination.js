@@ -2,6 +2,7 @@ import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
+
 function SearchPagination() {
     const search = useSelector( store => store.search );
     const [searchParams, setSearshParams ] = useSearchParams();
