@@ -19,18 +19,31 @@ The Healthcare Management System is a modern web application designed to enhance
 * **React:** A JavaScript library for building dynamic user interfaces, providing a responsive and interactive experience.
 * **Redux Toolkit:** A powerful toolset for managing state efficiently across the app, ensuring smooth data flow for appointments, patient records, and blood donation events.
 * **Bootstrap:** A front-end framework that provides pre-designed components and ensures the app is visually appealing and responsive across devices.
-* **React:** A JavaScript library for building dynamic user interfaces, providing a responsive and interactive experience.
-* **Redux Toolkit:** A powerful toolset for managing state efficiently across the app, ensuring smooth data flow for appointments, patient records, and blood donation events.
 * **Bootstrap:** A front-end framework that provides pre-designed components and ensures the app is visually appealing and responsive across devices.
 * **React Hook Form:** For streamlined and efficient form management.
 * **React Icons:** For easy inclusion of scalable vector icons.
 * **and more**
-  
+
+##/care-track
+  ├── /public                # Static files (index.html, images, etc.)
+  ├── /src                   # Main source code
+  │   ├── /components        # Reusable UI components
+  │   ├── /features          # Redux slices for state management
+  │   ├── /pages             # Application pages  patient(Appionts, PatientHistory, etc.),doctor, nurse (dashboard, apps, profile, etx)
+  │   ├── /style             # Application pages  styles
+  │   ├── /api               # API calls and external integrations
+  │   ├── /App.js            # Root component
+  │   ├── /index.js          # Entry point for React app
+  ├── /node_modules          # Installed packages
+  ├── package.json           # Project metadata and dependencies
+  ├── README.md              # This file
+  └── .gitignore             # Git ignore file
+
 ## UI Screenshots
 * all the screenshots are in the public/screenshots 
 * ![Demo](https://www.youtube.com/watch?v=PL8uJ-O683c&ab_channel=AmrZain)
-* <iframe width="560" height="315" src="https://www.youtube.com/watch?v=PL8uJ-O683c&ab_channel=AmrZain" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+   "https://www.youtube.com/watch?v=PL8uJ-O683c&ab_channel=AmrZain"
+  
 ### Login
 ![login](/public/screenshots/login.JPG)
 
@@ -64,18 +77,3 @@ Healthcare providers can access and manage detailed patient medical records.
 ### Search Platform Blood Donor
 ![Search Platform](public/screenshots/search-donator.png)
 
-
-##/care-track
-  ├── /public                # Static files (index.html, images, etc.)
-  ├── /src                   # Main source code
-  │   ├── /components        # Reusable UI components
-  │   ├── /features          # Redux slices for state management
-  │   ├── /pages             # Application pages  patient(Appionts, PatientHistory, etc.),doctor, nurse (dashboard, apps, profile, etx)
-  │   ├── /style             # Application pages  styles
-  │   ├── /api               # API calls and external integrations
-  │   ├── /App.js            # Root component
-  │   ├── /index.js          # Entry point for React app
-  ├── /node_modules          # Installed packages
-  ├── package.json           # Project metadata and dependencies
-  ├── README.md              # This file
-  └── .gitignore             # Git ignore file
